@@ -10,6 +10,7 @@ from eval.run_eval import (
     answer_is_correct,
     covers_all_gold,
     first_gold_rank,
+    load_questions,
     questions_are_frozen,
     score_answer,
     summarize_retrieval,
@@ -281,6 +282,22 @@ def test_answer_in_hits_needs_all_parts():
 
 def test_questions_are_still_frozen():
     assert questions_are_frozen()
+
+
+def test_question_file_without_hash_is_not_frozen(tmp_path):
+    path = tmp_path / "questions_new.jsonl"
+    path.write_text('{"id": "q1"}\n', encoding="utf-8")
+    assert not questions_are_frozen(path)
+
+
+def test_load_questions_tags_set_and_rejects_duplicate_ids(tmp_path):
+    first, second = tmp_path / "a.jsonl", tmp_path / "b.jsonl"
+    first.write_text('{"id": "q1"}\n', encoding="utf-8")
+    second.write_text('{"id": "q2"}\n\n', encoding="utf-8")
+    assert [(i["id"], i["set"]) for i in load_questions([first, second])] == [("q1", "a"), ("q2", "b")]
+    second.write_text('{"id": "q1"}\n', encoding="utf-8")
+    with pytest.raises(ValueError):
+        load_questions([first, second])
 
 
 def test_summary_of_no_rows_does_not_crash():

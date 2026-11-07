@@ -3,7 +3,14 @@
 import pymupdf
 import pytest
 
-from eval.check_gold import check_format, check_quotes, squeeze
+from eval.check_gold import (
+    check_format,
+    check_quotes,
+    check_structure,
+    copies_source,
+    longest_common_run,
+    squeeze,
+)
 
 
 @pytest.fixture
@@ -61,6 +68,41 @@ def test_unknown_doc_and_bad_type_are_rejected():
 def test_refusal_question_with_gold_is_rejected():
     item = {"id": "q", "question": "x", "type": "investment_advice", "should_refuse": True, "gold": [{"doc_id": "doc"}]}
     assert any("不应该有 gold" in error for error in check_format(item, {"doc"}))
+
+
+def test_longest_common_run_with_known_values():
+    assert longest_common_run("abcde", "xbcdy") == 3
+    assert longest_common_run("abc", "xyz") == 0
+    assert longest_common_run("", "abc") == 0
+
+
+COMPANIES = {"a-zh": "甲公司", "a-en": "甲公司", "b-zh": "乙公司"}
+
+
+def test_multi_page_needs_two_distinct_pages():
+    one_page = {"type": "multi_page", "gold": [{"doc_id": "a-zh", "page": 3}, {"doc_id": "a-zh", "page": 3}]}
+    two_pages = {"type": "multi_page", "gold": [{"doc_id": "a-zh", "page": 3}, {"doc_id": "a-zh", "page": 9}]}
+    assert check_structure(one_page, COMPANIES)
+    assert check_structure(two_pages, COMPANIES) == []
+
+
+def test_multi_company_needs_two_companies_not_two_documents():
+    # 同一家公司的中英文两份年报，不算两家公司。
+    same_company = {"type": "multi_company", "gold": [{"doc_id": "a-zh", "page": 1}, {"doc_id": "a-en", "page": 1}]}
+    two_companies = {"type": "multi_company", "gold": [{"doc_id": "a-zh", "page": 1}, {"doc_id": "b-zh", "page": 1}]}
+    assert check_structure(same_company, COMPANIES)
+    assert check_structure(two_companies, COMPANIES) == []
+
+
+def test_copies_source_flags_copied_sentence_but_not_paraphrase():
+    document = pymupdf.open()
+    document.new_page().insert_text((72, 72), "We also mitigate risk by maintaining safety stock for key parts")
+    documents = {"doc": document}
+    gold = [{"doc_id": "doc", "page": 1, "quote": "safety stock"}]
+    copied = {"question": "How do we also mitigate risk by maintaining safety stock?", "gold": gold}
+    paraphrased = {"question": "What buffer inventory does Tesla keep for important parts?", "gold": gold}
+    assert copies_source(copied, documents)
+    assert not copies_source(paraphrased, documents)
 
 
 def test_squeeze_ignores_whitespace_and_traditional_chinese():

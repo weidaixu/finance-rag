@@ -26,17 +26,38 @@ from finrag.contracts import Hit  # noqa: E402
 from finrag.text import normalize  # noqa: E402
 
 QUESTIONS = ROOT / "eval" / "questions.jsonl"
-FROZEN_HASH = ROOT / "eval" / "questions.sha256"
 REPORT = ROOT / "eval" / "report.md"
 RESULTS = ROOT / "eval" / "results"
 CUTOFFS = (1, 3, 8)
 _NOT_DISCLOSED = re.compile(r"(未|没有|并未)(单独|单列)?(披露|列示|提供)|not\s+(separately\s+|specifically\s+)?disclos|does\s+not\s+disclose", re.IGNORECASE)
 
 
-def questions_are_frozen() -> bool:
-    """题目经用户抽查后冻结：内容变了就拒绝运行，防止为了分数悄悄改题。"""
-    expected = FROZEN_HASH.read_text(encoding="utf-8").split()[0]
-    return hashlib.sha256(QUESTIONS.read_bytes()).hexdigest() == expected
+def questions_are_frozen(path: Path = QUESTIONS) -> bool:
+    """题目经用户抽查后冻结：内容变了就拒绝运行，防止为了分数悄悄改题。
+
+    每份题目文件旁边都有同名的 .sha256 文件，比如 questions_v2.jsonl 对应 questions_v2.sha256。
+    """
+    hash_file = path.with_suffix(".sha256")
+    if not hash_file.exists():
+        return False
+    expected = hash_file.read_text(encoding="utf-8").split()[0]
+    return hashlib.sha256(path.read_bytes()).hexdigest() == expected
+
+
+def load_questions(paths: list[Path]) -> list[dict]:
+    """读取多份题目文件，每题记下来自哪份（set），id 不能重复。"""
+    items: list[dict] = []
+    seen: set[str] = set()
+    for path in paths:
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            item = json.loads(line)
+            if item["id"] in seen:
+                raise ValueError(f"题目 id 重复：{item['id']}")
+            seen.add(item["id"])
+            items.append({**item, "set": path.stem})
+    return items
 
 
 def squeeze(text: str) -> str:
@@ -121,6 +142,7 @@ def evaluate_retrieval(items: list[dict], retriever, k: int) -> list[dict]:
         rows.append(
             {
                 "id": item["id"],
+                "set": item.get("set", ""),
                 "type": item["type"],
                 "question": item["question"],
                 "rank": first_gold_rank(hits, gold),
@@ -152,6 +174,7 @@ def evaluate_answers(items: list[dict], retriever, client, model: str, max_year:
         rows.append(
             {
                 "id": item["id"],
+                "set": item.get("set", ""),
                 "type": item["type"],
                 "question": item["question"],
                 "status": score.status,
@@ -192,11 +215,17 @@ def write_report(retrieval: dict[str, list[dict]], answers: dict[str, list[dict]
         "| 方式 | 题数 | Hit@1 | Hit@3 | Hit@8 | MRR | 找齐全部页面 | 答案在前 8 条 |",
         "| --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
+    sets = sorted({r.get("set", "") for rows in retrieval.values() for r in rows})
     for name, rows in retrieval.items():
-        s = summarize_retrieval(rows)
-        lines.append(
-            f"| {name} | {s['n']} | {s['hit@1']:.0%} | {s['hit@3']:.0%} | {s['hit@8']:.0%} | {s['mrr']:.3f} | {s['all_pages']:.0%} | {s['answer_found']:.0%} |"
-        )
+        # 有多份题目文件时，先写合计，再分别写每份，方便和旧结果对比。
+        groups = [(name, rows)]
+        if len(sets) > 1:
+            groups += [(f"{name}（{s}）", [r for r in rows if r.get("set") == s]) for s in sets]
+        for label, group in groups:
+            s = summarize_retrieval(group)
+            lines.append(
+                f"| {label} | {s['n']} | {s['hit@1']:.0%} | {s['hit@3']:.0%} | {s['hit@8']:.0%} | {s['mrr']:.3f} | {s['all_pages']:.0%} | {s['answer_found']:.0%} |"
+            )
     for name, rows in retrieval.items():
         missed = [r for r in rows if r["rank"] is None or not r["answer_found"]]
         lines += ["", f"### {name} 没有命中标准页或答案不全的题（{len(missed)} 道）", ""]
@@ -208,6 +237,13 @@ def write_report(retrieval: dict[str, list[dict]], answers: dict[str, list[dict]
     for name, rows in answers.items():
         passed = sum(r["passed"] for r in rows)
         lines += ["", f"## 答案：{name}", "", f"通过 {passed}/{len(rows)}，按标价估算费用 {sum(r['cost_yuan'] for r in rows):.4f} 元。", ""]
+        answer_sets = sorted({r.get("set", "") for r in rows})
+        if len(answer_sets) > 1:
+            lines += ["| 题目文件 | 通过 / 题数 |", "| --- | --- |"]
+            for s in answer_sets:
+                group = [r for r in rows if r.get("set") == s]
+                lines.append(f"| {s} | {sum(r['passed'] for r in group)}/{len(group)} |")
+            lines.append("")
         lines += ["| 类型 | 通过 / 题数 |", "| --- | --- |"]
         for kind in sorted({r["type"] for r in rows}):
             group = [r for r in rows if r["type"] == kind]
@@ -232,19 +268,25 @@ def main() -> int:
     parser.add_argument("--rerank", action="store_true", help="在每种方式后面加重排")
     parser.add_argument("--answers", default="", help="逗号分隔，对哪几种方式评答案（会调用模型产生费用），如 hybrid+rerank")
     parser.add_argument("--k", type=int, default=8)
+    parser.add_argument(
+        "--questions",
+        default="eval/questions.jsonl",
+        help="逗号分隔的题目文件，每份都必须已冻结，如 eval/questions.jsonl,eval/questions_v2.jsonl",
+    )
     args = parser.parse_args()
 
-    if not QUESTIONS.exists():
-        print(f"找不到 {QUESTIONS}，评测题还没有写好")
-        return 1
+    paths = [ROOT / part.strip() for part in args.questions.split(",") if part.strip()]
+    for path in paths:
+        if not path.exists():
+            print(f"找不到 {path}，评测题还没有写好")
+            return 1
+        if not questions_are_frozen(path):
+            print(f"{path.name} 没有冻结，或和冻结时不一致。改题必须说明原因并更新 {path.with_suffix('.sha256').name}。")
+            return 1
 
     from finrag.retrieval import MANIFEST, load_retriever
 
-    if not questions_are_frozen():
-        print(f"{QUESTIONS.name} 和冻结时不一致。改题必须说明原因并更新 {FROZEN_HASH.name}。")
-        return 1
-
-    items = [json.loads(line) for line in QUESTIONS.read_text(encoding="utf-8").splitlines() if line.strip()]
+    items = load_questions(paths)
     RESULTS.mkdir(exist_ok=True)
     retrieval_rows: dict[str, list[dict]] = {}
     answer_rows: dict[str, list[dict]] = {}
