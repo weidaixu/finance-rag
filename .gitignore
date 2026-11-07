@@ -1,0 +1,22 @@
+# 密钥：绝对不能提交
+.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.pytest_tmp/
+
+# 临时试验代码
+scratch/
+
+# 财报原始文件，下载脚本可以重新获取
+data/raw/
+data/index/
+
+# 编辑器和系统文件
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

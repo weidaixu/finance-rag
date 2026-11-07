@@ -1,0 +1,392 @@
+{
+  "retrieval": [
+    {
+      "id": "q01",
+      "type": "table_number",
+      "question": "贵州茅台2025年营业收入是多少元人民币？请保留年报原始数字，不换算单位。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "moutai-2025-zh p12",
+        "moutai-2025-zh p10",
+        "moutai-2025-zh p20"
+      ],
+      "gold": [
+        "moutai-2025-zh p6"
+      ]
+    },
+    {
+      "id": "q02",
+      "type": "table_number",
+      "question": "比亚迪2025年归属于上市公司股东的净利润是多少元？请保留原始数字。",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p11",
+        "byd-2025-zh p12",
+        "byd-2025-zh p267"
+      ],
+      "gold": [
+        "byd-2025-zh p11"
+      ]
+    },
+    {
+      "id": "q03",
+      "type": "table_number",
+      "question": "宁德时代2025年营业收入是多少千元？请按年报原单位回答。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p30",
+        "catl-2025-zh p195",
+        "catl-2025-zh p208"
+      ],
+      "gold": [
+        "catl-2025-zh p11"
+      ]
+    },
+    {
+      "id": "q04",
+      "type": "table_number",
+      "question": "招商银行集团截至2025年12月31日的不良贷款率是多少（%）？",
+      "rank": 3,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "cmb-2025-zh p263",
+        "cmb-2025-zh p31",
+        "cmb-2025-zh p16"
+      ],
+      "gold": [
+        "cmb-2025-zh p16"
+      ]
+    },
+    {
+      "id": "q05",
+      "type": "table_number",
+      "question": "Tesla2025年度合并利润表中的总收入（Total revenues）是多少百万美元？请保留原表数字。",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "tesla-2025-en p53",
+        "tesla-2025-en p41",
+        "tesla-2025-en p58"
+      ],
+      "gold": [
+        "tesla-2025-en p53"
+      ]
+    },
+    {
+      "id": "q06",
+      "type": "table_number",
+      "question": "贵州茅台2025年末合并财务报表存货分类中，存货合计的账面价值是多少元人民币？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p91",
+        "moutai-2025-zh p93",
+        "moutai-2025-zh p89"
+      ],
+      "gold": [
+        "moutai-2025-zh p91"
+      ]
+    },
+    {
+      "id": "q07",
+      "type": "table_number",
+      "question": "比亚迪2025年以套期保值为目的的衍生品投资表中，外汇衍生品期末金额是多少万元？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p45",
+        "byd-2025-zh p45",
+        "byd-2025-zh p45"
+      ],
+      "gold": [
+        "byd-2025-zh p45"
+      ]
+    },
+    {
+      "id": "q08",
+      "type": "table_number",
+      "question": "宁德时代2025年末合并财务报表存货分类中，发出商品的账面价值是多少千元？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p172",
+        "catl-2025-zh p172",
+        "catl-2025-zh p165"
+      ],
+      "gold": [
+        "catl-2025-zh p172"
+      ]
+    },
+    {
+      "id": "q09",
+      "type": "table_number",
+      "question": "招商银行集团截至2025年12月31日的零售客户定期存款金额是多少人民币百万元？请保留原表数字。",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "cmb-2025-zh p30",
+        "cmb-2025-zh p257",
+        "cmb-2025-zh p256"
+      ],
+      "gold": [
+        "cmb-2025-zh p30"
+      ]
+    },
+    {
+      "id": "q10",
+      "type": "text_fact",
+      "question": "贵州茅台2025年年报核心竞争力分析中列出的五大核心竞争力分别是什么？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p9",
+        "moutai-2025-zh p21",
+        "moutai-2025-zh p17"
+      ],
+      "gold": [
+        "moutai-2025-zh p9"
+      ]
+    },
+    {
+      "id": "q11",
+      "type": "text_fact",
+      "question": "比亚迪2025年年报主要业务介绍中的“刀片电池”采用哪种电池化学体系？",
+      "rank": 4,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p32",
+        "byd-2025-zh p32",
+        "byd-2025-zh p14"
+      ],
+      "gold": [
+        "byd-2025-zh p13"
+      ]
+    },
+    {
+      "id": "q12",
+      "type": "text_fact",
+      "question": "宁德时代2025年年报主要业务介绍中，公司主要从事哪两类电池的研发、生产和销售？",
+      "rank": 2,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p15",
+        "catl-2025-zh p14",
+        "catl-2025-zh p25"
+      ],
+      "gold": [
+        "catl-2025-zh p14"
+      ]
+    },
+    {
+      "id": "q13",
+      "type": "text_fact",
+      "question": "招商银行2025年年报“信用风险管理”如何定义信用风险？",
+      "rank": 3,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "cmb-2025-zh p260",
+        "cmb-2025-zh p39",
+        "cmb-2025-zh p63"
+      ],
+      "gold": [
+        "cmb-2025-zh p63"
+      ]
+    },
+    {
+      "id": "q14",
+      "type": "text_fact",
+      "question": "贵州茅台2025年年报“可能面对的风险”列出了哪四类风险？",
+      "rank": 3,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p3",
+        "moutai-2025-zh p55",
+        "moutai-2025-zh p23"
+      ],
+      "gold": [
+        "moutai-2025-zh p23"
+      ]
+    },
+    {
+      "id": "q15",
+      "type": "text_fact",
+      "question": "宁德时代2025年年报存货会计政策规定，原材料、库存商品等发出时采用什么方法计价？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p144",
+        "catl-2025-zh p144",
+        "catl-2025-zh p172"
+      ],
+      "gold": [
+        "catl-2025-zh p144"
+      ]
+    },
+    {
+      "id": "q16",
+      "type": "text_fact",
+      "question": "根据比亚迪2025年年报董事任职情况，王传福一九八七年本科毕业于哪所学校，主修什么专业？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p60",
+        "byd-2025-zh p61",
+        "byd-2025-zh p62"
+      ],
+      "gold": [
+        "byd-2025-zh p60"
+      ]
+    },
+    {
+      "id": "q17",
+      "type": "text_fact",
+      "question": "Tesla的2025年报规定，存货发生减记后，后续事实和情况变化是否会恢复或提高该存货新确立的成本基础？请回答并引用英文原文依据。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "tesla-2025-en p136",
+        "tesla-2025-en p136",
+        "tesla-2025-en p135"
+      ],
+      "gold": [
+        "tesla-2025-en p67"
+      ]
+    },
+    {
+      "id": "q18",
+      "type": "english",
+      "question": "According to Tesla's 2025 Form 10-K, what are its two named lithium-ion battery energy storage products?",
+      "rank": 2,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "tesla-2025-en p19",
+        "tesla-2025-en p6",
+        "tesla-2025-en p6"
+      ],
+      "gold": [
+        "tesla-2025-en p6"
+      ]
+    },
+    {
+      "id": "q19",
+      "type": "english",
+      "question": "According to Tesla's 2025 Form 10-K, which two inventory-related measures does it use to mitigate supply risks for key parts and components with lengthy procurement lead times?",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "tesla-2025-en p10",
+        "tesla-2025-en p10",
+        "tesla-2025-en p106"
+      ],
+      "gold": [
+        "tesla-2025-en p10"
+      ]
+    },
+    {
+      "id": "q20",
+      "type": "english",
+      "question": "According to Kweichow Moutai's 2025 English annual report, from which MSCI ESG rating to which rating did the company improve?",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-en p9",
+        "moutai-2025-en p184",
+        "moutai-2025-en p5"
+      ],
+      "gold": [
+        "moutai-2025-en p9"
+      ]
+    },
+    {
+      "id": "q21",
+      "type": "english",
+      "question": "In Kweichow Moutai's 2025 English annual report, which three major segments are described as working synergistically to stabilize market fundamentals?",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-en p9",
+        "moutai-2025-en p42",
+        "moutai-2025-en p5"
+      ],
+      "gold": [
+        "moutai-2025-en p9"
+      ]
+    },
+    {
+      "id": "q22",
+      "type": "multi_page",
+      "question": "请分别列出贵州茅台2025年经营活动产生的现金流量净额，以及2025年末合并报表存货中原材料的账面价值，均按元人民币原值回答；为两个指标分别给出处，不要计算。",
+      "rank": 4,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p10",
+        "moutai-2025-zh p9",
+        "moutai-2025-zh p66"
+      ],
+      "gold": [
+        "moutai-2025-zh p6",
+        "moutai-2025-zh p91"
+      ]
+    },
+    {
+      "id": "q23",
+      "type": "multi_page",
+      "question": "比亚迪2025年的基本每股收益是多少元/股？同一年度以套期保值为目的的衍生品投资合约实际损益是多少万元？请分别引用两项披露，不换算或计算。",
+      "rank": 1,
+      "all_pages": false,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p45",
+        "byd-2025-zh p45",
+        "byd-2025-zh p107"
+      ],
+      "gold": [
+        "byd-2025-zh p11",
+        "byd-2025-zh p45"
+      ]
+    },
+    {
+      "id": "q24",
+      "type": "multi_page",
+      "question": "请分别给出Tesla截至2025年12月31日合并资产负债表中的现金及现金等价物（Cash and cash equivalents），以及2025年合并现金流量表中的经营活动现金净流入（Net cash provided by operating activities），均按百万美元原值回答，并分别引用出处。",
+      "rank": 2,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "tesla-2025-en p45",
+        "tesla-2025-en p56",
+        "tesla-2025-en p56"
+      ],
+      "gold": [
+        "tesla-2025-en p52",
+        "tesla-2025-en p56"
+      ]
+    }
+  ],
+  "answers": []
+}

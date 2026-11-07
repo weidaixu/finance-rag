@@ -1,0 +1,62 @@
+[
+  {
+    "doc_id": "moutai-2025-zh",
+    "company": "贵州茅台",
+    "aliases": ["贵州茅台", "茅台", "Moutai", "Kweichow Moutai"],
+    "year": 2025,
+    "language": "zh",
+    "title": "贵州茅台2025年年度报告",
+    "source": "巨潮资讯网",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-04-17/1225114741.PDF"
+  },
+  {
+    "doc_id": "moutai-2025-en",
+    "company": "贵州茅台",
+    "aliases": ["贵州茅台", "茅台", "Moutai", "Kweichow Moutai"],
+    "year": 2025,
+    "language": "en",
+    "title": "Kweichow Moutai 2025 Annual Report (English)",
+    "source": "巨潮资讯网",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-04-17/1225114733.PDF"
+  },
+  {
+    "doc_id": "byd-2025-zh",
+    "company": "比亚迪",
+    "aliases": ["比亚迪", "BYD"],
+    "year": 2025,
+    "language": "zh",
+    "title": "比亚迪2025年年度报告",
+    "source": "巨潮资讯网",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-03-28/1225045351.PDF"
+  },
+  {
+    "doc_id": "cmb-2025-zh",
+    "company": "招商银行",
+    "aliases": ["招商银行", "招行", "China Merchants Bank", "CMB"],
+    "year": 2025,
+    "language": "zh",
+    "title": "招商银行2025年度报告",
+    "source": "巨潮资讯网",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-03-28/1225047590.PDF"
+  },
+  {
+    "doc_id": "catl-2025-zh",
+    "company": "宁德时代",
+    "aliases": ["宁德时代", "CATL"],
+    "year": 2025,
+    "language": "zh",
+    "title": "宁德时代2025年年度报告",
+    "source": "巨潮资讯网",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-03-10/1225002214.PDF"
+  },
+  {
+    "doc_id": "tesla-2025-en",
+    "company": "Tesla",
+    "aliases": ["Tesla", "特斯拉"],
+    "year": 2025,
+    "language": "en",
+    "title": "Tesla 2025 Form 10-K",
+    "source": "Tesla Investor Relations",
+    "url": "https://ir.tesla.com/_flysystem/s3/sec/000162828026003952/tsla-20251231-gen.pdf"
+  }
+]

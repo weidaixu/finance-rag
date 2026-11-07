@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>财报问答 · 让答案回到原文</title>
+  <style>
+    :root { --paper:#f4f7fa; --ink:#172c40; --muted:#546679; --line:#d7e1e9; --blue:#235b83; --pale:#eaf2f8; --green:#17644d; --amber:#854708; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.7 "Segoe UI","Microsoft YaHei",sans-serif; }
+    button,textarea { font:inherit; }
+    button,a,textarea { -webkit-tap-highlight-color:transparent; }
+    button { cursor:pointer; }
+    button:disabled { cursor:wait; opacity:.6; }
+    :focus-visible { outline:3px solid #458dbd; outline-offset:4px; }
+    [hidden] { display:none !important; }
+    .shell { width:min(1100px,100%); margin:auto; padding:0 32px; }
+    header { border-bottom:1px solid var(--line); background:#fff; }
+    .masthead { display:flex; align-items:center; justify-content:space-between; gap:16px; padding-top:21px; padding-bottom:21px; }
+    .brand { font-weight:700; font-size:19px; letter-spacing:.08em; }
+    .brand span { color:var(--blue); margin-right:10px; }
+    .header-note { color:var(--muted); font-size:13px; }
+    main { padding-top:48px !important; padding-bottom:48px !important; }
+    h1 { font:600 clamp(28px,4.6vw,40px)/1.35 "Segoe UI","Microsoft YaHei",sans-serif; letter-spacing:-.02em; margin:0 0 13px; }
+    .intro { margin:0 0 30px; color:var(--muted); max-width:710px; }
+    .workspace { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:26px; align-items:start; }
+    .primary,.evidence { min-width:0; }
+    form { background:#fff; border:1px solid var(--line); border-radius:12px; padding:23px; }
+    label { display:block; font-weight:600; margin-bottom:12px; }
+    textarea { display:block; resize:vertical; min-height:126px; width:100%; border:0; color:var(--ink); background:transparent; padding:0; line-height:1.7; }
+    textarea::placeholder { color:#6b7c8b; }
+    textarea:focus { outline:0; }
+    form:focus-within { border-color:var(--blue); box-shadow:0 0 0 2px var(--pale); }
+    .form-bottom { display:flex; justify-content:space-between; align-items:center; gap:12px; border-top:1px solid var(--line); margin-top:14px; padding-top:16px; }
+    #count { color:var(--muted); font:12px/1.4 Consolas,monospace; }
+    #submit { border:0; border-radius:6px; background:var(--blue); color:white; padding:10px 19px; font-weight:600; }
+    .examples { display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 26px; }
+    .examples button { border:1px solid var(--line); border-radius:5px; padding:6px 10px; background:transparent; color:var(--muted); font-size:12px; }
+    .examples button:hover { background:#fff; border-color:var(--blue); color:var(--blue); }
+    .section-title { font-size:15px; font-weight:600; margin:0; }
+    .answer-head { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:0 0 13px; border-bottom:1px solid var(--line); }
+    #status { font-size:12px; color:var(--muted); }
+    #answer { white-space:pre-wrap; overflow-wrap:anywhere; min-height:95px; padding:19px 0; line-height:1.95; }
+    .placeholder { color:var(--muted); font-size:14px; }
+    .citation { display:inline; border:0; color:var(--blue); background:var(--pale); font-weight:700; padding:1px 5px; border-radius:3px; margin:0 2px; }
+    .notice { padding:13px 16px; border-radius:6px; font-size:14px; overflow-wrap:anywhere; }
+    #warning { background:#fff2d9; color:var(--amber); border-left:3px solid #c77d20; margin:0 0 15px; }
+    #error { background:#fff0ed; color:#9a3b29; margin-top:16px; }
+    #usage { font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:12px; overflow-wrap:anywhere; font-variant-numeric:tabular-nums; }
+    .evidence { background:#fff; border:1px solid var(--line); border-top:3px solid var(--green); border-radius:0 0 8px 8px; padding:22px; }
+    .evidence h2 { margin-bottom:12px; }
+    .evidence p { color:var(--muted); font-size:13px; margin:8px 0 14px; }
+    #source-list { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+    #source-list button { border:1px solid var(--line); padding:4px 10px; color:var(--blue); border-radius:4px; background:#fff; }
+    #source-list button[aria-pressed="true"] { background:var(--blue); border-color:var(--blue); color:#fff; }
+    #source-title { font-size:15px; line-height:1.6; margin:0; overflow-wrap:anywhere; }
+    #source-meta { font-size:12px; color:var(--muted); margin:8px 0 15px; overflow-wrap:anywhere; }
+    blockquote { margin:0; padding:14px 0 14px 15px; border-left:2px solid var(--line); white-space:pre-wrap; overflow-wrap:anywhere; font-size:14px; color:#344d60; max-height:460px; overflow:auto; }
+    #pdf-link { display:inline-block; margin-top:17px; color:var(--green); font-size:13px; text-underline-offset:4px; overflow-wrap:anywhere; }
+    footer { margin-top:32px; padding-top:18px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); }
+    @media(max-width:700px) { .shell { padding-left:19px; padding-right:19px; } main { padding-top:30px !important; } .workspace { grid-template-columns:minmax(0,1fr); gap:24px; } .header-note { font-size:11px; } form,.evidence { padding:18px; } .form-bottom { flex-wrap:wrap; } blockquote { max-height:340px; } }
+  </style>
+</head>
+<body>
+  <header><div class="shell masthead"><div class="brand"><span aria-hidden="true">▤</span>财报问答</div><span class="header-note">公开财报 · 可追溯引用</span></div></header>
+  <main class="shell">
+    <h1>让答案回到原文。</h1>
+    <p class="intro">用中文或英文询问财报。阅读回答，点击引用，再到 PDF 中核对；资料不足时，我们会说明原因。</p>
+    <div class="workspace">
+      <section class="primary" aria-label="财报提问与回答">
+        <form id="ask-form">
+          <label for="question">你想了解什么？</label>
+          <textarea id="question" rows="4" placeholder="写清公司、年份和你想了解的指标或业务。" aria-describedby="count" required></textarea>
+          <div class="form-bottom"><span id="count">0 / 500 字</span><button id="submit" type="submit">查阅财报 →</button></div>
+        </form>
+        <div class="examples" aria-label="提问示例"><button type="button">宁德时代有哪些主要业务？</button><button type="button">What products does Tesla offer?</button></div>
+        <div class="answer-head"><h2 class="section-title">回答</h2><span id="status" role="status" aria-live="polite">等待提问</span></div>
+        <div id="error" class="notice" role="alert" hidden></div>
+        <div id="answer" class="placeholder" aria-busy="false">从一个具体问题开始。答案中的引用会带你找到原文。</div>
+        <div id="warning" class="notice" role="alert" hidden></div>
+        <div id="usage" hidden></div>
+      </section>
+      <aside id="evidence" class="evidence" tabindex="-1" aria-label="引用原文">
+        <h2 class="section-title">原文证据</h2>
+        <p id="source-empty">回答完成后，点击答案中的 [编号]，在这里查看对应原文。</p>
+        <div id="source-list" hidden></div>
+        <div id="source-detail" hidden><h3 id="source-title"></h3><div id="source-meta"></div><blockquote id="source-text"></blockquote><a id="pdf-link" target="_blank" rel="noopener noreferrer">打开 PDF 核对 ↗</a></div>
+      </aside>
+    </div>
+    <footer>只依据公开财报回答，不构成投资建议。引用页码为 PDF 物理页码，可能与报告印刷页码不同。费用为估算值。</footer>
+  </main>
+  <script>
+    'use strict';
+    const $ = id => document.getElementById(id);
+    const form = $('ask-form'), question = $('question'), submit = $('submit');
+    const answer = $('answer'), status = $('status');
+    let busy = false, citations = new Map();
+    const reasons = {
+      investment_advice: '无法提供股票买卖或投资建议。可以询问财报已披露的经营和财务事实。',
+      year_not_covered: '该年份超出了现有财报的覆盖范围，请调整年份。',
+      no_evidence: '没有找到足够的财报证据。请写清公司、年份或具体指标后再试。',
+      model_insufficient: '现有资料不足以回答这个问题，无法给出可靠结论。',
+      no_valid_citation: '生成内容缺少有效引用，已撤回，无法提供有据可查的回答。'
+    };
+    function count() { $('count').textContent = `${Array.from(question.value.trim()).length} / 500 字`; }
+    question.addEventListener('input', count);
+    function clearSources() {
+      citations = new Map(); $('source-list').replaceChildren(); $('source-list').hidden = true;
+      $('source-detail').hidden = true; $('source-empty').hidden = false;
+      $('pdf-link').removeAttribute('href'); $('source-text').textContent = '';
+    }
+    function showSource(n, focus = false) {
+      const source = citations.get(n);
+      if (!source) return;
+      $('source-empty').hidden = true; $('source-detail').hidden = false;
+      $('source-title').textContent = source.title;
+      $('source-meta').textContent = `PDF 第 ${source.page} 页 · ${source.section || '正文'} · ${source.kind === 'table' ? '表格' : '文字'}`;
+      $('source-text').textContent = source.text;
+      $('pdf-link').href = `/api/pdf/${encodeURIComponent(source.doc_id)}#page=${source.page}`;
+      for (const button of $('source-list').children) button.setAttribute('aria-pressed', String(Number(button.dataset.n) === n));
+      if (focus) $('evidence').focus();
+    }
+    function renderAnswer(text) {
+      answer.replaceChildren();
+      const regex = /\[(\d+)\]/g;
+      let offset = 0;
+      for (const match of text.matchAll(regex)) {
+        answer.append(document.createTextNode(text.slice(offset, match.index)));
+        const n = Number(match[1]);
+        if (citations.has(n)) {
+          const button = document.createElement('button');
+          button.type = 'button'; button.className = 'citation'; button.textContent = match[0];
+          button.setAttribute('aria-label', `查看引用 ${n} 的原文`);
+          button.addEventListener('click', () => showSource(n, true)); answer.append(button);
+        } else answer.append(document.createTextNode(match[0]));
+        offset = match.index + match[0].length;
+      }
+      answer.append(document.createTextNode(text.slice(offset)));
+    }
+    function showError(message) {
+      clearSources(); answer.textContent = ''; $('warning').hidden = true;
+      $('error').textContent = message; $('error').hidden = false; status.textContent = '未完成';
+    }
+    function finish(data) {
+      clearSources();
+      const usage = data.usage || {};
+      if (Number.isFinite(usage.input_tokens) && Number.isFinite(usage.output_tokens) && Number.isFinite(usage.cost_yuan)) {
+        $('usage').textContent = `输入 ${usage.input_tokens} Token · 输出 ${usage.output_tokens} Token · 估算费用 ¥${usage.cost_yuan.toFixed(6)}`;
+        $('usage').hidden = false;
+      }
+      if (data.error) { showError('回答生成失败，请稍后重试。'); return; }
+      if (data.refused) {
+        answer.textContent = reasons[data.refusal_reason] || '现有财报证据不足，无法可靠回答。请调整问题后重试。';
+        status.textContent = '未作答'; return;
+      }
+      for (const source of data.citations || []) {
+        if (!Number.isSafeInteger(source.n) || source.n < 1 || !Number.isSafeInteger(source.page) || source.page < 1 || typeof source.doc_id !== 'string') continue;
+        citations.set(source.n, source);
+      }
+      renderAnswer(typeof data.answer === 'string' ? data.answer : '');
+      $('source-list').hidden = citations.size === 0;
+      for (const [n] of citations) {
+        const button = document.createElement('button'); button.type = 'button'; button.dataset.n = n;
+        button.textContent = `[${n}]`; button.setAttribute('aria-label', `查看引用 ${n}`);
+        button.addEventListener('click', () => showSource(n)); $('source-list').append(button);
+      }
+      if (citations.size) showSource(citations.keys().next().value);
+      const numbers = data.unverified_numbers || [];
+      if (numbers.length) {
+        $('warning').textContent = `请核对：这些数字没有在引用原文里找到：${numbers.join('、')}。请勿直接使用。`;
+        $('warning').hidden = false;
+      }
+      status.textContent = '回答完成';
+    }
+    // A fetch chunk may end anywhere, including inside UTF-8 characters or SSE frames.
+    async function readEvents(response) {
+      if (!response.body) throw new Error('Missing stream');
+      const reader = response.body.getReader(), decoder = new TextDecoder('utf-8');
+      let buffer = '', completed = false;
+      function dispatch(frame) {
+        let event = '', lines = [];
+        for (const line of frame.split(/\r?\n/)) {
+          if (line.startsWith('event:')) event = line.slice(6).trim();
+          if (line.startsWith('data:')) lines.push(line.slice(5).replace(/^ /, ''));
+        }
+        if (!lines.length || completed) return;
+        const data = JSON.parse(lines.join('\n'));
+        if (event === 'token' && typeof data.text === 'string') {
+          answer.append(document.createTextNode(data.text)); status.textContent = '生成中，等待核对';
+        } else if (event === 'done') { finish(data); completed = true; }
+      }
+      try {
+        while (!completed) {
+          const part = await reader.read();
+          buffer += decoder.decode(part.value || new Uint8Array(), {stream: !part.done});
+          let boundary;
+          while ((boundary = /\r?\n\r?\n/.exec(buffer)) !== null) {
+            dispatch(buffer.slice(0, boundary.index)); buffer = buffer.slice(boundary.index + boundary[0].length);
+          }
+          if (part.done) {
+            if (buffer.trim()) dispatch(buffer);
+            if (!completed) throw new Error('Stream ended without done');
+            break;
+          }
+        }
+      } finally { await reader.cancel(); reader.releaseLock(); }
+    }
+    form.addEventListener('submit', async event => {
+      event.preventDefault(); if (busy) return;
+      const text = question.value.trim();
+      if (!text || Array.from(text).length > 500) { $('error').textContent = '请输入 1–500 字的问题。'; $('error').hidden = false; question.focus(); return; }
+      busy = true; submit.disabled = true; submit.textContent = '正在查阅…';
+      for (const button of document.querySelectorAll('.examples button')) button.disabled = true;
+      clearSources(); answer.replaceChildren(); answer.classList.remove('placeholder'); answer.setAttribute('aria-busy', 'true');
+      $('error').hidden = true; $('warning').hidden = true; $('usage').hidden = true; status.textContent = '正在查找证据';
+      const controller = new AbortController(), timeout = setTimeout(() => controller.abort(), 120000);
+      try {
+        const response = await fetch('/api/ask', {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'text/event-stream'}, body: JSON.stringify({question: text}), signal: controller.signal});
+        if (!response.ok) { showError(response.status === 422 ? '请输入 1–500 字的问题。' : '请求失败，请稍后重试。'); return; }
+        await readEvents(response);
+      } catch (error) {
+        showError(error.name === 'AbortError' ? '请求超时，请稍后重试。' : '连接中断，回答未完成。请重试。');
+      } finally {
+        clearTimeout(timeout); busy = false; submit.disabled = false; submit.textContent = '查阅财报 →'; answer.setAttribute('aria-busy', 'false');
+        for (const button of document.querySelectorAll('.examples button')) button.disabled = false;
+      }
+    });
+    for (const button of document.querySelectorAll('.examples button')) button.addEventListener('click', () => { question.value = button.textContent; count(); question.focus(); });
+  </script>
+</body>
+</html>
