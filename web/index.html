@@ -206,6 +206,18 @@
         }
       } finally { await reader.cancel(); reader.releaseLock(); }
     }
+    // 429 时服务端返回中文提示 {"message": ...}；解析失败就用默认文案。结果只用 textContent 显示。
+    async function failureMessage(response) {
+      if (response.status === 422) return '请输入 1–500 字的问题。';
+      if (response.status === 429) {
+        try {
+          const body = await response.json();
+          if (body && typeof body.message === 'string' && body.message.trim()) return body.message.trim().slice(0, 200);
+        } catch (_) { /* 响应体不是 JSON */ }
+        return '请求太频繁，请稍后再试。';
+      }
+      return '请求失败，请稍后重试。';
+    }
     form.addEventListener('submit', async event => {
       event.preventDefault(); if (busy) return;
       const text = question.value.trim();
@@ -217,7 +229,7 @@
       const controller = new AbortController(), timeout = setTimeout(() => controller.abort(), 120000);
       try {
         const response = await fetch('/api/ask', {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'text/event-stream'}, body: JSON.stringify({question: text}), signal: controller.signal});
-        if (!response.ok) { showError(response.status === 422 ? '请输入 1–500 字的问题。' : '请求失败，请稍后重试。'); return; }
+        if (!response.ok) { showError(await failureMessage(response)); return; }
         await readEvents(response);
       } catch (error) {
         showError(error.name === 'AbortError' ? '请求超时，请稍后重试。' : '连接中断，回答未完成。请重试。');

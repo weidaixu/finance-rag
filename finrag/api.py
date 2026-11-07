@@ -5,11 +5,16 @@ Run locally with ``uv run python -m finrag.api``. Tests use create_app with fake
 
 import json
 import logging
+import os
 import re
+import threading
+import time
+from collections import deque
+from collections.abc import Callable
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse, StreamingResponse
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from pydantic import BaseModel, Field, field_validator
 
 from finrag.answer import AnswerResult, stream_answer
@@ -21,6 +26,99 @@ PDF_DIR = ROOT / "data" / "raw"
 WEB_FILE = ROOT / "web" / "index.html"
 logger = logging.getLogger(__name__)
 PUBLIC_ERROR = "回答生成失败，请稍后重试。"
+
+# 限流默认值，可用环境变量覆盖（见 RateLimiter.from_env）。
+DEFAULT_PER_IP_LIMIT = 10
+DEFAULT_WINDOW_SECONDS = 60
+DEFAULT_DAILY_LIMIT = 300
+DAY_SECONDS = 24 * 60 * 60
+
+
+class RateLimiter:
+    """保护付费接口的访问频率限制：每个客户端 IP 的滑动窗口 + 全站 24 小时滑动窗口。
+
+    局限：
+    - 计数只存在本进程内存里，进程重启后清零。
+    - 多进程（如 uvicorn --workers N）或多副本部署时各自独立计数，总额度会被放大 N 倍。
+      需要跨进程共享时应改用 Redis 等外部存储。
+    - 只有被放行的请求才计数；被拒绝的请求不占用额度。
+    - 时间来源 clock 可注入，测试里传入假时钟即可，不需要真的等待。
+    """
+
+    def __init__(self, per_ip_limit: int = DEFAULT_PER_IP_LIMIT,
+                 window_seconds: float = DEFAULT_WINDOW_SECONDS,
+                 daily_limit: int = DEFAULT_DAILY_LIMIT,
+                 clock: Callable[[], float] = time.monotonic):
+        if per_ip_limit < 1 or window_seconds <= 0 or daily_limit < 1:
+            raise ValueError("限流参数必须为正数")
+        self.per_ip_limit, self.window_seconds, self.daily_limit = per_ip_limit, window_seconds, daily_limit
+        self.clock = clock
+        self._ip_hits: dict[str, deque[float]] = {}
+        self._day_hits: deque[float] = deque()
+        # 同步路由跑在线程池里，多个线程会同时进入，所以要加锁。
+        self._lock = threading.Lock()
+
+    @classmethod
+    def from_env(cls, clock: Callable[[], float] = time.monotonic) -> "RateLimiter":
+        return cls(
+            per_ip_limit=_env_int("FINRAG_RATE_LIMIT_PER_IP", DEFAULT_PER_IP_LIMIT),
+            window_seconds=_env_int("FINRAG_RATE_LIMIT_WINDOW_SECONDS", DEFAULT_WINDOW_SECONDS),
+            daily_limit=_env_int("FINRAG_DAILY_LIMIT", DEFAULT_DAILY_LIMIT),
+            clock=clock,
+        )
+
+    def check(self, ip: str) -> tuple[str, int] | None:
+        """放行返回 None 并记一次；超限返回 (中文提示, 建议等待秒数)，且不计数。"""
+        with self._lock:
+            now = self.clock()
+            while self._day_hits and now - self._day_hits[0] >= DAY_SECONDS:
+                self._day_hits.popleft()
+            if len(self._ip_hits) > 256:
+                self._sweep(now)
+            hits = self._ip_hits.get(ip)
+            if hits is not None:
+                self._expire(hits, now)
+            if hits and len(hits) >= self.per_ip_limit:
+                wait = max(1, int(hits[0] + self.window_seconds - now) + 1)
+                return f"请求太频繁，请 {wait} 秒后再试。", wait
+            if len(self._day_hits) >= self.daily_limit:
+                wait = max(1, int(self._day_hits[0] + DAY_SECONDS - now) + 1)
+                return "今日提问次数已达上限，请明天再试。", wait
+            self._ip_hits.setdefault(ip, deque()).append(now)
+            self._day_hits.append(now)
+            return None
+
+    def _expire(self, hits: deque[float], now: float) -> None:
+        while hits and now - hits[0] >= self.window_seconds:
+            hits.popleft()
+
+    def _sweep(self, now: float) -> None:
+        # 清掉窗口已过期的 IP，避免字典无限增长。
+        for key in list(self._ip_hits):
+            self._expire(self._ip_hits[key], now)
+            if not self._ip_hits[key]:
+                del self._ip_hits[key]
+
+
+def _env_int(name: str, default: int) -> int:
+    raw = os.getenv(name, "").strip()
+    if not raw:
+        return default
+    try:
+        value = int(raw)
+    except ValueError:
+        raise ValueError(f"环境变量 {name} 必须是正整数") from None
+    if value < 1:
+        raise ValueError(f"环境变量 {name} 必须是正整数")
+    return value
+
+
+def _client_ip(request: Request) -> str:
+    # 只用 TCP 连接的对端地址。不读 X-Forwarded-For：该请求头由客户端随意填写，
+    # 信任它等于让攻击者每次换一个假 IP 就能绕过限流。若前面加了反向代理，
+    # 所有请求会共用代理的地址，此时全站每日上限仍然生效。
+    # main() 也不改 uvicorn 的默认设置：默认只信任来自 127.0.0.1 的转发头，容器内不会生效。
+    return request.client.host if request.client else "unknown"
 
 
 class AskRequest(BaseModel):
@@ -69,8 +167,13 @@ def _done(result: AnswerResult) -> dict:
     )
 
 
-def create_app(retriever: Retriever, client, model: str, max_year: int) -> FastAPI:
-    """Build an app without configuration reads, real clients or index loading."""
+def create_app(retriever: Retriever, client, model: str, max_year: int,
+               rate_limiter: RateLimiter | None = None) -> FastAPI:
+    """Build an app without real clients or index loading.
+
+    rate_limiter 缺省时按环境变量（未设置则用模块常量）创建；测试可传入带假时钟的实例。
+    """
+    limiter = rate_limiter if rate_limiter is not None else RateLimiter.from_env()
     app = FastAPI(title="财报问答", docs_url=None, redoc_url=None)
     raw_dir = PDF_DIR.resolve()
     # Resolve only manifest entries, never a path assembled from route input.
@@ -98,7 +201,15 @@ def create_app(retriever: Retriever, client, model: str, max_year: int) -> FastA
                             content_disposition_type="inline")
 
     @app.post("/api/ask")
-    def ask(body: AskRequest):
+    def ask(body: AskRequest, request: Request):
+        # 必须在检索和调用模型之前判断，超限的请求不产生任何费用。
+        # 格式不合法的请求（422）在此之前就被拒绝，不占用额度。
+        limited = limiter.check(_client_ip(request))
+        if limited is not None:
+            message, wait = limited
+            return JSONResponse({"error": "rate_limited", "message": message}, status_code=429,
+                                headers={"Retry-After": str(wait)})
+
         def generate():
             try:
                 for item in stream_answer(body.question, retriever, client, model, max_year):
@@ -128,13 +239,20 @@ def main() -> None:
     from finrag.retrieval import IndexNotReady, load_retriever
 
     try:
+        host = os.getenv("FINRAG_HOST", "").strip() or "127.0.0.1"
+        port = _env_int("FINRAG_PORT", 8000)
+        limiter = RateLimiter.from_env()
+    except ValueError as error:
+        # 消息里只有变量名，没有取值。
+        raise SystemExit(f"启动失败：{error}。") from None
+    try:
         settings = load_settings()
         # 用评测里效果最好的方案：混合检索 + 重排（eval/report.md）。
         retriever = load_retriever(mode="hybrid", use_rerank=True)
         reports = _read_manifest()
         max_year = max(int(report["year"]) for report in reports)
         client = OpenAI(api_key=settings.api_key, base_url=settings.base_url)
-        app = create_app(retriever, client, settings.model, max_year)
+        app = create_app(retriever, client, settings.model, max_year, limiter)
     except ConfigError:
         raise SystemExit("启动失败：缺少有效的 DASHSCOPE_API_KEY，请先配置密钥。") from None
     except IndexNotReady:
@@ -142,7 +260,7 @@ def main() -> None:
     except (OSError, ValueError, KeyError, TypeError) as error:
         # 只给出异常类型，方便排查，又不会把路径或配置内容打印出来。
         raise SystemExit(f"启动失败：财报清单、索引或模型配置不可用（{type(error).__name__}），请检查配置。") from None
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host=host, port=port)
 
 
 if __name__ == "__main__":

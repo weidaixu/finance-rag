@@ -270,3 +270,127 @@ def test_startup_uses_manifest_max_year_and_injected_dependencies(setup_app, mon
     client = TestClient(app)
     done = events(client.post("/api/ask", json={"question": "2028年营业收入"}))[-1][1]
     assert done["refusal_reason"] == "year_not_covered" and model.calls == 0
+
+
+class FakeClock:
+    def __init__(self):
+        self.now = 1000.0
+
+    def __call__(self):
+        return self.now
+
+
+@pytest.fixture
+def limited_app(setup_app):
+    """Build an app with a fake clock and small limits; the client IP is chosen per request."""
+    def build(per_ip=3, window=60, daily=5):
+        clock = FakeClock()
+        limiter = api.RateLimiter(per_ip_limit=per_ip, window_seconds=window, daily_limit=daily, clock=clock)
+        retriever = FakeRetriever([])
+        model = FakeModel()
+        app = api.create_app(retriever, model, "fake-model", max_year=2025, rate_limiter=limiter)
+        return app, retriever, model, clock
+
+    return build
+
+
+def ask_from(app, ip, question="营业收入"):
+    client = TestClient(app, client=(ip, 50000))
+    return client.post("/api/ask", json={"question": question})
+
+
+def test_requests_within_limit_pass(limited_app):
+    app, _, _, _ = limited_app()
+    assert [ask_from(app, "10.0.0.1").status_code for _ in range(3)] == [200, 200, 200]
+
+
+def test_same_ip_over_limit_gets_429_before_retrieval_and_model(limited_app):
+    app, retriever, model, _ = limited_app()
+    for _ in range(3):
+        ask_from(app, "10.0.0.1")
+    before = (len(retriever.calls), model.calls)
+    response = ask_from(app, "10.0.0.1")
+    assert response.status_code == 429
+    body = response.json()
+    assert body["error"] == "rate_limited" and "请求太频繁" in body["message"]
+    assert int(response.headers["retry-after"]) >= 1
+    assert (len(retriever.calls), model.calls) == before
+
+
+def test_window_expiry_restores_access(limited_app):
+    app, _, _, clock = limited_app()
+    for _ in range(3):
+        ask_from(app, "10.0.0.1")
+    assert ask_from(app, "10.0.0.1").status_code == 429
+    clock.now += 59
+    assert ask_from(app, "10.0.0.1").status_code == 429
+    clock.now += 2
+    assert ask_from(app, "10.0.0.1").status_code == 200
+
+
+def test_daily_limit_applies_across_ips_and_resets_after_a_day(limited_app):
+    app, _, model, clock = limited_app(per_ip=3, daily=5)
+    assert [ask_from(app, "10.0.0.1").status_code for _ in range(3)] == [200] * 3
+    assert [ask_from(app, "10.0.0.2").status_code for _ in range(2)] == [200] * 2
+    calls = model.calls
+    response = ask_from(app, "10.0.0.3")
+    assert response.status_code == 429 and "今日" in response.json()["message"]
+    assert model.calls == calls
+    clock.now += 24 * 60 * 60 + 1
+    assert ask_from(app, "10.0.0.3").status_code == 200
+
+
+def test_different_ips_do_not_affect_each_other(limited_app):
+    app, _, _, _ = limited_app(per_ip=2, daily=100)
+    for _ in range(2):
+        ask_from(app, "10.0.0.1")
+    assert ask_from(app, "10.0.0.1").status_code == 429
+    assert ask_from(app, "10.0.0.2").status_code == 200
+
+
+def test_forwarded_for_header_is_ignored(limited_app):
+    app, _, _, _ = limited_app(per_ip=1, daily=100)
+    client = TestClient(app, client=("10.0.0.1", 50000))
+    first = client.post("/api/ask", json={"question": "营业收入"}, headers={"X-Forwarded-For": "1.1.1.1"})
+    second = client.post("/api/ask", json={"question": "营业收入"}, headers={"X-Forwarded-For": "2.2.2.2"})
+    assert first.status_code == 200 and second.status_code == 429
+
+
+def test_health_and_pdf_are_not_limited(limited_app):
+    app, _, _, _ = limited_app(per_ip=1, daily=1)
+    assert ask_from(app, "10.0.0.1").status_code == 200
+    assert ask_from(app, "10.0.0.1").status_code == 429
+    client = TestClient(app, client=("10.0.0.1", 50000))
+    for _ in range(5):
+        assert client.get("/health").json() == {"status": "ok"}
+        assert client.get("/api/pdf/sample").status_code == 200
+
+
+def test_invalid_question_does_not_consume_quota(limited_app):
+    app, _, _, _ = limited_app(per_ip=1, daily=1)
+    assert ask_from(app, "10.0.0.1", question="").status_code == 422
+    assert ask_from(app, "10.0.0.1").status_code == 200
+
+
+def test_startup_reads_host_port_and_limits_from_env(setup_app, monkeypatch):
+    setup_app()
+    monkeypatch.setenv("FINRAG_HOST", "0.0.0.0")
+    monkeypatch.setenv("FINRAG_PORT", "9001")
+    monkeypatch.setenv("FINRAG_RATE_LIMIT_PER_IP", "1")
+    monkeypatch.setattr("finrag.config.load_settings", lambda: SimpleNamespace(api_key="fake", base_url="https://invalid.test", model="fake"))
+    monkeypatch.setattr("finrag.retrieval.load_retriever", lambda **kwargs: FakeRetriever([]))
+    monkeypatch.setattr("openai.OpenAI", lambda **kwargs: FakeModel())
+    launched = []
+    monkeypatch.setattr("uvicorn.run", lambda app, **kwargs: launched.append((app, kwargs)))
+    api.main()
+    app, options = launched[0]
+    assert options == dict(host="0.0.0.0", port=9001)
+    assert ask_from(app, "10.0.0.1").status_code == 200
+    assert ask_from(app, "10.0.0.1").status_code == 429
+
+
+@pytest.mark.parametrize("name,value", [("FINRAG_PORT", "abc"), ("FINRAG_DAILY_LIMIT", "0")])
+def test_startup_rejects_invalid_env(monkeypatch, name, value):
+    monkeypatch.setenv(name, value)
+    with pytest.raises(SystemExit, match=name):
+        api.main()

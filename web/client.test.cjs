@@ -130,3 +130,19 @@ test('input rejects empty/overlong values; HTTP failure allows retry', async () 
   assert.equal(calls, 1); assert.equal(f.elements.get('submit').disabled, false);
   assert.match(f.elements.get('error').textContent, /1–500/);
 });
+
+test('429 shows the server message as text and falls back when the body is unusable', async () => {
+  const cases = [
+    [{ok: false, status: 429, json: async () => ({error: 'rate_limited', message: '请求太频繁，请 30 秒后再试。'})}, '请求太频繁，请 30 秒后再试。'],
+    [{ok: false, status: 429, json: async () => { throw new Error('not json'); }}, '请求太频繁，请稍后再试。'],
+    [{ok: false, status: 429, json: async () => ({message: 42})}, '请求太频繁，请稍后再试。'],
+    [{ok: false, status: 500}, '请求失败，请稍后重试。'],
+  ];
+  for (const [res, expected] of cases) {
+    const f = fixture(async () => res);
+    f.elements.get('question').value = '问题'; await f.submit();
+    assert.equal(f.elements.get('error').textContent, expected);
+    assert.equal(f.elements.get('error').hidden, false);
+    assert.equal(f.elements.get('submit').disabled, false);
+  }
+});

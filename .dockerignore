@@ -1,0 +1,20 @@
+# 密钥和本地环境
+.env
+.venv
+.git
+
+# 大文件数据：运行时用卷挂载，不进镜像
+data/raw
+data/index
+
+# 开发和评测用，运行不需要
+tests
+eval
+scratch
+scripts
+.pytest_cache
+.pytest_tmp
+__pycache__
+*.pyc
+.vscode
+.idea

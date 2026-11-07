@@ -1,0 +1,31 @@
+services:
+  finrag:
+    build: .
+    image: finrag:latest
+    # 密钥（DASHSCOPE_API_KEY 等）和可选的限流变量都从 .env 读取，不写进镜像。
+    env_file: .env
+    environment:
+      # 容器内必须监听所有网卡，端口映射才能转发进来。
+      # environment 的优先级高于 env_file，.env 里写了 FINRAG_HOST 也会被这里覆盖。
+      FINRAG_HOST: "0.0.0.0"
+    ports:
+      - "8000:8000"
+    volumes:
+      # 只读挂载：服务只读取财报和索引，不应写入。
+      - ./data/raw:/app/data/raw:ro
+      - ./data/index:/app/data/index:ro
+    restart: unless-stopped
+    # 内存上限：开发机实测启动并加载索引后进程约 240MB（Windows 工作集），
+    # 首次提问时 jieba 词典和请求还会再增加几十 MB。服务器可用内存约 440MiB，
+    # 所以上限取 384m：高于实测峰值有余量，又低于可用内存，失控时只杀容器而不拖垮主机。
+    # memswap_limit 是内存加 swap 的总和，768m 即最多再用 384m swap，防止瞬时峰值直接被 OOM。
+    mem_limit: 384m
+    memswap_limit: 768m
+    healthcheck:
+      # 镜像里不一定有 curl，用 python 标准库请求 /health；返回非 2xx 或连接失败都会抛异常。
+      test: ["CMD", "/app/.venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      # 启动要加载索引，给足时间再开始计失败次数。
+      start_period: 60s

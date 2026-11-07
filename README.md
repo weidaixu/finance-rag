@@ -132,7 +132,7 @@ flowchart TD
 | 资料外的公司 | 问资料里没有的公司时不做公司过滤，只靠模型拒答；评测里只有 2 道这类题 |
 | 没做对比实验 | 没有对比过不同的切分大小、Embedding 模型和向量维度 |
 | 重排的代价 | 延迟和 Token 费用没有单独统计 |
-| 只在本机运行 | 还没有部署 |
+| 部署 | 提供了 Docker 配置；限流计数在进程内存里，重启清零 |
 
 ## 快速开始
 
@@ -173,6 +173,47 @@ uv run python -m finrag.api
 ```bash
 uv run pytest
 ```
+
+## 部署（Docker）
+
+服务器上只运行问答服务，不解析 PDF、不生成向量：`data/raw/` 和 `data/index/` 在开发机生成后拷贝过去，以只读卷挂载进容器，不打进镜像。镜像里只有代码、网页和 `data/manifest.json`。
+
+1. **准备 `.env`**：在服务器的项目目录里，把 `.env.example` 复制为 `.env` 并填入 API Key。`.env` 不会进镜像，由 `compose.yaml` 的 `env_file` 在运行时注入。
+2. **拷贝数据**：把开发机上的 `data/raw/`（约 45MB）和 `data/index/` 拷到服务器项目目录下的同名位置。运行只需要 `data/index/chunks.jsonl` 和 `data/index/embeddings.npy`，其他文件可以不拷。容器以非 root 用户（uid 10001）运行，这些文件需要对其他用户可读（目录可进入）。
+3. **构建并启动**：
+
+   ```bash
+   docker compose up -d --build
+   ```
+
+4. **查看状态和日志**：
+
+   ```bash
+   docker compose ps            # STATUS 显示 healthy 即健康检查通过
+   docker compose logs -f finrag
+   ```
+
+   启动要加载索引，健康检查在启动后 60 秒内的失败不计数。缺密钥或索引时服务会带着中文提示退出，原因能在日志里看到。
+
+5. **更新**：改了代码后重新执行 `docker compose up -d --build`；只更新数据则替换文件后执行 `docker compose restart`。
+
+端口映射为 `8000:8000`，访问 `http://<服务器地址>:8000`。服务本身不带 HTTPS 和登录；对公网开放时建议放在带 TLS 的反向代理后面，并在防火墙上限制来源。
+
+### 访问频率限制
+
+`POST /api/ask` 每次都会调用付费的大模型接口，所以做了限流，超限返回 HTTP 429 和中文提示（`/health`、`/api/pdf` 不受限）。可在 `.env` 里调整，修改后执行 `docker compose up -d` 重建容器使其生效：
+
+| 环境变量 | 默认值 | 含义 |
+| --- | --- | --- |
+| `FINRAG_RATE_LIMIT_PER_IP` | 10 | 每个客户端 IP 在时间窗口内最多提问次数 |
+| `FINRAG_RATE_LIMIT_WINDOW_SECONDS` | 60 | 上面那个时间窗口的长度（秒） |
+| `FINRAG_DAILY_LIMIT` | 300 | 全站每 24 小时最多提问次数 |
+
+注意：
+
+- 计数保存在进程内存里，服务重启后清零；多进程或多副本时各自独立计数。
+- 客户端 IP 取自 TCP 连接的对端地址，不信任 `X-Forwarded-For`（客户端可随意伪造）。如果前面加了反向代理，所有请求会显示为代理的地址，此时每 IP 限制等同于全站限制，每日上限仍然有效。
+- 其他可配置项：`FINRAG_HOST`（监听地址，默认 `127.0.0.1`，compose 里设为 `0.0.0.0`）、`FINRAG_PORT`（监听端口，默认 8000；改它时需同步修改 `compose.yaml` 里的端口映射和健康检查）。取值不是正整数时服务拒绝启动。
 
 ## 目录结构
 
