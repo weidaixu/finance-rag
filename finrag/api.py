@@ -114,10 +114,10 @@ def _env_int(name: str, default: int) -> int:
 
 
 def _client_ip(request: Request) -> str:
-    # 只用 TCP 连接的对端地址。不读 X-Forwarded-For：该请求头由客户端随意填写，
-    # 信任它等于让攻击者每次换一个假 IP 就能绕过限流。若前面加了反向代理，
-    # 所有请求会共用代理的地址，此时全站每日上限仍然生效。
-    # main() 也不改 uvicorn 的默认设置：默认只信任来自 127.0.0.1 的转发头，容器内不会生效。
+    # 这里不自己解析 X-Forwarded-For：该请求头由客户端随意填写，直接信任等于让攻击者
+    # 每次换一个假 IP 就能绕过限流。是否采信由 uvicorn 的 ProxyHeadersMiddleware 决定：
+    # 只有连接来自 FORWARDED_ALLOW_IPS 列出的代理地址时，它才会把 request.client 换成
+    # 代理传来的真实客户端地址（默认只信任 127.0.0.1，compose.yaml 里配置为 Docker 网段）。
     return request.client.host if request.client else "unknown"
 
 
