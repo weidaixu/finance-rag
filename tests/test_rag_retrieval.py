@@ -6,6 +6,7 @@ import numpy as np
 import pytest
 
 from eval.run_eval import (
+    QUESTIONS,
     answer_in_hits,
     answer_is_correct,
     covers_all_gold,
@@ -282,6 +283,7 @@ def test_answer_in_hits_needs_all_parts():
 
 def test_questions_are_still_frozen():
     assert questions_are_frozen()
+    assert questions_are_frozen(QUESTIONS.with_name("questions_v2.jsonl"))
 
 
 def test_question_file_without_hash_is_not_frozen(tmp_path):

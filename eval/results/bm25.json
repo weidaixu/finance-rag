@@ -2,6 +2,7 @@
   "retrieval": [
     {
       "id": "q01",
+      "set": "questions",
       "type": "table_number",
       "question": "贵州茅台2025年营业收入是多少元人民币？请保留年报原始数字，不换算单位。",
       "rank": null,
@@ -18,6 +19,7 @@
     },
     {
       "id": "q02",
+      "set": "questions",
       "type": "table_number",
       "question": "比亚迪2025年归属于上市公司股东的净利润是多少元？请保留原始数字。",
       "rank": 1,
@@ -34,6 +36,7 @@
     },
     {
       "id": "q03",
+      "set": "questions",
       "type": "table_number",
       "question": "宁德时代2025年营业收入是多少千元？请按年报原单位回答。",
       "rank": null,
@@ -50,6 +53,7 @@
     },
     {
       "id": "q04",
+      "set": "questions",
       "type": "table_number",
       "question": "招商银行集团截至2025年12月31日的不良贷款率是多少（%）？",
       "rank": 3,
@@ -66,6 +70,7 @@
     },
     {
       "id": "q05",
+      "set": "questions",
       "type": "table_number",
       "question": "Tesla2025年度合并利润表中的总收入（Total revenues）是多少百万美元？请保留原表数字。",
       "rank": 1,
@@ -82,6 +87,7 @@
     },
     {
       "id": "q06",
+      "set": "questions",
       "type": "table_number",
       "question": "贵州茅台2025年末合并财务报表存货分类中，存货合计的账面价值是多少元人民币？",
       "rank": 1,
@@ -98,6 +104,7 @@
     },
     {
       "id": "q07",
+      "set": "questions",
       "type": "table_number",
       "question": "比亚迪2025年以套期保值为目的的衍生品投资表中，外汇衍生品期末金额是多少万元？",
       "rank": 1,
@@ -114,6 +121,7 @@
     },
     {
       "id": "q08",
+      "set": "questions",
       "type": "table_number",
       "question": "宁德时代2025年末合并财务报表存货分类中，发出商品的账面价值是多少千元？",
       "rank": 1,
@@ -130,6 +138,7 @@
     },
     {
       "id": "q09",
+      "set": "questions",
       "type": "table_number",
       "question": "招商银行集团截至2025年12月31日的零售客户定期存款金额是多少人民币百万元？请保留原表数字。",
       "rank": 1,
@@ -146,6 +155,7 @@
     },
     {
       "id": "q10",
+      "set": "questions",
       "type": "text_fact",
       "question": "贵州茅台2025年年报核心竞争力分析中列出的五大核心竞争力分别是什么？",
       "rank": 1,
@@ -162,6 +172,7 @@
     },
     {
       "id": "q11",
+      "set": "questions",
       "type": "text_fact",
       "question": "比亚迪2025年年报主要业务介绍中的“刀片电池”采用哪种电池化学体系？",
       "rank": 4,
@@ -178,6 +189,7 @@
     },
     {
       "id": "q12",
+      "set": "questions",
       "type": "text_fact",
       "question": "宁德时代2025年年报主要业务介绍中，公司主要从事哪两类电池的研发、生产和销售？",
       "rank": 2,
@@ -194,6 +206,7 @@
     },
     {
       "id": "q13",
+      "set": "questions",
       "type": "text_fact",
       "question": "招商银行2025年年报“信用风险管理”如何定义信用风险？",
       "rank": 3,
@@ -210,6 +223,7 @@
     },
     {
       "id": "q14",
+      "set": "questions",
       "type": "text_fact",
       "question": "贵州茅台2025年年报“可能面对的风险”列出了哪四类风险？",
       "rank": 3,
@@ -226,6 +240,7 @@
     },
     {
       "id": "q15",
+      "set": "questions",
       "type": "text_fact",
       "question": "宁德时代2025年年报存货会计政策规定，原材料、库存商品等发出时采用什么方法计价？",
       "rank": 1,
@@ -242,6 +257,7 @@
     },
     {
       "id": "q16",
+      "set": "questions",
       "type": "text_fact",
       "question": "根据比亚迪2025年年报董事任职情况，王传福一九八七年本科毕业于哪所学校，主修什么专业？",
       "rank": 1,
@@ -258,6 +274,7 @@
     },
     {
       "id": "q17",
+      "set": "questions",
       "type": "text_fact",
       "question": "Tesla的2025年报规定，存货发生减记后，后续事实和情况变化是否会恢复或提高该存货新确立的成本基础？请回答并引用英文原文依据。",
       "rank": null,
@@ -274,6 +291,7 @@
     },
     {
       "id": "q18",
+      "set": "questions",
       "type": "english",
       "question": "According to Tesla's 2025 Form 10-K, what are its two named lithium-ion battery energy storage products?",
       "rank": 2,
@@ -290,6 +308,7 @@
     },
     {
       "id": "q19",
+      "set": "questions",
       "type": "english",
       "question": "According to Tesla's 2025 Form 10-K, which two inventory-related measures does it use to mitigate supply risks for key parts and components with lengthy procurement lead times?",
       "rank": 1,
@@ -306,6 +325,7 @@
     },
     {
       "id": "q20",
+      "set": "questions",
       "type": "english",
       "question": "According to Kweichow Moutai's 2025 English annual report, from which MSCI ESG rating to which rating did the company improve?",
       "rank": 1,
@@ -322,6 +342,7 @@
     },
     {
       "id": "q21",
+      "set": "questions",
       "type": "english",
       "question": "In Kweichow Moutai's 2025 English annual report, which three major segments are described as working synergistically to stabilize market fundamentals?",
       "rank": 1,
@@ -338,6 +359,7 @@
     },
     {
       "id": "q22",
+      "set": "questions",
       "type": "multi_page",
       "question": "请分别列出贵州茅台2025年经营活动产生的现金流量净额，以及2025年末合并报表存货中原材料的账面价值，均按元人民币原值回答；为两个指标分别给出处，不要计算。",
       "rank": 4,
@@ -355,6 +377,7 @@
     },
     {
       "id": "q23",
+      "set": "questions",
       "type": "multi_page",
       "question": "比亚迪2025年的基本每股收益是多少元/股？同一年度以套期保值为目的的衍生品投资合约实际损益是多少万元？请分别引用两项披露，不换算或计算。",
       "rank": 1,
@@ -372,6 +395,7 @@
     },
     {
       "id": "q24",
+      "set": "questions",
       "type": "multi_page",
       "question": "请分别给出Tesla截至2025年12月31日合并资产负债表中的现金及现金等价物（Cash and cash equivalents），以及2025年合并现金流量表中的经营活动现金净流入（Net cash provided by operating activities），均按百万美元原值回答，并分别引用出处。",
       "rank": 2,
@@ -385,6 +409,967 @@
       "gold": [
         "tesla-2025-en p52",
         "tesla-2025-en p56"
+      ]
+    },
+    {
+      "id": "q31",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "贵州茅台2025年末，母公司自身账上的应收账款有多少？",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p138",
+        "moutai-2025-zh p86",
+        "moutai-2025-zh p87"
+      ],
+      "gold": [
+        "moutai-2025-zh p59"
+      ]
+    },
+    {
+      "id": "q32",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "茅台2025年末合并口径的货币资金里，单独放在银行的存款有多少？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p84",
+        "moutai-2025-zh p116",
+        "moutai-2025-zh p102"
+      ],
+      "gold": [
+        "moutai-2025-zh p84"
+      ]
+    },
+    {
+      "id": "q33",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "茅台合并报表的应收账款坏账准备，到2025年底还留有多少？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": false,
+      "top": [
+        "moutai-2025-zh p86",
+        "moutai-2025-zh p87",
+        "moutai-2025-zh p138"
+      ],
+      "gold": [
+        "moutai-2025-zh p86"
+      ]
+    },
+    {
+      "id": "q34",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "贵州茅台2025年末合并附注里，其他非流动金融资产的权益工具投资还列着多少？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p95",
+        "moutai-2025-zh p101",
+        "moutai-2025-zh p123"
+      ],
+      "gold": [
+        "moutai-2025-zh p95"
+      ]
+    },
+    {
+      "id": "q35",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "茅台哪家境外子公司使用了人民币以外的记账货币，具体用什么币种？",
+      "rank": 2,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p117",
+        "moutai-2025-zh p72",
+        "moutai-2025-zh p14"
+      ],
+      "gold": [
+        "moutai-2025-zh p72"
+      ]
+    },
+    {
+      "id": "q36",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "按茅台2025年报的合并政策，如果买来的子公司此前不受同一个控制方控制，它的经营成果和现金流从什么时候开始并进来？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p74",
+        "moutai-2025-zh p77",
+        "moutai-2025-zh p72"
+      ],
+      "gold": [
+        "moutai-2025-zh p74"
+      ]
+    },
+    {
+      "id": "q37",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "茅台把用于出租的房地产入账以后，后续采用什么计量模式？",
+      "rank": 3,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p96",
+        "moutai-2025-zh p97",
+        "moutai-2025-zh p78"
+      ],
+      "gold": [
+        "moutai-2025-zh p78"
+      ]
+    },
+    {
+      "id": "q38",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "茅台在西藏设立的销售公司享受什么企业所得税优惠税率？是哪家公司？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p84",
+        "moutai-2025-zh p84",
+        "moutai-2025-zh p83"
+      ],
+      "gold": [
+        "moutai-2025-zh p84"
+      ]
+    },
+    {
+      "id": "q39",
+      "set": "questions_v2",
+      "type": "english",
+      "question": "In Moutai's 2025 English report, how much is shown in the tax-inclusive cash-dividend line before adding interim distributions and share repurchases?",
+      "rank": 5,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-en p40",
+        "moutai-2025-en p186",
+        "moutai-2025-en p186"
+      ],
+      "gold": [
+        "moutai-2025-en p39"
+      ]
+    },
+    {
+      "id": "q40",
+      "set": "questions_v2",
+      "type": "english",
+      "question": "What amount did Moutai report for freight services obtained from its group's logistics company in 2025?",
+      "rank": 7,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-en p186",
+        "moutai-2025-en p173",
+        "moutai-2025-en p172"
+      ],
+      "gold": [
+        "moutai-2025-en p47"
+      ]
+    },
+    {
+      "id": "q41",
+      "set": "questions_v2",
+      "type": "english",
+      "question": "Under Moutai's policy, how long are machines bought specifically for R&D depreciated if purchased after January 1, 2014 for more than RMB 1 million?",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-en p106",
+        "moutai-2025-en p106",
+        "moutai-2025-en p12"
+      ],
+      "gold": [
+        "moutai-2025-en p106"
+      ]
+    },
+    {
+      "id": "q42",
+      "set": "questions_v2",
+      "type": "english",
+      "question": "Why does Moutai consolidate Guizhou Laymau despite owning less than half its equity, and what ownership percentage does the report give?",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-en p161",
+        "moutai-2025-en p186",
+        "moutai-2025-en p161"
+      ],
+      "gold": [
+        "moutai-2025-en p161"
+      ]
+    },
+    {
+      "id": "q43",
+      "set": "questions_v2",
+      "type": "cross_language",
+      "question": "根据茅台2025年英文年报，合并范围内这一年实际核销了多少应收账款？",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p86",
+        "moutai-2025-zh p93",
+        "moutai-2025-zh p85"
+      ],
+      "gold": [
+        "moutai-2025-en p115"
+      ]
+    },
+    {
+      "id": "q44",
+      "set": "questions_v2",
+      "type": "cross_language",
+      "question": "茅台2025年英文年报披露，作为承租方，这一年与租赁有关的现金一共流出了多少？",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p117",
+        "moutai-2025-zh p129",
+        "moutai-2025-zh p67"
+      ],
+      "gold": [
+        "moutai-2025-en p156"
+      ]
+    },
+    {
+      "id": "q45",
+      "set": "questions_v2",
+      "type": "cross_language",
+      "question": "茅台2025年英文年报的设定提存计划里，基本养老保险本年新增了多少？",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p103",
+        "moutai-2025-zh p103",
+        "moutai-2025-zh p81"
+      ],
+      "gold": [
+        "moutai-2025-en p138"
+      ]
+    },
+    {
+      "id": "q46",
+      "set": "questions_v2",
+      "type": "multi_page",
+      "question": "请根据茅台2025年英文年报，分别找出母公司和主要子公司合计有多少在职员工，以及合并口径年底尚未支付的短期职工薪酬有多少。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": true,
+      "top": [
+        "moutai-2025-zh p31",
+        "moutai-2025-zh p32",
+        "moutai-2025-zh p81"
+      ],
+      "gold": [
+        "moutai-2025-en p137",
+        "moutai-2025-en p37"
+      ]
+    },
+    {
+      "id": "q47",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "比亚迪2025年投入研发的总金额是多少？请取当年投入整体，不只取资本化部分。",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p39",
+        "byd-2025-zh p40",
+        "byd-2025-zh p39"
+      ],
+      "gold": [
+        "byd-2025-zh p39"
+      ]
+    },
+    {
+      "id": "q48",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "比亚迪集团2025年底的货币资金里，银行存款这一项有多少？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p166",
+        "byd-2025-zh p220",
+        "byd-2025-zh p221"
+      ],
+      "gold": [
+        "byd-2025-zh p166"
+      ]
+    },
+    {
+      "id": "q49",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "比亚迪集团2025年底原材料在扣除跌价准备后剩下的账面价值是多少？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p174",
+        "byd-2025-zh p175",
+        "byd-2025-zh p174"
+      ],
+      "gold": [
+        "byd-2025-zh p174"
+      ]
+    },
+    {
+      "id": "q50",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "比亚迪集团2025年末机器设备扣完折旧和减值后的账面价值是多少？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p184",
+        "byd-2025-zh p185",
+        "byd-2025-zh p180"
+      ],
+      "gold": [
+        "byd-2025-zh p184"
+      ]
+    },
+    {
+      "id": "q51",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "比亚迪2025年报里，机器设备中的模具按什么办法折旧？请点明适用的资产。",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p150",
+        "byd-2025-zh p7",
+        "byd-2025-zh p150"
+      ],
+      "gold": [
+        "byd-2025-zh p150"
+      ]
+    },
+    {
+      "id": "q52",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "按比亚迪2025年的政策，建造可资本化资产时若出现非必要的异常停工，要连续多久才暂停将利息计入资产成本？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p151",
+        "byd-2025-zh p152",
+        "byd-2025-zh p148"
+      ],
+      "gold": [
+        "byd-2025-zh p151"
+      ]
+    },
+    {
+      "id": "q53",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "比亚迪2025年报对裁员补偿何时确认负债采用怎样的先后原则？需要比较哪两个时点？",
+      "rank": 3,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "byd-2025-zh p155",
+        "byd-2025-zh p160",
+        "byd-2025-zh p153"
+      ],
+      "gold": [
+        "byd-2025-zh p153"
+      ]
+    },
+    {
+      "id": "q54",
+      "set": "questions_v2",
+      "type": "multi_page",
+      "question": "比亚迪2025年员工持股计划有多少参与员工？2022年那期又为什么提前终止？请分别给出出处。",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": false,
+      "top": [
+        "byd-2025-zh p74",
+        "byd-2025-zh p246",
+        "byd-2025-zh p73"
+      ],
+      "gold": [
+        "byd-2025-zh p73",
+        "byd-2025-zh p74"
+      ]
+    },
+    {
+      "id": "q55",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "宁德时代集团2025年底的银行存款余额有多少？",
+      "rank": 2,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p202",
+        "catl-2025-zh p164",
+        "catl-2025-zh p220"
+      ],
+      "gold": [
+        "catl-2025-zh p164"
+      ]
+    },
+    {
+      "id": "q56",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "宁德时代集团2025年末原材料扣掉减值准备后，在账上还剩多少？",
+      "rank": 3,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p173",
+        "catl-2025-zh p140",
+        "catl-2025-zh p172"
+      ],
+      "gold": [
+        "catl-2025-zh p172"
+      ]
+    },
+    {
+      "id": "q57",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "宁德时代2025年底欠联营企业的应付账款有多少？请用集团关联交易附注的余额。",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p219",
+        "catl-2025-zh p217",
+        "catl-2025-zh p215"
+      ],
+      "gold": [
+        "catl-2025-zh p219"
+      ]
+    },
+    {
+      "id": "q58",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "宁德时代2025年底已经签约、但还没在财务报表确认的长期资产购建承诺是多少？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p220",
+        "catl-2025-zh p165",
+        "catl-2025-zh p213"
+      ],
+      "gold": [
+        "catl-2025-zh p220"
+      ]
+    },
+    {
+      "id": "q59",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "宁德时代2025年报说明，研发人员工资在项目之间按什么依据分摊？",
+      "rank": 2,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p29",
+        "catl-2025-zh p148",
+        "catl-2025-zh p30"
+      ],
+      "gold": [
+        "catl-2025-zh p148"
+      ]
+    },
+    {
+      "id": "q60",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "宁德时代2025年报认为，销售商品或提供服务要到客户取得什么时才确认收入？",
+      "rank": 3,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p153",
+        "catl-2025-zh p195",
+        "catl-2025-zh p152"
+      ],
+      "gold": [
+        "catl-2025-zh p152"
+      ]
+    },
+    {
+      "id": "q61",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "宁德时代在2025年报中判断一项安排是否受共同控制时，哪一类权利不纳入考虑？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p146",
+        "catl-2025-zh p136",
+        "catl-2025-zh p143"
+      ],
+      "gold": [
+        "catl-2025-zh p146"
+      ]
+    },
+    {
+      "id": "q62",
+      "set": "questions_v2",
+      "type": "multi_page",
+      "question": "宁德时代2025年的研发费用有多少？它对研究阶段发生的支出采用什么会计处理？请分别引用年报。",
+      "rank": 1,
+      "all_pages": false,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p148",
+        "catl-2025-zh p205",
+        "catl-2025-zh p147"
+      ],
+      "gold": [
+        "catl-2025-zh p148",
+        "catl-2025-zh p29"
+      ]
+    },
+    {
+      "id": "q63",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "招行2025年末投向制造业的贷款有多少？请取集团口径的贷款和垫款金额，并保留原表数字和单位。",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "cmb-2025-zh p33",
+        "cmb-2025-zh p17",
+        "cmb-2025-zh p152"
+      ],
+      "gold": [
+        "cmb-2025-zh p33"
+      ]
+    },
+    {
+      "id": "q64",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "招行2025年末向房地产业发放的贷款，本公司口径记了多少？请按原表单位给出金额，不用集团数。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "cmb-2025-zh p152",
+        "cmb-2025-zh p54",
+        "cmb-2025-zh p43"
+      ],
+      "gold": [
+        "cmb-2025-zh p34"
+      ]
+    },
+    {
+      "id": "q65",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "招商银行集团2025年末已经拖欠超过三年的贷款余额是多少？请保留表中的数字并说明单位。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "cmb-2025-zh p55",
+        "cmb-2025-zh p54",
+        "cmb-2025-zh p43"
+      ],
+      "gold": [
+        "cmb-2025-zh p36"
+      ]
+    },
+    {
+      "id": "q66",
+      "set": "questions_v2",
+      "type": "table_number",
+      "question": "招行集团在2025年底列入关注类的贷款有多少？请给出年报原值及其单位。",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "cmb-2025-zh p31",
+        "cmb-2025-zh p17",
+        "cmb-2025-zh p260"
+      ],
+      "gold": [
+        "cmb-2025-zh p31"
+      ]
+    },
+    {
+      "id": "q67",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "招行年报提到新设的招银投资：它在2025年哪个月获准开业，主要做哪项业务？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "cmb-2025-zh p63",
+        "cmb-2025-zh p8",
+        "cmb-2025-zh p42"
+      ],
+      "gold": [
+        "cmb-2025-zh p63"
+      ]
+    },
+    {
+      "id": "q68",
+      "set": "questions_v2",
+      "type": "text_fact",
+      "question": "招行对交易账簿利率风险估算VaR时，用的是哪种方法，置信度设为多少？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "cmb-2025-zh p64",
+        "cmb-2025-zh p65",
+        "cmb-2025-zh p270"
+      ],
+      "gold": [
+        "cmb-2025-zh p64"
+      ]
+    },
+    {
+      "id": "q69",
+      "set": "questions_v2",
+      "type": "multi_page",
+      "question": "请分别查一下招行集团2025年底正常类贷款的金额，以及逾期三个月至一年的贷款金额；两项各给出处，并按年报原单位回答。",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "cmb-2025-zh p31",
+        "cmb-2025-zh p178",
+        "cmb-2025-zh p178"
+      ],
+      "gold": [
+        "cmb-2025-zh p31",
+        "cmb-2025-zh p36"
+      ]
+    },
+    {
+      "id": "q70",
+      "set": "questions_v2",
+      "type": "multi_page",
+      "question": "招行集团2025年底给金融业的贷款和垫款金额是多少？同一时点，已重组贷款里逾期超过90天的金额又是多少？请分别给原表数值、单位和出处。",
+      "rank": 1,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "cmb-2025-zh p37",
+        "cmb-2025-zh p36",
+        "cmb-2025-zh p179"
+      ],
+      "gold": [
+        "cmb-2025-zh p33",
+        "cmb-2025-zh p37"
+      ]
+    },
+    {
+      "id": "q71",
+      "set": "questions_v2",
+      "type": "multi_page",
+      "question": "招行2025年末本公司对批发和零售业的贷款和垫款金额，以及集团2025年为贷款损失准备新计提的金额，分别是多少？请逐项标明口径和原表单位，各附出处。",
+      "rank": 2,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "cmb-2025-zh p26",
+        "cmb-2025-zh p37",
+        "cmb-2025-zh p37"
+      ],
+      "gold": [
+        "cmb-2025-zh p34",
+        "cmb-2025-zh p37"
+      ]
+    },
+    {
+      "id": "q72",
+      "set": "questions_v2",
+      "type": "english",
+      "question": "In Tesla’s 2025 report, how many years of useful life does it assign to its AI infrastructure for depreciation?",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "tesla-2025-en p68",
+        "tesla-2025-en p68",
+        "tesla-2025-en p69"
+      ],
+      "gold": [
+        "tesla-2025-en p68"
+      ]
+    },
+    {
+      "id": "q73",
+      "set": "questions_v2",
+      "type": "english",
+      "question": "At what stage does Tesla start capitalizing work on software for its own use, and where does it put those costs on the balance sheet?",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "tesla-2025-en p69",
+        "tesla-2025-en p69",
+        "tesla-2025-en p69"
+      ],
+      "gold": [
+        "tesla-2025-en p69"
+      ]
+    },
+    {
+      "id": "q74",
+      "set": "questions_v2",
+      "type": "english",
+      "question": "For Tesla's direct vehicle operating leases, what is the longest lease term, and how does it recognize the leasing revenue over that term?",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "tesla-2025-en p60",
+        "tesla-2025-en p40",
+        "tesla-2025-en p60"
+      ],
+      "gold": [
+        "tesla-2025-en p60"
+      ]
+    },
+    {
+      "id": "q75",
+      "set": "questions_v2",
+      "type": "english",
+      "question": "When does an employee become vested in Tesla's employer match under the U.S. 401(k) plan?",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "tesla-2025-en p71",
+        "tesla-2025-en p71",
+        "tesla-2025-en p124"
+      ],
+      "gold": [
+        "tesla-2025-en p71"
+      ]
+    },
+    {
+      "id": "q76",
+      "set": "questions_v2",
+      "type": "cross_language",
+      "question": "特斯拉的能源销售合同中，截至2025年底，原预计期限超过一年的合同还未完成的履约义务对应多少交易价格？其中预计未来12个月确认多少？请保留报告中的数字和单位。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "tesla-2025-en p85",
+        "tesla-2025-en p100",
+        "tesla-2025-en p106"
+      ],
+      "gold": [
+        "tesla-2025-en p61"
+      ]
+    },
+    {
+      "id": "q77",
+      "set": "questions_v2",
+      "type": "cross_language",
+      "question": "特斯拉2025年的汽车销售成本因取得制造抵免减少了多少？请给出报告原值和单位，不要用能源业务的数据。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "tesla-2025-en p84",
+        "tesla-2025-en p73",
+        "tesla-2025-en p88"
+      ],
+      "gold": [
+        "tesla-2025-en p62"
+      ]
+    },
+    {
+      "id": "q78",
+      "set": "questions_v2",
+      "type": "cross_language",
+      "question": "特斯拉给带有服务或业绩条件的股票期权及员工购股计划估算公允价值时，采用哪一个期权定价模型？",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [],
+      "gold": [
+        "tesla-2025-en p63"
+      ]
+    },
+    {
+      "id": "q79",
+      "set": "questions_v2",
+      "type": "cross_language",
+      "question": "特斯拉2025年结束时累计计提的保修负债余额是多少？请按披露的原值和单位回答。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "tesla-2025-en p84",
+        "tesla-2025-en p73",
+        "tesla-2025-en p88"
+      ],
+      "gold": [
+        "tesla-2025-en p69",
+        "tesla-2025-en p70"
+      ]
+    },
+    {
+      "id": "q80",
+      "set": "questions_v2",
+      "type": "cross_language",
+      "question": "特斯拉是从哪一天起正式采用ASU 2023-08加密资产新准则的？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "tesla-2025-en p72",
+        "tesla-2025-en p43",
+        "tesla-2025-en p72"
+      ],
+      "gold": [
+        "tesla-2025-en p72"
+      ]
+    },
+    {
+      "id": "q81",
+      "set": "questions_v2",
+      "type": "multi_company",
+      "question": "截至2025年末，比亚迪和宁德时代各自整个集团账上的资产一共有多少？请分别列出。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "catl-2025-zh p220",
+        "byd-2025-zh p260",
+        "byd-2025-zh p260"
+      ],
+      "gold": [
+        "byd-2025-zh p123",
+        "catl-2025-zh p112"
+      ]
+    },
+    {
+      "id": "q82",
+      "set": "questions_v2",
+      "type": "multi_company",
+      "question": "比亚迪和宁德时代2025年的研发队伍分别有多少人？",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "catl-2025-zh p29",
+        "byd-2025-zh p39",
+        "catl-2025-zh p29"
+      ],
+      "gold": [
+        "byd-2025-zh p39",
+        "catl-2025-zh p29"
+      ]
+    },
+    {
+      "id": "q83",
+      "set": "questions_v2",
+      "type": "multi_company",
+      "question": "2025年底，茅台和招行各自合并报表里的资产总规模是多少？请分别给出原表数值。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "moutai-2025-zh p48",
+        "cmb-2025-zh p10",
+        "cmb-2025-zh p8"
+      ],
+      "gold": [
+        "cmb-2025-zh p127",
+        "moutai-2025-zh p57"
+      ]
+    },
+    {
+      "id": "q84",
+      "set": "questions_v2",
+      "type": "multi_company",
+      "question": "截至2025年底，茅台和Tesla的合并报表各列了多少负债总额？分别回答即可。",
+      "rank": null,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "moutai-2025-zh p48",
+        "moutai-2025-zh p33",
+        "moutai-2025-zh p34"
+      ],
+      "gold": [
+        "moutai-2025-zh p58",
+        "tesla-2025-en p52"
+      ]
+    },
+    {
+      "id": "q85",
+      "set": "questions_v2",
+      "type": "multi_company",
+      "question": "2025年底，比亚迪和Tesla各有多少员工？比亚迪取母公司加主要子公司的在职总人数，Tesla取全球员工总数。",
+      "rank": 1,
+      "all_pages": false,
+      "answer_found": false,
+      "top": [
+        "byd-2025-zh p69",
+        "byd-2025-zh p72",
+        "byd-2025-zh p246"
+      ],
+      "gold": [
+        "byd-2025-zh p69",
+        "tesla-2025-en p14"
+      ]
+    },
+    {
+      "id": "q86",
+      "set": "questions_v2",
+      "type": "multi_company",
+      "question": "宁德时代和招行2025年的加权平均净资产收益率各是多少？两家都取扣非前，招行要普通股股东口径。",
+      "rank": 1,
+      "all_pages": true,
+      "answer_found": true,
+      "top": [
+        "cmb-2025-zh p249",
+        "catl-2025-zh p232",
+        "cmb-2025-zh p14"
+      ],
+      "gold": [
+        "catl-2025-zh p11",
+        "cmb-2025-zh p249"
       ]
     }
   ],
