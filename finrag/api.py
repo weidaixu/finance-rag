@@ -159,6 +159,7 @@ def _done(result: AnswerResult) -> dict:
         answer="" if failed or result.refused else result.answer,
         refused=result.refused,
         refusal_reason=result.refusal_reason,
+        partial=bool(result.partial) and not failed and not result.refused,
         citations=citations,
         unverified_numbers=[] if failed or result.refused else result.unverified_numbers,
         usage=dict(input_tokens=result.usage.input_tokens,

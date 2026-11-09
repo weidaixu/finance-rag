@@ -12,7 +12,9 @@
 import json
 import math
 import os
+import re
 from collections import Counter, defaultdict
+from itertools import zip_longest
 from pathlib import Path
 
 import httpx
@@ -108,6 +110,23 @@ def detect_companies(question: str, reports: list[dict]) -> set[str]:
     }
 
 
+_ENGLISH_DOC = re.compile(r"英文年报|英文版|英文报告|English\s+annual\s+report|English\s+report|English\s+version", re.IGNORECASE)
+_CHINESE_DOC = re.compile(r"中文年报|中文版|中文报告")
+
+
+def detect_language(question: str) -> str | None:
+    """问题明确写了文档语言时返回 "en" 或 "zh"，否则返回 None（不筛选）。
+
+    只认「英文年报」这类指向文档的说法；「用英文回答」只是回答语言，不算。
+    同时出现两种说法时无法判断，也返回 None。
+    """
+    text = normalize(question)
+    english, chinese = bool(_ENGLISH_DOC.search(text)), bool(_CHINESE_DOC.search(text))
+    if english == chinese:
+        return None
+    return "en" if english else "zh"
+
+
 class HybridRetriever:
     """mode 可选 bm25、vector、hybrid，评测时用来对比不同方案。"""
 
@@ -129,16 +148,22 @@ class HybridRetriever:
         self.chunks, self.reports, self.embed, self.rerank, self.mode = chunks, reports, embed, rerank, mode
         self.embeddings = embeddings
         self.companies = np.array([chunk.company for chunk in chunks])
+        self.languages = np.array([chunk.language for chunk in chunks])
         self.bm25 = BM25Index([tokenize(chunk.indexed_text) for chunk in chunks]) if mode != "vector" else None
 
     def _allowed(self, question: str) -> np.ndarray:
+        """问题允许的片段范围：点名的公司与明确要求的文档语言，两个条件取交集。"""
         named = detect_companies(question, self.reports)
-        if not named:
-            return np.ones(len(self.chunks), dtype=bool)
-        return np.isin(self.companies, list(named))
+        allowed = np.isin(self.companies, list(named)) if named else np.ones(len(self.chunks), dtype=bool)
+        language = detect_language(question)
+        if language is not None:
+            allowed = allowed & (self.languages == language)
+        return allowed
 
-    def retrieve(self, question: str, k: int = 8) -> list[Hit]:
-        allowed = self._allowed(question)
+    def _search(self, question: str, allowed: np.ndarray, k: int) -> list[Hit]:
+        """只在 allowed 范围内做一次完整检索（BM25、向量、RRF、重排），返回前 k 条。"""
+        if k <= 0 or not allowed.any():
+            return []
         limit = k * CANDIDATE_MULTIPLIER
         rankings: list[list[int]] = []
         if self.mode != "vector":
@@ -154,6 +179,21 @@ class HybridRetriever:
             documents = [self.chunks[index].indexed_text for index in candidates]
             fused = [(candidates[position], score) for position, score in self.rerank(question, documents, k)]
         return [Hit(chunk=self.chunks[index], score=score) for index, score in fused[:k]]
+
+    def retrieve(self, question: str, k: int = 8) -> list[Hit]:
+        allowed = self._allowed(question)
+        named = sorted(detect_companies(question, self.reports))
+        if len(named) < 2:
+            return self._search(question, allowed, k)
+
+        # 点名多家公司时按公司分配名额，避免一家占满结果。余数依次给前几家。
+        share, extra = divmod(k, len(named))
+        per_company = [
+            self._search(question, allowed & (self.companies == company), share + (1 if position < extra else 0))
+            for position, company in enumerate(named)
+        ]
+        # 交替合并：每家第 1 段、每家第 2 段……
+        return [hit for group in zip_longest(*per_company) for hit in group if hit is not None]
 
 
 def make_embedder(client, model: str = EMBEDDING_MODEL, dimensions: int = EMBEDDING_DIMENSIONS):

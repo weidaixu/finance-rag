@@ -394,3 +394,20 @@ def test_startup_rejects_invalid_env(monkeypatch, name, value):
     monkeypatch.setenv(name, value)
     with pytest.raises(SystemExit, match=name):
         api.main()
+
+
+def test_done_event_carries_partial_flag(setup_app):
+    client, _, _ = setup_app(FakeModel(pieces=("甲 123.45 元[1]；乙该项证据不足",)))
+    done = events(client.post("/api/ask", json={"question": "甲和乙的营业收入"}))[-1][1]
+    assert done["partial"] is True and done["refused"] is False
+
+
+def test_done_event_partial_is_false_for_full_answer_refusal_and_error(setup_app):
+    client, _, _ = setup_app()
+    assert events(client.post("/api/ask", json={"question": "营业收入"}))[-1][1]["partial"] is False
+    client, _, _ = setup_app(FakeModel(pieces=("证据不足",)))
+    done = events(client.post("/api/ask", json={"question": "营业收入"}))[-1][1]
+    assert done["refused"] and done["partial"] is False
+    client, _, _ = setup_app(FakeModel(error=RuntimeError("boom")))
+    done = events(client.post("/api/ask", json={"question": "营业收入"}))[-1][1]
+    assert done["error"] and done["partial"] is False

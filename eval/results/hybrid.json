@@ -620,13 +620,13 @@
       "set": "questions_v2",
       "type": "cross_language",
       "question": "根据茅台2025年英文年报，合并范围内这一年实际核销了多少应收账款？",
-      "rank": null,
-      "all_pages": false,
+      "rank": 2,
+      "all_pages": true,
       "answer_found": true,
       "top": [
-        "moutai-2025-zh p86",
-        "moutai-2025-zh p93",
-        "moutai-2025-zh p90"
+        "moutai-2025-en p140",
+        "moutai-2025-en p115",
+        "moutai-2025-en p159"
       ],
       "gold": [
         "moutai-2025-en p115"
@@ -641,9 +641,9 @@
       "all_pages": false,
       "answer_found": false,
       "top": [
-        "moutai-2025-zh p129",
-        "moutai-2025-zh p66",
-        "moutai-2025-zh p130"
+        "moutai-2025-en p159",
+        "moutai-2025-en p4",
+        "moutai-2025-en p85"
       ],
       "gold": [
         "moutai-2025-en p156"
@@ -656,11 +656,11 @@
       "question": "茅台2025年英文年报的设定提存计划里，基本养老保险本年新增了多少？",
       "rank": null,
       "all_pages": false,
-      "answer_found": true,
+      "answer_found": false,
       "top": [
-        "moutai-2025-zh p103",
-        "moutai-2025-zh p15",
-        "moutai-2025-zh p68"
+        "moutai-2025-en p159",
+        "moutai-2025-en p140",
+        "moutai-2025-en p65"
       ],
       "gold": [
         "moutai-2025-en p138"
@@ -673,11 +673,11 @@
       "question": "请根据茅台2025年英文年报，分别找出母公司和主要子公司合计有多少在职员工，以及合并口径年底尚未支付的短期职工薪酬有多少。",
       "rank": null,
       "all_pages": false,
-      "answer_found": true,
+      "answer_found": false,
       "top": [
-        "moutai-2025-zh p31",
-        "moutai-2025-zh p32",
-        "moutai-2025-zh p103"
+        "moutai-2025-en p77",
+        "moutai-2025-en p140",
+        "moutai-2025-en p79"
       ],
       "gold": [
         "moutai-2025-en p137",
@@ -1278,8 +1278,8 @@
       "answer_found": false,
       "top": [
         "catl-2025-zh p128",
-        "catl-2025-zh p220",
-        "byd-2025-zh p260"
+        "byd-2025-zh p256",
+        "catl-2025-zh p220"
       ],
       "gold": [
         "byd-2025-zh p123",
@@ -1295,8 +1295,8 @@
       "all_pages": true,
       "answer_found": true,
       "top": [
-        "byd-2025-zh p39",
         "catl-2025-zh p29",
+        "byd-2025-zh p39",
         "catl-2025-zh p205"
       ],
       "gold": [
@@ -1313,9 +1313,9 @@
       "all_pages": false,
       "answer_found": false,
       "top": [
-        "moutai-2025-zh p48",
-        "moutai-2025-zh p92",
-        "moutai-2025-zh p91"
+        "cmb-2025-zh p252",
+        "moutai-2025-zh p101",
+        "cmb-2025-zh p10"
       ],
       "gold": [
         "cmb-2025-zh p127",
@@ -1331,9 +1331,9 @@
       "all_pages": false,
       "answer_found": false,
       "top": [
+        "tesla-2025-en p79",
         "moutai-2025-zh p105",
-        "moutai-2025-zh p105",
-        "moutai-2025-zh p101"
+        "tesla-2025-en p136"
       ],
       "gold": [
         "moutai-2025-zh p58",
@@ -1346,12 +1346,12 @@
       "type": "multi_company",
       "question": "2025年底，比亚迪和Tesla各有多少员工？比亚迪取母公司加主要子公司的在职总人数，Tesla取全球员工总数。",
       "rank": 1,
-      "all_pages": false,
-      "answer_found": false,
+      "all_pages": true,
+      "answer_found": true,
       "top": [
+        "tesla-2025-en p14",
         "byd-2025-zh p69",
-        "byd-2025-zh p246",
-        "byd-2025-zh p72"
+        "tesla-2025-en p136"
       ],
       "gold": [
         "byd-2025-zh p69",
@@ -1368,8 +1368,8 @@
       "answer_found": true,
       "top": [
         "catl-2025-zh p232",
-        "catl-2025-zh p11",
-        "cmb-2025-zh p249"
+        "cmb-2025-zh p249",
+        "catl-2025-zh p11"
       ],
       "gold": [
         "catl-2025-zh p11",

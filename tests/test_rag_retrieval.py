@@ -1,5 +1,6 @@
 """检索和评测指标的测试：用构造的小数据和假的模型，不联网，不产生费用。"""
 
+from collections import Counter
 from types import SimpleNamespace
 
 import numpy as np
@@ -24,6 +25,7 @@ from finrag.retrieval import (
     HybridRetriever,
     IndexNotReady,
     detect_companies,
+    detect_language,
     make_embedder,
     make_reranker,
     rank,
@@ -37,8 +39,8 @@ REPORTS = [
 ]
 
 
-def chunk(index: int, company: str, text: str, page: int | None = None) -> Chunk:
-    return Chunk(f"c{index}", f"doc-{company}", company, 2025, "zh", "t", page or index + 1, "", "text", text)
+def chunk(index: int, company: str, text: str, page: int | None = None, language: str = "zh") -> Chunk:
+    return Chunk(f"c{index}", f"doc-{company}", company, 2025, language, "t", page or index + 1, "", "text", text)
 
 
 CHUNKS = [
@@ -326,9 +328,122 @@ GOLD_ITEM = {"should_refuse": False, "answer_contains": ["100"], "gold": [{"doc_
         ({"should_refuse": True}, {"answer": "瞎答[1]"}, "should_have_refused", False),
         ({"should_refuse": True}, {"answer": "年报未单独披露该毛利率[1]"}, "manual_review", False),
         ({"should_refuse": True}, {"answer": "The filing does not disclose it [1]"}, "manual_review", False),
+        ({"should_refuse": True}, {"answer": "营业收入为 1 元[1]；毛利率该项证据不足", "citations": [1]}, "manual_review", False),
         (GOLD_ITEM, {"error": "超时"}, "error", False),
+        # 标准答案的数字都在，但又说“该项证据不足”，不算完整答对。
+        (GOLD_ITEM, {"answer": "结果是 100[1]；另一项该项证据不足", "citations": [1], "sources": [hit_at(5)]}, "partial_answer", False),
     ],
 )
 def test_score_answer(item, result_fields, status, passed):
     score = score_answer(item, AnswerResult(question="q", **result_fields))
     assert (score.status, score.passed) == (status, passed)
+
+
+# ---- 多公司名额分配 ----
+
+def multi_chunks():
+    """比亚迪 6 段、Tesla 6 段，都含「营业收入」；比亚迪词频更高，单独检索时会占满前几名。"""
+    byd = [chunk(i, "比亚迪", "营业收入 " * (6 - i)) for i in range(6)]
+    tesla = [chunk(10 + i, "Tesla", "营业收入 ") for i in range(6)]
+    return byd + tesla
+
+
+def test_two_companies_split_quota_and_interleave():
+    hits = HybridRetriever(multi_chunks(), REPORTS, mode="bm25").retrieve("比亚迪和特斯拉的营业收入", k=8)
+    companies = [hit.chunk.company for hit in hits]
+    assert len(hits) == 8
+    assert companies == ["Tesla", "比亚迪"] * 4  # 按公司名排序，Tesla 在前
+
+
+def test_single_company_result_is_unchanged_by_multi_company_logic():
+    retriever = HybridRetriever(multi_chunks(), REPORTS, mode="bm25")
+    hits = retriever.retrieve("比亚迪营业收入", k=4)
+    expected = retriever._search("比亚迪营业收入", retriever._allowed("比亚迪营业收入"), 4)
+    assert [h.chunk.chunk_id for h in hits] == [h.chunk.chunk_id for h in expected]
+    assert len(hits) == 4 and {h.chunk.company for h in hits} == {"比亚迪"}
+
+
+def test_odd_k_gives_remainder_to_first_company_by_name():
+    hits = HybridRetriever(multi_chunks(), REPORTS, mode="bm25").retrieve("比亚迪和特斯拉的营业收入", k=5)
+    assert len(hits) == 5
+    assert Counter(h.chunk.company for h in hits) == {"Tesla": 3, "比亚迪": 2}
+    assert [h.chunk.company for h in hits] == ["Tesla", "比亚迪", "Tesla", "比亚迪", "Tesla"]
+
+
+def test_each_company_is_reranked_separately():
+    calls = []
+
+    def recording(question, documents, top_n):
+        calls.append((tuple(documents), top_n))
+        return [(i, 1.0 - i / 10) for i in range(min(top_n, len(documents)))]
+
+    HybridRetriever(multi_chunks(), REPORTS, rerank=recording, mode="bm25").retrieve("比亚迪和特斯拉的营业收入", k=8)
+    assert len(calls) == 2
+    assert all(top_n == 4 for _, top_n in calls)
+    for documents, _ in calls:
+        assert len({doc.split()[0] for doc in documents}) == 1  # 每次重排的候选只来自一家公司
+
+
+def test_multi_company_vector_mode_searches_each_company():
+    chunks = multi_chunks()
+    embeddings = np.eye(len(chunks), dtype=np.float32)
+
+    def embed(texts):
+        return np.ones((len(texts), len(chunks)), dtype=np.float32)
+
+    hits = HybridRetriever(chunks, REPORTS, embeddings, embed, mode="vector").retrieve("比亚迪和特斯拉", k=4)
+    assert Counter(h.chunk.company for h in hits) == {"Tesla": 2, "比亚迪": 2}
+
+
+def test_more_companies_than_k_gives_one_each_to_first_companies():
+    chunks = multi_chunks() + [chunk(20, "贵州茅台", "营业收入")]
+    hits = HybridRetriever(chunks, REPORTS, mode="bm25").retrieve("茅台、比亚迪和特斯拉的营业收入", k=2)
+    assert [h.chunk.company for h in hits] == ["Tesla", "比亚迪"]
+
+
+# ---- 语言筛选 ----
+
+@pytest.mark.parametrize(
+    "question,expected",
+    [
+        ("比亚迪英文年报里的资产总计", "en"),
+        ("英文版的营业收入", "en"),
+        ("英文报告中的净利润", "en"),
+        ("Tesla English annual report revenue", "en"),
+        ("the ENGLISH REPORT says", "en"),
+        ("English version of the filing", "en"),
+        ("中文年报里的营业收入", "zh"),
+        ("中文版营业收入", "zh"),
+        ("中文报告中的利润", "zh"),
+        ("请用英文回答比亚迪的营业收入", None),
+        ("营业收入是多少", None),
+        ("英文年报和中文年报的差别", None),
+    ],
+)
+def test_detect_language(question, expected):
+    assert detect_language(question) == expected
+
+
+def language_chunks():
+    return [
+        chunk(0, "比亚迪", "营业收入 中文", language="zh"),
+        chunk(1, "比亚迪", "营业收入 English", language="en"),
+        chunk(2, "Tesla", "营业收入 Total", language="en"),
+    ]
+
+
+def test_language_filter_limits_results():
+    retriever = HybridRetriever(language_chunks(), REPORTS, mode="bm25")
+    assert {h.chunk.language for h in retriever.retrieve("英文年报的营业收入", k=8)} == {"en"}
+    assert {h.chunk.language for h in retriever.retrieve("中文年报的营业收入", k=8)} == {"zh"}
+    assert {h.chunk.language for h in retriever.retrieve("用英文回答营业收入", k=8)} == {"zh", "en"}
+
+
+def test_language_and_company_filters_intersect():
+    hits = HybridRetriever(language_chunks(), REPORTS, mode="bm25").retrieve("比亚迪英文年报的营业收入", k=8)
+    assert [h.chunk.chunk_id for h in hits] == ["c1"]
+
+
+def test_empty_language_company_intersection_returns_nothing():
+    retriever = HybridRetriever(language_chunks(), REPORTS, mode="bm25")
+    assert retriever.retrieve("特斯拉中文年报的营业收入", k=8) == []

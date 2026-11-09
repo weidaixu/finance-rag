@@ -4,7 +4,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from finrag.answer import AnswerResult, find_unverified_numbers, precheck, review, stream_answer
+from finrag.answer import SYSTEM_PROMPT, AnswerResult, find_unverified_numbers, precheck, review, stream_answer
 from finrag.chunking import Chunk
 from finrag.contracts import Hit
 from finrag.llm import Usage
@@ -165,3 +165,40 @@ def test_retriever_error_is_reported_without_raising():
 
     _, result = run("x", Broken(), FakeClient(["y"]))
     assert "索引不可用" in result.error
+
+
+def test_prompt_allows_partial_answers_only_for_independent_items():
+    assert "该项证据不足" in SYSTEM_PROMPT
+    assert "相互独立的信息" in SYSTEM_PROMPT
+
+
+def test_prompt_does_not_doubt_units_once_number_is_found():
+    assert "不要因为单位、口径或报表名称" in SYSTEM_PROMPT
+
+
+def test_prompt_refuses_trading_questions_entirely():
+    # 投资类问题不能先列股价再说不提供建议，必须整题拒答。
+    assert "建仓" in SYSTEM_PROMPT and "不要先列出股价" in SYSTEM_PROMPT
+
+
+def test_partial_answer_is_not_refused_and_is_flagged():
+    text = "甲公司资产总计为 1,234.50 元[1]；乙公司该项证据不足"
+    pieces, result = run("甲和乙的资产总计", FakeRetriever([make_hit("| 资产总计 | 1,234.50 |")]), FakeClient([text]))
+    assert not result.refused and result.partial
+    assert result.citations == [1] and "".join(pieces) == text
+
+
+def test_complete_answer_is_not_partial():
+    _, result = run("x", FakeRetriever([make_hit("| 营业收入 | 1,234.50 |")]), FakeClient(["营业收入为 1,234.50 元[1]"]))
+    assert not result.refused and not result.partial
+
+
+def test_answer_starting_with_marker_is_refused_not_partial():
+    _, result = run("x", FakeRetriever([make_hit("y")]), FakeClient(["证据不足"]))
+    assert result.refused and result.refusal_reason == "model_insufficient" and not result.partial
+
+
+def test_partial_text_without_citation_is_still_refused():
+    result = AnswerResult(question="x", answer="甲该项证据不足", sources=[make_hit("y")])
+    review(result)
+    assert result.refused and result.refusal_reason == "no_valid_citation" and not result.partial

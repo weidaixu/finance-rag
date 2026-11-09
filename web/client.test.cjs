@@ -38,7 +38,7 @@ function fixture(fetch) {
 
 const done = (overrides = {}) => ({answer: '收入123元[2]', refused: false, refusal_reason: '', error: '',
   citations: [{n: 2, doc_id: 'test-report', title: '测试财报', page: 6, section: '财务数据', kind: 'table', text: '收入123元'}],
-  unverified_numbers: [], usage: {input_tokens: 12, output_tokens: 34, cost_yuan: .0001}, ...overrides});
+  unverified_numbers: [], partial: false, usage: {input_tokens: 12, output_tokens: 34, cost_yuan: .0001}, ...overrides});
 function sse(parts, final, newline = '\n') {
   return [...parts.map(text => ['token', {text}]), ['done', final]].map(([kind, data]) =>
     `event: ${kind}${newline}data: ${JSON.stringify(data)}${newline}${newline}`).join('');
@@ -145,4 +145,15 @@ test('429 shows the server message as text and falls back when the body is unusa
     assert.equal(f.elements.get('error').hidden, false);
     assert.equal(f.elements.get('submit').disabled, false);
   }
+});
+
+test('partial answer shows a notice as text; complete answers hide it', async () => {
+  const f = fixture(async () => response(sse(['收入123元[2]'], done({partial: true}))));
+  f.elements.get('question').value = '问题'; await f.submit();
+  assert.equal(f.elements.get('partial').hidden, false);
+  assert.equal(f.elements.get('partial').textContent, '部分内容没有找到依据，请以引用原文为准。');
+  assert.equal(f.elements.get('status').textContent, '回答完成');
+  const g = fixture(async () => response(sse(['收入123元[2]'], done())));
+  g.elements.get('question').value = '问题'; await g.submit();
+  assert.equal(g.elements.get('partial').hidden, true);
 });

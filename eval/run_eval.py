@@ -29,7 +29,7 @@ QUESTIONS = ROOT / "eval" / "questions.jsonl"
 REPORT = ROOT / "eval" / "report.md"
 RESULTS = ROOT / "eval" / "results"
 CUTOFFS = (1, 3, 8)
-_NOT_DISCLOSED = re.compile(r"(未|没有|并未)(单独|单列)?(披露|列示|提供)|not\s+(separately\s+|specifically\s+)?disclos|does\s+not\s+disclose", re.IGNORECASE)
+_NOT_DISCLOSED = re.compile(r"证据不足|(未|没有|并未)(单独|单列)?(披露|列示|提供)|not\s+(separately\s+|specifically\s+)?disclos|does\s+not\s+disclose", re.IGNORECASE)
 
 
 def questions_are_frozen(path: Path = QUESTIONS) -> bool:
@@ -109,7 +109,7 @@ def answer_in_hits(hits: list[Hit], expected: list[str]) -> bool:
 
 @dataclass
 class AnswerScore:
-    status: str  # correct / wrong_answer / wrong_citation / wrongly_refused / correctly_refused / should_have_refused / error
+    status: str  # correct / partial_answer / wrong_answer / wrong_citation / wrongly_refused / correctly_refused / should_have_refused / manual_review / error
     passed: bool
 
 
@@ -125,6 +125,10 @@ def score_answer(item: dict, result: AnswerResult) -> AnswerScore:
         return AnswerScore("should_have_refused", False)
     if result.refused:
         return AnswerScore("wrongly_refused", False)
+    # 回答题的每一部分在资料里都有依据。回答里出现“证据不足”，说明有一部分没答或在否定自己给出的数字，
+    # 即使标准答案字符串都出现了，也不能算完整答对。
+    if "证据不足" in result.answer:
+        return AnswerScore("partial_answer", False)
     if not answer_is_correct(result.answer, item["answer_contains"]):
         return AnswerScore("wrong_answer", False)
     if not citation_is_correct(result, gold_pages(item), item["answer_contains"]):

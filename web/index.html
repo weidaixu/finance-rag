@@ -46,6 +46,7 @@
     .citation { display:inline; border:0; color:var(--blue); background:var(--pale); font-weight:700; padding:1px 5px; border-radius:3px; margin:0 2px; }
     .notice { padding:13px 16px; border-radius:6px; font-size:14px; overflow-wrap:anywhere; }
     #warning { background:#fff2d9; color:var(--amber); border-left:3px solid #c77d20; margin:0 0 15px; }
+    #partial { background:#fff2d9; color:var(--amber); border-left:3px solid #c77d20; margin:0 0 15px; }
     #error { background:#fff0ed; color:#9a3b29; margin-top:16px; }
     #usage { font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:12px; overflow-wrap:anywhere; font-variant-numeric:tabular-nums; }
     .evidence { background:#fff; border:1px solid var(--line); border-top:3px solid var(--green); border-radius:0 0 8px 8px; padding:22px; }
@@ -78,6 +79,7 @@
         <div class="answer-head"><h2 class="section-title">回答</h2><span id="status" role="status" aria-live="polite">等待提问</span></div>
         <div id="error" class="notice" role="alert" hidden></div>
         <div id="answer" class="placeholder" aria-busy="false">从一个具体问题开始。答案中的引用会带你找到原文。</div>
+        <div id="partial" class="notice" role="note" hidden></div>
         <div id="warning" class="notice" role="alert" hidden></div>
         <div id="usage" hidden></div>
       </section>
@@ -139,7 +141,7 @@
       answer.append(document.createTextNode(text.slice(offset)));
     }
     function showError(message) {
-      clearSources(); answer.textContent = ''; $('warning').hidden = true;
+      clearSources(); answer.textContent = ''; $('warning').hidden = true; $('partial').hidden = true;
       $('error').textContent = message; $('error').hidden = false; status.textContent = '未完成';
     }
     function finish(data) {
@@ -170,6 +172,10 @@
       if (numbers.length) {
         $('warning').textContent = `请核对：这些数字没有在引用原文里找到：${numbers.join('、')}。请勿直接使用。`;
         $('warning').hidden = false;
+      }
+      if (data.partial === true) {
+        $('partial').textContent = '部分内容没有找到依据，请以引用原文为准。';
+        $('partial').hidden = false;
       }
       status.textContent = '回答完成';
     }
@@ -225,7 +231,7 @@
       busy = true; submit.disabled = true; submit.textContent = '正在查阅…';
       for (const button of document.querySelectorAll('.examples button')) button.disabled = true;
       clearSources(); answer.replaceChildren(); answer.classList.remove('placeholder'); answer.setAttribute('aria-busy', 'true');
-      $('error').hidden = true; $('warning').hidden = true; $('usage').hidden = true; status.textContent = '正在查找证据';
+      $('error').hidden = true; $('warning').hidden = true; $('partial').hidden = true; $('usage').hidden = true; status.textContent = '正在查找证据';
       const controller = new AbortController(), timeout = setTimeout(() => controller.abort(), 120000);
       try {
         const response = await fetch('/api/ask', {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'text/event-stream'}, body: JSON.stringify({question: text}), signal: controller.signal});

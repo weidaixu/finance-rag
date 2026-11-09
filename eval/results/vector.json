@@ -620,13 +620,13 @@
       "set": "questions_v2",
       "type": "cross_language",
       "question": "根据茅台2025年英文年报，合并范围内这一年实际核销了多少应收账款？",
-      "rank": null,
-      "all_pages": false,
+      "rank": 1,
+      "all_pages": true,
       "answer_found": true,
       "top": [
-        "moutai-2025-zh p86",
-        "moutai-2025-zh p90",
-        "moutai-2025-zh p140"
+        "moutai-2025-en p115",
+        "moutai-2025-en p80",
+        "moutai-2025-en p118"
       ],
       "gold": [
         "moutai-2025-en p115"
@@ -641,9 +641,9 @@
       "all_pages": false,
       "answer_found": false,
       "top": [
-        "moutai-2025-zh p117",
-        "moutai-2025-zh p129",
-        "moutai-2025-zh p129"
+        "moutai-2025-en p87",
+        "moutai-2025-en p87",
+        "moutai-2025-en p85"
       ],
       "gold": [
         "moutai-2025-en p156"
@@ -654,13 +654,13 @@
       "set": "questions_v2",
       "type": "cross_language",
       "question": "茅台2025年英文年报的设定提存计划里，基本养老保险本年新增了多少？",
-      "rank": 2,
+      "rank": 1,
       "all_pages": true,
       "answer_found": true,
       "top": [
-        "moutai-2025-zh p103",
         "moutai-2025-en p138",
-        "moutai-2025-zh p103"
+        "moutai-2025-en p138",
+        "moutai-2025-en p95"
       ],
       "gold": [
         "moutai-2025-en p138"
@@ -671,13 +671,13 @@
       "set": "questions_v2",
       "type": "multi_page",
       "question": "请根据茅台2025年英文年报，分别找出母公司和主要子公司合计有多少在职员工，以及合并口径年底尚未支付的短期职工薪酬有多少。",
-      "rank": 4,
-      "all_pages": false,
+      "rank": 1,
+      "all_pages": true,
       "answer_found": true,
       "top": [
-        "moutai-2025-zh p31",
-        "moutai-2025-zh p32",
-        "moutai-2025-zh p103"
+        "moutai-2025-en p37",
+        "moutai-2025-en p80",
+        "moutai-2025-en p138"
       ],
       "gold": [
         "moutai-2025-en p137",
@@ -1273,13 +1273,13 @@
       "set": "questions_v2",
       "type": "multi_company",
       "question": "截至2025年末，比亚迪和宁德时代各自整个集团账上的资产一共有多少？请分别列出。",
-      "rank": 8,
+      "rank": null,
       "all_pages": false,
-      "answer_found": true,
+      "answer_found": false,
       "top": [
         "catl-2025-zh p128",
-        "catl-2025-zh p111",
-        "catl-2025-zh p32"
+        "byd-2025-zh p256",
+        "catl-2025-zh p111"
       ],
       "gold": [
         "byd-2025-zh p123",
@@ -1295,9 +1295,9 @@
       "all_pages": true,
       "answer_found": true,
       "top": [
-        "byd-2025-zh p39",
         "catl-2025-zh p29",
-        "byd-2025-zh p69"
+        "byd-2025-zh p39",
+        "catl-2025-zh p56"
       ],
       "gold": [
         "byd-2025-zh p39",
@@ -1309,13 +1309,13 @@
       "set": "questions_v2",
       "type": "multi_company",
       "question": "2025年底，茅台和招行各自合并报表里的资产总规模是多少？请分别给出原表数值。",
-      "rank": 6,
+      "rank": null,
       "all_pages": false,
       "answer_found": false,
       "top": [
+        "cmb-2025-zh p15",
         "moutai-2025-zh p92",
-        "moutai-2025-zh p91",
-        "moutai-2025-zh p94"
+        "cmb-2025-zh p320"
       ],
       "gold": [
         "cmb-2025-zh p127",
@@ -1331,9 +1331,9 @@
       "all_pages": false,
       "answer_found": false,
       "top": [
+        "tesla-2025-en p79",
         "moutai-2025-zh p105",
-        "moutai-2025-zh p101",
-        "moutai-2025-zh p105"
+        "tesla-2025-en p34"
       ],
       "gold": [
         "moutai-2025-zh p58",
@@ -1346,12 +1346,12 @@
       "type": "multi_company",
       "question": "2025年底，比亚迪和Tesla各有多少员工？比亚迪取母公司加主要子公司的在职总人数，Tesla取全球员工总数。",
       "rank": 1,
-      "all_pages": false,
-      "answer_found": false,
+      "all_pages": true,
+      "answer_found": true,
       "top": [
+        "tesla-2025-en p14",
         "byd-2025-zh p69",
-        "byd-2025-zh p71",
-        "byd-2025-zh p39"
+        "tesla-2025-en p98"
       ],
       "gold": [
         "byd-2025-zh p69",
@@ -1368,8 +1368,8 @@
       "answer_found": true,
       "top": [
         "catl-2025-zh p232",
-        "catl-2025-zh p11",
-        "catl-2025-zh p106"
+        "cmb-2025-zh p249",
+        "catl-2025-zh p11"
       ],
       "gold": [
         "catl-2025-zh p11",

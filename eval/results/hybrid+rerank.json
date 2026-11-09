@@ -333,8 +333,8 @@
       "answer_found": true,
       "top": [
         "moutai-2025-en p9",
-        "moutai-2025-zh p9",
-        "moutai-2025-en p9"
+        "moutai-2025-en p9",
+        "moutai-2025-en p94"
       ],
       "gold": [
         "moutai-2025-en p9"
@@ -620,13 +620,13 @@
       "set": "questions_v2",
       "type": "cross_language",
       "question": "根据茅台2025年英文年报，合并范围内这一年实际核销了多少应收账款？",
-      "rank": null,
-      "all_pages": false,
+      "rank": 1,
+      "all_pages": true,
       "answer_found": true,
       "top": [
-        "moutai-2025-zh p86",
-        "moutai-2025-zh p90",
-        "moutai-2025-zh p93"
+        "moutai-2025-en p115",
+        "moutai-2025-en p187",
+        "moutai-2025-en p188"
       ],
       "gold": [
         "moutai-2025-en p115"
@@ -639,11 +639,11 @@
       "question": "茅台2025年英文年报披露，作为承租方，这一年与租赁有关的现金一共流出了多少？",
       "rank": null,
       "all_pages": false,
-      "answer_found": true,
+      "answer_found": false,
       "top": [
-        "moutai-2025-zh p117",
-        "moutai-2025-zh p130",
-        "moutai-2025-zh p114"
+        "moutai-2025-en p85",
+        "moutai-2025-en p174",
+        "moutai-2025-en p87"
       ],
       "gold": [
         "moutai-2025-en p156"
@@ -654,13 +654,13 @@
       "set": "questions_v2",
       "type": "cross_language",
       "question": "茅台2025年英文年报的设定提存计划里，基本养老保险本年新增了多少？",
-      "rank": 2,
+      "rank": 1,
       "all_pages": true,
       "answer_found": true,
       "top": [
-        "moutai-2025-zh p103",
         "moutai-2025-en p138",
-        "moutai-2025-zh p103"
+        "moutai-2025-en p95",
+        "moutai-2025-en p97"
       ],
       "gold": [
         "moutai-2025-en p138"
@@ -671,13 +671,13 @@
       "set": "questions_v2",
       "type": "multi_page",
       "question": "请根据茅台2025年英文年报，分别找出母公司和主要子公司合计有多少在职员工，以及合并口径年底尚未支付的短期职工薪酬有多少。",
-      "rank": 2,
+      "rank": 1,
       "all_pages": false,
       "answer_found": true,
       "top": [
-        "moutai-2025-zh p31",
         "moutai-2025-en p37",
-        "moutai-2025-zh p32"
+        "moutai-2025-en p140",
+        "moutai-2025-en p88"
       ],
       "gold": [
         "moutai-2025-en p137",
@@ -1277,9 +1277,9 @@
       "all_pages": false,
       "answer_found": false,
       "top": [
-        "catl-2025-zh p177",
         "catl-2025-zh p220",
-        "catl-2025-zh p128"
+        "byd-2025-zh p41",
+        "catl-2025-zh p221"
       ],
       "gold": [
         "byd-2025-zh p123",
@@ -1296,8 +1296,8 @@
       "answer_found": true,
       "top": [
         "catl-2025-zh p29",
-        "catl-2025-zh p219",
-        "byd-2025-zh p247"
+        "byd-2025-zh p247",
+        "catl-2025-zh p219"
       ],
       "gold": [
         "byd-2025-zh p39",
@@ -1309,13 +1309,13 @@
       "set": "questions_v2",
       "type": "multi_company",
       "question": "2025年底，茅台和招行各自合并报表里的资产总规模是多少？请分别给出原表数值。",
-      "rank": 1,
+      "rank": 2,
       "all_pages": false,
-      "answer_found": false,
+      "answer_found": true,
       "top": [
+        "cmb-2025-zh p129",
         "moutai-2025-zh p57",
-        "moutai-2025-zh p106",
-        "moutai-2025-zh p97"
+        "cmb-2025-zh p15"
       ],
       "gold": [
         "cmb-2025-zh p127",
@@ -1331,9 +1331,9 @@
       "all_pages": false,
       "answer_found": false,
       "top": [
-        "moutai-2025-zh p106",
+        "tesla-2025-en p76",
         "moutai-2025-zh p58",
-        "moutai-2025-zh p60"
+        "tesla-2025-en p73"
       ],
       "gold": [
         "moutai-2025-zh p58",
@@ -1346,12 +1346,12 @@
       "type": "multi_company",
       "question": "2025年底，比亚迪和Tesla各有多少员工？比亚迪取母公司加主要子公司的在职总人数，Tesla取全球员工总数。",
       "rank": 1,
-      "all_pages": false,
-      "answer_found": false,
+      "all_pages": true,
+      "answer_found": true,
       "top": [
+        "tesla-2025-en p14",
         "byd-2025-zh p69",
-        "byd-2025-zh p247",
-        "byd-2025-zh p220"
+        "tesla-2025-en p14"
       ],
       "gold": [
         "byd-2025-zh p69",
@@ -1368,8 +1368,8 @@
       "answer_found": true,
       "top": [
         "catl-2025-zh p232",
-        "catl-2025-zh p11",
-        "cmb-2025-zh p249"
+        "cmb-2025-zh p249",
+        "catl-2025-zh p11"
       ],
       "gold": [
         "catl-2025-zh p11",
@@ -1385,7 +1385,7 @@
       "question": "贵州茅台2025年营业收入是多少元人民币？请保留年报原始数字，不换算单位。",
       "status": "correct",
       "passed": true,
-      "answer": "贵州茅台2025年营业收入为人民币168,838,102,514.79元[2]。",
+      "answer": "贵州茅台2025年营业收入为168,838,102,514.79 [2]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1398,9 +1398,9 @@
         "moutai-2025-zh p61"
       ],
       "unverified_numbers": [],
-      "input_tokens": 4964,
-      "output_tokens": 446,
-      "cost_yuan": 0.0051754
+      "input_tokens": 5111,
+      "output_tokens": 671,
+      "cost_yuan": 0.0059005
     },
     {
       "id": "q02",
@@ -1409,7 +1409,7 @@
       "question": "比亚迪2025年归属于上市公司股东的净利润是多少元？请保留原始数字。",
       "status": "correct",
       "passed": true,
-      "answer": "比亚迪2025年归属于上市公司股东的净利润为32,619,022,000.00元 [2]。",
+      "answer": "比亚迪2025年归属于上市公司股东的净利润为 32,619,022,000.00 元[2]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1422,9 +1422,9 @@
         "byd-2025-zh p11"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2768,
-      "output_tokens": 143,
-      "cost_yuan": 0.0026005
+      "input_tokens": 2915,
+      "output_tokens": 166,
+      "cost_yuan": 0.0027802
     },
     {
       "id": "q03",
@@ -1433,7 +1433,7 @@
       "question": "宁德时代2025年营业收入是多少千元？请按年报原单位回答。",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年营业收入为423,701,834千元 [1]。",
+      "answer": "宁德时代2025年营业收入为423,701,834千元[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1446,9 +1446,9 @@
         "catl-2025-zh p108"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3768,
-      "output_tokens": 303,
-      "cost_yuan": 0.0038325
+      "input_tokens": 3915,
+      "output_tokens": 218,
+      "cost_yuan": 0.0037206
     },
     {
       "id": "q04",
@@ -1457,7 +1457,7 @@
       "question": "招商银行集团截至2025年12月31日的不良贷款率是多少（%）？",
       "status": "correct",
       "passed": true,
-      "answer": "招商银行集团截至2025年12月31日的不良贷款率为0.94%[1][2]。",
+      "answer": "招商银行集团截至2025年12月31日的不良贷款率为0.94% [1][2][4]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1468,12 +1468,13 @@
       ],
       "cited": [
         "cmb-2025-zh p31",
-        "cmb-2025-zh p16"
+        "cmb-2025-zh p16",
+        "cmb-2025-zh p31"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2175,
-      "output_tokens": 253,
-      "cost_yuan": 0.0024231
+      "input_tokens": 2322,
+      "output_tokens": 190,
+      "cost_yuan": 0.0023706000000000005
     },
     {
       "id": "q05",
@@ -1482,7 +1483,7 @@
       "question": "Tesla2025年度合并利润表中的总收入（Total revenues）是多少百万美元？请保留原表数字。",
       "status": "correct",
       "passed": true,
-      "answer": "Tesla 2025年度合并利润表中的总收入（Total revenues）为 94,827 百万美元 [4]。",
+      "answer": "Tesla 2025年度合并利润表中的总收入（Total revenues）为 94,827 百万美元 [4][5]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1492,12 +1493,13 @@
         "tesla-2025-en p53"
       ],
       "cited": [
-        "tesla-2025-en p53"
+        "tesla-2025-en p53",
+        "tesla-2025-en p40"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2723,
-      "output_tokens": 239,
-      "cost_yuan": 0.0028237
+      "input_tokens": 2870,
+      "output_tokens": 547,
+      "cost_yuan": 0.0037729
     },
     {
       "id": "q06",
@@ -1506,7 +1508,7 @@
       "question": "贵州茅台2025年末合并财务报表存货分类中，存货合计的账面价值是多少元人民币？",
       "status": "correct",
       "passed": true,
-      "answer": "贵州茅台2025年末合并财务报表存货分类中，存货合计的账面价值为 61,427,421,796.18 元人民币 [2]。",
+      "answer": "61,427,421,796.18 [2]",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1519,9 +1521,9 @@
         "moutai-2025-zh p91"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2203,
-      "output_tokens": 343,
-      "cost_yuan": 0.0026885
+      "input_tokens": 2350,
+      "output_tokens": 404,
+      "cost_yuan": 0.0029708
     },
     {
       "id": "q07",
@@ -1530,7 +1532,7 @@
       "question": "比亚迪2025年以套期保值为目的的衍生品投资表中，外汇衍生品期末金额是多少万元？",
       "status": "correct",
       "passed": true,
-      "answer": "比亚迪2025年以套期保值为目的的衍生品投资表中，外汇衍生品期末金额为 7,178,064 万元 [1]。",
+      "answer": "外汇衍生品期末金额为 7,178,064 万元 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1543,9 +1545,9 @@
         "byd-2025-zh p45"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3452,
-      "output_tokens": 208,
-      "cost_yuan": 0.0033232
+      "input_tokens": 3599,
+      "output_tokens": 6601,
+      "cost_yuan": 0.020701900000000002
     },
     {
       "id": "q08",
@@ -1554,7 +1556,7 @@
       "question": "宁德时代2025年末合并财务报表存货分类中，发出商品的账面价值是多少千元？",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年末合并财务报表存货分类中，发出商品的账面价值为38,674,787 千元[1]。",
+      "answer": "宁德时代2025年末合并财务报表存货分类中，发出商品的账面价值为38,674,787千元[1][3]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1564,12 +1566,13 @@
         "catl-2025-zh p172"
       ],
       "cited": [
-        "catl-2025-zh p172"
+        "catl-2025-zh p172",
+        "catl-2025-zh p111"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3641,
+      "input_tokens": 3788,
       "output_tokens": 385,
-      "cost_yuan": 0.003952300000000001
+      "cost_yuan": 0.0040699
     },
     {
       "id": "q09",
@@ -1578,7 +1581,7 @@
       "question": "招商银行集团截至2025年12月31日的零售客户定期存款金额是多少人民币百万元？请保留原表数字。",
       "status": "correct",
       "passed": true,
-      "answer": "招商银行集团截至2025年12月31日的零售客户定期存款金额为2,261,063人民币百万元 [1]。",
+      "answer": "招商银行集团截至2025年12月31日的零售存款－定期金额为2,261,063 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1591,9 +1594,9 @@
         "cmb-2025-zh p222"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2350,
-      "output_tokens": 444,
-      "cost_yuan": 0.0030788
+      "input_tokens": 2497,
+      "output_tokens": 495,
+      "cost_yuan": 0.0033341000000000004
     },
     {
       "id": "q10",
@@ -1602,7 +1605,7 @@
       "question": "贵州茅台2025年年报核心竞争力分析中列出的五大核心竞争力分别是什么？",
       "status": "correct",
       "passed": true,
-      "answer": "贵州茅台2025年年度报告“报告期内核心竞争力分析”中列出的五大核心竞争力为：品质、品牌、工艺、环境、文化[1]。",
+      "answer": "贵州茅台2025年年报“核心竞争力分析”中列出的五大核心竞争力分别为：品质、品牌、工艺、环境、文化 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1619,9 +1622,9 @@
         "moutai-2025-zh p9"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3081,
-      "output_tokens": 352,
-      "cost_yuan": 0.0034152
+      "input_tokens": 3228,
+      "output_tokens": 254,
+      "cost_yuan": 0.0032682
     },
     {
       "id": "q11",
@@ -1630,7 +1633,7 @@
       "question": "比亚迪2025年年报主要业务介绍中的“刀片电池”采用哪种电池化学体系？",
       "status": "correct",
       "passed": true,
-      "answer": "比亚迪2025年年度报告主要业务介绍中称，刀片电池采用磷酸铁锂电池体系[1]。",
+      "answer": "比亚迪2025年年报主要业务介绍中，“刀片电池”采用的是磷酸铁锂电池化学体系 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1643,9 +1646,9 @@
         "byd-2025-zh p13"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3283,
-      "output_tokens": 169,
-      "cost_yuan": 0.0030827000000000003
+      "input_tokens": 3430,
+      "output_tokens": 153,
+      "cost_yuan": 0.0031571
     },
     {
       "id": "q12",
@@ -1654,7 +1657,7 @@
       "question": "宁德时代2025年年报主要业务介绍中，公司主要从事哪两类电池的研发、生产和销售？",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年年报主要业务介绍中，公司主要从事动力电池、储能电池的研发、生产、销售 [1]。",
+      "answer": "宁德时代2025年年度报告主要业务介绍中，公司主要从事动力电池、储能电池的研发、生产、销售[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1668,9 +1671,9 @@
         "catl-2025-zh p14"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2094,
-      "output_tokens": 118,
-      "cost_yuan": 0.0019938
+      "input_tokens": 2241,
+      "output_tokens": 92,
+      "cost_yuan": 0.0020412000000000004
     },
     {
       "id": "q13",
@@ -1679,7 +1682,7 @@
       "question": "招商银行2025年年报“信用风险管理”如何定义信用风险？",
       "status": "correct",
       "passed": true,
-      "answer": "招商银行2025年年报中“信用风险管理”将信用风险定义为：因银行的借款人或交易对手未按照约定履行其义务而形成的风险 [2]。",
+      "answer": "招商银行2025年年报“信用风险管理”章节中，信用风险是指因银行的借款人或交易对手未按照约定履行其义务而形成的风险[2]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1693,9 +1696,9 @@
         "cmb-2025-zh p63"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3152,
-      "output_tokens": 480,
-      "cost_yuan": 0.0038176000000000004
+      "input_tokens": 3299,
+      "output_tokens": 569,
+      "cost_yuan": 0.0041755
     },
     {
       "id": "q14",
@@ -1704,7 +1707,7 @@
       "question": "贵州茅台2025年年报“可能面对的风险”列出了哪四类风险？",
       "status": "correct",
       "passed": true,
-      "answer": "贵州茅台2025年年报“可能面对的风险”列出了以下四类风险：一是宏观经济风险；二是安全风险；三是舆情风险；四是环境保护风险。[1]",
+      "answer": "贵州茅台2025年年报“可能面对的风险”列出了四类风险：一是宏观经济风险；二是安全风险；三是舆情风险；四是环境保护风险[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1720,9 +1723,9 @@
         "moutai-2025-zh p23"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2266,
-      "output_tokens": 128,
-      "cost_yuan": 0.0021584
+      "input_tokens": 2413,
+      "output_tokens": 138,
+      "cost_yuan": 0.002303
     },
     {
       "id": "q15",
@@ -1744,9 +1747,9 @@
         "catl-2025-zh p144"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3214,
-      "output_tokens": 152,
-      "cost_yuan": 0.0029816000000000005
+      "input_tokens": 3361,
+      "output_tokens": 110,
+      "cost_yuan": 0.0029858000000000003
     },
     {
       "id": "q16",
@@ -1755,7 +1758,7 @@
       "question": "根据比亚迪2025年年报董事任职情况，王传福一九八七年本科毕业于哪所学校，主修什么专业？",
       "status": "correct",
       "passed": true,
-      "answer": "王传福先生于一九八七年毕业于中南工业大学（现为中南大学）[1]，主修冶金物理化学，获学士学位[1]。",
+      "answer": "王传福先生于一九八七年毕业于中南工业大学（现为中南大学），主修冶金物理化学[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1769,9 +1772,9 @@
         "byd-2025-zh p60"
       ],
       "unverified_numbers": [],
-      "input_tokens": 4113,
-      "output_tokens": 137,
-      "cost_yuan": 0.0036603
+      "input_tokens": 4260,
+      "output_tokens": 177,
+      "cost_yuan": 0.0038859000000000003
     },
     {
       "id": "q17",
@@ -1780,7 +1783,7 @@
       "question": "Tesla的2025年报规定，存货发生减记后，后续事实和情况变化是否会恢复或提高该存货新确立的成本基础？请回答并引用英文原文依据。",
       "status": "correct",
       "passed": true,
-      "answer": "不会。根据 Tesla 2025 Form 10-K，存货发生减记后，后续事实和情况变化不会恢复或提高该存货新确立的成本基础 [1][2]。\n\n英文原文依据：  \n“Once inventory is written-down, a new, lower cost basis for that inventory is established and subsequent changes in facts and circumstances do not result in the restoration or increase in that newly established cost basis.” [1][2]",
+      "answer": "不会。Tesla 2025年报规定，存货发生减记后，后续事实和情况变化不会恢复或提高该存货新确立的成本基础[1][2]。\n\n英文原文依据：“Once inventory is written-down, a new, lower cost basis for that inventory is established and subsequent changes in facts and circumstances do not result in the restoration or increase in that newly established cost basis.”[1][2]",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1793,12 +1796,10 @@
         "tesla-2025-en p38",
         "tesla-2025-en p67"
       ],
-      "unverified_numbers": [
-        "10"
-      ],
-      "input_tokens": 1222,
-      "output_tokens": 440,
-      "cost_yuan": 0.0021655999999999997
+      "unverified_numbers": [],
+      "input_tokens": 1369,
+      "output_tokens": 395,
+      "cost_yuan": 0.0021617
     },
     {
       "id": "q18",
@@ -1807,7 +1808,7 @@
       "question": "According to Tesla's 2025 Form 10-K, what are its two named lithium-ion battery energy storage products?",
       "status": "correct",
       "passed": true,
-      "answer": "Tesla's two named lithium-ion battery energy storage products are Powerwall and Megapack [1].",
+      "answer": "Powerwall and Megapack are Tesla's two named lithium-ion battery energy storage products [1].",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1821,9 +1822,9 @@
         "tesla-2025-en p6"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1387,
-      "output_tokens": 152,
-      "cost_yuan": 0.0015200000000000003
+      "input_tokens": 1534,
+      "output_tokens": 103,
+      "cost_yuan": 0.0015053000000000002
     },
     {
       "id": "q19",
@@ -1832,7 +1833,7 @@
       "question": "According to Tesla's 2025 Form 10-K, which two inventory-related measures does it use to mitigate supply risks for key parts and components with lengthy procurement lead times?",
       "status": "correct",
       "passed": true,
-      "answer": "Tesla uses two inventory-related measures to mitigate supply risks:\n\n- Maintaining safety stock for key parts and assemblies [1]\n- Maintaining die banks for components with lengthy procurement lead times [1]",
+      "answer": "Tesla mitigates supply risks by maintaining safety stock for key parts and assemblies [1] and by maintaining die banks for components with lengthy procurement lead times [1].",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1846,9 +1847,9 @@
         "tesla-2025-en p10"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1834,
-      "output_tokens": 166,
-      "cost_yuan": 0.0019154
+      "input_tokens": 1981,
+      "output_tokens": 161,
+      "cost_yuan": 0.0020195
     },
     {
       "id": "q20",
@@ -1857,7 +1858,7 @@
       "question": "According to Kweichow Moutai's 2025 English annual report, from which MSCI ESG rating to which rating did the company improve?",
       "status": "correct",
       "passed": true,
-      "answer": "Kweichow Moutai’s MSCI ESG rating improved from BBB to A [1].",
+      "answer": "According to Kweichow Moutai's 2025 English annual report, its MSCI ESG rating improved from BBB to A [1].",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1870,9 +1871,9 @@
         "moutai-2025-en p9"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1605,
-      "output_tokens": 161,
-      "cost_yuan": 0.0017187
+      "input_tokens": 1306,
+      "output_tokens": 143,
+      "cost_yuan": 0.0014309000000000001
     },
     {
       "id": "q21",
@@ -1896,9 +1897,9 @@
         "moutai-2025-en p9"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1129,
-      "output_tokens": 176,
-      "cost_yuan": 0.0013784000000000001
+      "input_tokens": 1276,
+      "output_tokens": 155,
+      "cost_yuan": 0.0014393000000000001
     },
     {
       "id": "q22",
@@ -1907,7 +1908,7 @@
       "question": "请分别列出贵州茅台2025年经营活动产生的现金流量净额，以及2025年末合并报表存货中原材料的账面价值，均按元人民币原值回答；为两个指标分别给出处，不要计算。",
       "status": "correct",
       "passed": true,
-      "answer": "- 贵州茅台2025年经营活动产生的现金流量净额：61,522,204,989.35元人民币 [1]  \n- 贵州茅台2025年末合并报表存货中原材料的账面价值：3,738,451,309.98元人民币 [3]",
+      "answer": "- 贵州茅台2025年经营活动产生的现金流量净额：61,522,204,989.35 [1]  \n- 贵州茅台2025年末合并报表存货中原材料的账面价值：3,738,451,309.98 [3]",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1923,9 +1924,9 @@
         "moutai-2025-zh p91"
       ],
       "unverified_numbers": [],
-      "input_tokens": 4992,
-      "output_tokens": 875,
-      "cost_yuan": 0.0063561
+      "input_tokens": 5139,
+      "output_tokens": 680,
+      "cost_yuan": 0.0059472
     },
     {
       "id": "q23",
@@ -1934,7 +1935,7 @@
       "question": "比亚迪2025年的基本每股收益是多少元/股？同一年度以套期保值为目的的衍生品投资合约实际损益是多少万元？请分别引用两项披露，不换算或计算。",
       "status": "correct",
       "passed": true,
-      "answer": "比亚迪2025年的基本每股收益为3.58元/股[3]。同一年度以套期保值为目的的衍生品投资合约实际损益为131,040万元[1]。",
+      "answer": "比亚迪2025年的基本每股收益为3.58元/股[3]；同一年度以套期保值为目的的衍生品投资合约实际损益为131,040万元[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1950,9 +1951,9 @@
         "byd-2025-zh p11"
       ],
       "unverified_numbers": [],
-      "input_tokens": 4306,
-      "output_tokens": 464,
-      "cost_yuan": 0.0046976000000000006
+      "input_tokens": 4453,
+      "output_tokens": 297,
+      "cost_yuan": 0.0043643
     },
     {
       "id": "q24",
@@ -1961,7 +1962,7 @@
       "question": "请分别给出Tesla截至2025年12月31日合并资产负债表中的现金及现金等价物（Cash and cash equivalents），以及2025年合并现金流量表中的经营活动现金净流入（Net cash provided by operating activities），均按百万美元原值回答，并分别引用出处。",
       "status": "correct",
       "passed": true,
-      "answer": "截至2025年12月31日，现金及现金等价物为16,513百万美元[4]。\n\n2025年合并现金流量表中，经营活动现金净流入为14,747百万美元[2]。",
+      "answer": "- Tesla 截至 2025 年 12 月 31 日的现金及现金等价物（Cash and cash equivalents）：16,513（百万美元）[4]\n- Tesla 2025 年合并现金流量表中的经营活动现金净流入（Net cash provided by operating activities）：14,747（百万美元）[2]",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -1977,9 +1978,9 @@
         "tesla-2025-en p66"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1410,
-      "output_tokens": 1758,
-      "cost_yuan": 0.005874600000000001
+      "input_tokens": 1557,
+      "output_tokens": 1096,
+      "cost_yuan": 0.0042048
     },
     {
       "id": "q25",
@@ -1995,9 +1996,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 1097,
-      "output_tokens": 100,
-      "cost_yuan": 0.0011476
+      "input_tokens": 1244,
+      "output_tokens": 74,
+      "cost_yuan": 0.001195
     },
     {
       "id": "q26",
@@ -2013,9 +2014,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 2330,
-      "output_tokens": 77,
-      "cost_yuan": 0.0020719000000000002
+      "input_tokens": 2477,
+      "output_tokens": 76,
+      "cost_yuan": 0.0021868
     },
     {
       "id": "q27",
@@ -2031,9 +2032,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 3403,
-      "output_tokens": 111,
-      "cost_yuan": 0.0030221000000000002
+      "input_tokens": 3550,
+      "output_tokens": 96,
+      "cost_yuan": 0.0030992
     },
     {
       "id": "q28",
@@ -2067,9 +2068,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 706,
-      "output_tokens": 133,
-      "cost_yuan": 0.0009239000000000001
+      "input_tokens": 853,
+      "output_tokens": 118,
+      "cost_yuan": 0.0010010000000000002
     },
     {
       "id": "q30",
@@ -2085,9 +2086,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 3443,
-      "output_tokens": 198,
-      "cost_yuan": 0.003289
+      "input_tokens": 3590,
+      "output_tokens": 251,
+      "cost_yuan": 0.0035497
     },
     {
       "id": "q31",
@@ -2096,7 +2097,7 @@
       "question": "贵州茅台2025年末，母公司自身账上的应收账款有多少？",
       "status": "correct",
       "passed": true,
-      "answer": "贵州茅台2025年末，母公司自身账上的应收账款为 11,895,319,134.75 [1]。",
+      "answer": "贵州茅台2025年末母公司自身账上的应收账款为11,895,319,134.75 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2109,9 +2110,9 @@
         "moutai-2025-zh p59"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3392,
-      "output_tokens": 1060,
-      "cost_yuan": 0.0055756
+      "input_tokens": 3539,
+      "output_tokens": 543,
+      "cost_yuan": 0.0042973
     },
     {
       "id": "q32",
@@ -2120,7 +2121,7 @@
       "question": "茅台2025年末合并口径的货币资金里，单独放在银行的存款有多少？",
       "status": "correct",
       "passed": true,
-      "answer": "贵州茅台2025年末合并口径货币资金中，单独放在银行的存款（银行存款）期末余额为51,676,146,900.53[2]。",
+      "answer": "茅台2025年末合并口径货币资金中，银行存款为 51,676,146,900.53 [2]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2133,9 +2134,9 @@
         "moutai-2025-zh p84"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2521,
-      "output_tokens": 508,
-      "cost_yuan": 0.0033884000000000006
+      "input_tokens": 2668,
+      "output_tokens": 226,
+      "cost_yuan": 0.0027446000000000003
     },
     {
       "id": "q33",
@@ -2144,7 +2145,7 @@
       "question": "茅台合并报表的应收账款坏账准备，到2025年底还留有多少？",
       "status": "correct",
       "passed": true,
-      "answer": "贵州茅台2025年合并财务报表项目注释显示，按组合计提坏账准备的期末余额为236,198.00 [4]；坏账准备情况表期末余额也为236,198.00 [5]。因此，到2025年底还留有236,198.00 [4][5]。",
+      "answer": "茅台合并报表的应收账款坏账准备到2025年底期末余额为 236,198.00 [4][5]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2158,9 +2159,9 @@
         "moutai-2025-zh p86"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1766,
-      "output_tokens": 4770,
-      "cost_yuan": 0.014291799999999999
+      "input_tokens": 1913,
+      "output_tokens": 1915,
+      "cost_yuan": 0.006700899999999999
     },
     {
       "id": "q34",
@@ -2169,7 +2170,7 @@
       "question": "贵州茅台2025年末合并附注里，其他非流动金融资产的权益工具投资还列着多少？",
       "status": "correct",
       "passed": true,
-      "answer": "贵州茅台2025年末合并附注中，其他非流动金融资产的权益工具投资期末余额为 4,105,141,593.22 [1]。",
+      "answer": "贵州茅台2025年末合并财务报表项目注释中，其他非流动金融资产项下的权益工具投资期末余额为4,105,141,593.22 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2182,9 +2183,9 @@
         "moutai-2025-zh p95"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3819,
-      "output_tokens": 177,
-      "cost_yuan": 0.0035331000000000004
+      "input_tokens": 3966,
+      "output_tokens": 328,
+      "cost_yuan": 0.0040584
     },
     {
       "id": "q35",
@@ -2193,7 +2194,7 @@
       "question": "茅台哪家境外子公司使用了人民币以外的记账货币，具体用什么币种？",
       "status": "correct",
       "passed": true,
-      "answer": "贵州茅台使用人民币以外记账货币的境外子公司是贵州茅台酒巴黎贸易有限公司，其记账本位币为欧元 [1][2]。",
+      "answer": "贵州茅台酒巴黎贸易有限公司使用了人民币以外的记账货币，其记账本位币为欧元[1][2]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2208,9 +2209,9 @@
         "moutai-2025-zh p117"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1833,
-      "output_tokens": 152,
-      "cost_yuan": 0.0018768
+      "input_tokens": 1980,
+      "output_tokens": 198,
+      "cost_yuan": 0.0021186
     },
     {
       "id": "q36",
@@ -2219,7 +2220,7 @@
       "question": "按茅台2025年报的合并政策，如果买来的子公司此前不受同一个控制方控制，它的经营成果和现金流从什么时候开始并进来？",
       "status": "correct",
       "passed": true,
-      "answer": "按贵州茅台2025年年度报告的合并财务报表编制政策，对于非同一控制下企业合并取得的子公司，其经营成果和现金流量自本公司取得控制权之日起纳入合并财务报表 [1]。",
+      "answer": "自本公司取得控制权之日起纳入合并财务报表[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2232,18 +2233,18 @@
         "moutai-2025-zh p74"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2676,
-      "output_tokens": 155,
-      "cost_yuan": 0.0025593
+      "input_tokens": 2823,
+      "output_tokens": 149,
+      "cost_yuan": 0.0026607000000000002
     },
     {
       "id": "q37",
       "set": "questions_v2",
       "type": "text_fact",
       "question": "茅台把用于出租的房地产入账以后，后续采用什么计量模式？",
-      "status": "correct",
-      "passed": true,
-      "answer": "茅台的投资性房地产在入账后采用成本模式进行后续计量 [6]。",
+      "status": "wrong_answer",
+      "passed": false,
+      "answer": "贵州茅台对用于出租的房地产（投资性房地产）入账后，后续采用成本计量模式进行计量[1][2][6]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2254,12 +2255,14 @@
         "moutai-2025-zh p78"
       ],
       "cited": [
+        "moutai-2025-zh p96",
+        "moutai-2025-en p105",
         "moutai-2025-zh p78"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2297,
-      "output_tokens": 212,
-      "cost_yuan": 0.00241
+      "input_tokens": 2444,
+      "output_tokens": 344,
+      "cost_yuan": 0.002884
     },
     {
       "id": "q38",
@@ -2268,7 +2271,7 @@
       "question": "茅台在西藏设立的销售公司享受什么企业所得税优惠税率？是哪家公司？",
       "status": "correct",
       "passed": true,
-      "answer": "西藏国酒茅台销售有限公司于2012年在西藏拉萨市设立 [1]。该公司享受按15%税率申报缴纳企业所得税的优惠政策 [1]。",
+      "answer": "西藏国酒茅台销售有限公司享受按15%税率申报缴纳企业所得税的优惠政策[1][3]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2279,12 +2282,13 @@
         "moutai-2025-zh p84"
       ],
       "cited": [
+        "moutai-2025-zh p84",
         "moutai-2025-zh p84"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1816,
-      "output_tokens": 217,
-      "cost_yuan": 0.0020387
+      "input_tokens": 1963,
+      "output_tokens": 173,
+      "cost_yuan": 0.0020375
     },
     {
       "id": "q39",
@@ -2293,7 +2297,7 @@
       "question": "In Moutai's 2025 English report, how much is shown in the tax-inclusive cash-dividend line before adding interim distributions and share repurchases?",
       "status": "correct",
       "passed": true,
-      "answer": "RMB 35,032,568,759.73 [6]",
+      "answer": "The tax-inclusive cash-dividend line shows RMB 35,032,568,759.73 (tax inclusive) [7].",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2306,9 +2310,9 @@
         "moutai-2025-en p39"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1898,
-      "output_tokens": 585,
-      "cost_yuan": 0.0030979000000000002
+      "input_tokens": 2034,
+      "output_tokens": 816,
+      "cost_yuan": 0.0038304000000000007
     },
     {
       "id": "q40",
@@ -2317,7 +2321,7 @@
       "question": "What amount did Moutai report for freight services obtained from its group's logistics company in 2025?",
       "status": "correct",
       "passed": true,
-      "answer": "Moutai reported 269,083,492.65 for cargo/freight transportation services obtained from Kweichow Moutai Distillery (Group) Logistics Co., Ltd. in the current period [2][3].",
+      "answer": "Moutai reported 269,083,492.65 for cargo transportation services / freight transportation services obtained from Kweichow Moutai Distillery (Group) Logistics Co., Ltd. in the current period [2][3].",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2331,9 +2335,9 @@
         "moutai-2025-en p47"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2798,
-      "output_tokens": 548,
-      "cost_yuan": 0.003718
+      "input_tokens": 2945,
+      "output_tokens": 207,
+      "cost_yuan": 0.0029149
     },
     {
       "id": "q41",
@@ -2342,7 +2346,7 @@
       "question": "Under Moutai's policy, how long are machines bought specifically for R&D depreciated if purchased after January 1, 2014 for more than RMB 1 million?",
       "status": "correct",
       "passed": true,
-      "answer": "Machinery equipment specially used for research and development purchased after January 1, 2014 for more than RMB 1 million is depreciated over 6 years [2].",
+      "answer": "Machinery equipment purchased after January 1, 2014 for more than RMB 1 million are depreciated over 6 years [2].",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2356,9 +2360,9 @@
         "moutai-2025-en p106"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1209,
-      "output_tokens": 262,
-      "cost_yuan": 0.0016746
+      "input_tokens": 1356,
+      "output_tokens": 191,
+      "cost_yuan": 0.0016005
     },
     {
       "id": "q42",
@@ -2367,7 +2371,7 @@
       "question": "Why does Moutai consolidate Guizhou Laymau despite owning less than half its equity, and what ownership percentage does the report give?",
       "status": "correct",
       "passed": true,
-      "answer": "Moutai consolidates Guizhou Laymau because it has substantial control over the company: more than half of Guizhou Laymau’s board members are appointed by Moutai [1]. The report states that Moutai holds 43% equity in Guizhou Laymau [1], and the subsidiary table also gives a holding proportion of 43% [6].",
+      "answer": "Moutai consolidates Guizhou Laymau because it has substantial control over the company: more than half of the board members of Guizhou Laymau are appointed by the Company [1]. The report gives Moutai’s ownership percentage in Guizhou Laymau as 43% [1].",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2378,23 +2382,22 @@
         "moutai-2025-en p161"
       ],
       "cited": [
-        "moutai-2025-en p161",
         "moutai-2025-en p161"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2534,
-      "output_tokens": 256,
-      "cost_yuan": 0.0027184
+      "input_tokens": 2681,
+      "output_tokens": 246,
+      "cost_yuan": 0.002809
     },
     {
       "id": "q43",
       "set": "questions_v2",
       "type": "cross_language",
       "question": "根据茅台2025年英文年报，合并范围内这一年实际核销了多少应收账款？",
-      "status": "wrongly_refused",
-      "passed": false,
-      "answer": "",
-      "refusal_reason": "model_insufficient",
+      "status": "correct",
+      "passed": true,
+      "answer": "根据茅台2025年英文年报，2025年实际核销的应收账款为784,900.00[1]。",
+      "refusal_reason": "",
       "error": "",
       "expected": [
         "784,900.00"
@@ -2402,11 +2405,13 @@
       "gold": [
         "moutai-2025-en p115"
       ],
-      "cited": [],
+      "cited": [
+        "moutai-2025-en p115"
+      ],
       "unverified_numbers": [],
-      "input_tokens": 1037,
-      "output_tokens": 293,
-      "cost_yuan": 0.0016207
+      "input_tokens": 1767,
+      "output_tokens": 425,
+      "cost_yuan": 0.0025611
     },
     {
       "id": "q44",
@@ -2426,9 +2431,9 @@
       ],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 2172,
-      "output_tokens": 871,
-      "cost_yuan": 0.004089300000000001
+      "input_tokens": 2918,
+      "output_tokens": 761,
+      "cost_yuan": 0.0043891
     },
     {
       "id": "q45",
@@ -2437,7 +2442,7 @@
       "question": "茅台2025年英文年报的设定提存计划里，基本养老保险本年新增了多少？",
       "status": "correct",
       "passed": true,
-      "answer": "根据茅台2025年英文年报，设定提存计划中“基本养老保险”本期增加为 1,280,510,284.79 [2]。",
+      "answer": "基本养老保险本年新增为 1,280,510,284.79 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2450,9 +2455,9 @@
         "moutai-2025-en p138"
       ],
       "unverified_numbers": [],
-      "input_tokens": 4900,
-      "output_tokens": 279,
-      "cost_yuan": 0.0046733
+      "input_tokens": 2384,
+      "output_tokens": 175,
+      "cost_yuan": 0.0023797000000000002
     },
     {
       "id": "q46",
@@ -2461,7 +2466,7 @@
       "question": "请根据茅台2025年英文年报，分别找出母公司和主要子公司合计有多少在职员工，以及合并口径年底尚未支付的短期职工薪酬有多少。",
       "status": "correct",
       "passed": true,
-      "answer": "母公司和主要子公司在职员工合计为34,992 [2]。\n\n合并口径年底尚未支付的短期职工薪酬期末余额为5,521,381,310.34元 [8]。",
+      "answer": "母公司在职员工为 33,504 [1]，主要子公司在职员工为 1,488 [1]，两者合计为 34,992 [1]。合并口径年底尚未支付的短期职工薪酬为 5,521,381,310.34 [6]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2474,12 +2479,12 @@
       ],
       "cited": [
         "moutai-2025-en p37",
-        "moutai-2025-zh p103"
+        "moutai-2025-en p138"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3552,
-      "output_tokens": 4740,
-      "cost_yuan": 0.0156396
+      "input_tokens": 1906,
+      "output_tokens": 3114,
+      "cost_yuan": 0.009932600000000001
     },
     {
       "id": "q47",
@@ -2488,7 +2493,7 @@
       "question": "比亚迪2025年投入研发的总金额是多少？请取当年投入整体，不只取资本化部分。",
       "status": "correct",
       "passed": true,
-      "answer": "比亚迪2025年研发投入金额为人民币63,441,379,000.00元 [4]。",
+      "answer": "比亚迪2025年研发投入总金额为63,441,379,000.00元 [4]；年报亦表述为约人民币634亿元 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2498,12 +2503,13 @@
         "byd-2025-zh p39"
       ],
       "cited": [
+        "byd-2025-zh p16",
         "byd-2025-zh p39"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1758,
-      "output_tokens": 630,
-      "cost_yuan": 0.0031074
+      "input_tokens": 1905,
+      "output_tokens": 310,
+      "cost_yuan": 0.002361
     },
     {
       "id": "q48",
@@ -2512,7 +2518,7 @@
       "question": "比亚迪集团2025年底的货币资金里，银行存款这一项有多少？",
       "status": "correct",
       "passed": true,
-      "answer": "比亚迪集团2025年底货币资金中的银行存款为 40,641,446 [1]。",
+      "answer": "比亚迪集团2025年底货币资金中的银行存款为40,641,446 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2525,9 +2531,9 @@
         "byd-2025-zh p166"
       ],
       "unverified_numbers": [],
-      "input_tokens": 4648,
-      "output_tokens": 254,
-      "cost_yuan": 0.0044042
+      "input_tokens": 4795,
+      "output_tokens": 369,
+      "cost_yuan": 0.0048323
     },
     {
       "id": "q49",
@@ -2536,7 +2542,7 @@
       "question": "比亚迪集团2025年底原材料在扣除跌价准备后剩下的账面价值是多少？",
       "status": "correct",
       "passed": true,
-      "answer": "比亚迪集团2025年底原材料在扣除跌价准备后剩下的账面价值为 16,111,657 [1]。",
+      "answer": "比亚迪集团2025年底原材料在扣除跌价准备后的账面价值为16,111,657 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2549,9 +2555,9 @@
         "byd-2025-zh p174"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3010,
-      "output_tokens": 217,
-      "cost_yuan": 0.0029939000000000003
+      "input_tokens": 3157,
+      "output_tokens": 157,
+      "cost_yuan": 0.0029495000000000003
     },
     {
       "id": "q50",
@@ -2560,7 +2566,7 @@
       "question": "比亚迪集团2025年末机器设备扣完折旧和减值后的账面价值是多少？",
       "status": "correct",
       "passed": true,
-      "answer": "比亚迪2025年末机器设备扣完折旧和减值后的账面价值为 150,628,966 [1]。",
+      "answer": "比亚迪2025年末机器设备扣完折旧和减值后的账面价值为150,628,966 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2573,9 +2579,9 @@
         "byd-2025-zh p184"
       ],
       "unverified_numbers": [],
-      "input_tokens": 5601,
-      "output_tokens": 363,
-      "cost_yuan": 0.0054609
+      "input_tokens": 5748,
+      "output_tokens": 157,
+      "cost_yuan": 0.0050223
     },
     {
       "id": "q51",
@@ -2584,7 +2590,7 @@
       "question": "比亚迪2025年报里，机器设备中的模具按什么办法折旧？请点明适用的资产。",
       "status": "correct",
       "passed": true,
-      "answer": "比亚迪2025年报中，机器设备中的模具按工作量法计提折旧；适用的资产为“机器设备中的模具”[1]。",
+      "answer": "比亚迪2025年报披露，机器设备中的模具按工作量法计提折旧[1]。适用的资产是“机器设备中的模具”[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2598,9 +2604,9 @@
         "byd-2025-zh p150"
       ],
       "unverified_numbers": [],
-      "input_tokens": 4296,
-      "output_tokens": 138,
-      "cost_yuan": 0.0038094
+      "input_tokens": 4443,
+      "output_tokens": 159,
+      "cost_yuan": 0.003983700000000001
     },
     {
       "id": "q52",
@@ -2609,7 +2615,7 @@
       "question": "按比亚迪2025年的政策，建造可资本化资产时若出现非必要的异常停工，要连续多久才暂停将利息计入资产成本？",
       "status": "correct",
       "passed": true,
-      "answer": "按比亚迪2025年年报中的借款费用政策，符合资本化条件的资产在购建或者生产过程中，如果发生除达到预定可使用或者可销售状态必要的程序之外的非正常中断，且中断时间连续超过3 个月，暂停借款费用的资本化 [1]。",
+      "answer": "根据比亚迪2025年年度报告，符合资本化条件的资产在购建或者生产过程中，发生除达到预定可使用或者可销售状态必要的程序之外的非正常中断，且中断时间连续超过3 个月的，暂停借款费用的资本化[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2623,9 +2629,9 @@
         "byd-2025-zh p151"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2814,
-      "output_tokens": 214,
-      "cost_yuan": 0.0028290000000000004
+      "input_tokens": 2961,
+      "output_tokens": 192,
+      "cost_yuan": 0.0028872000000000004
     },
     {
       "id": "q53",
@@ -2634,7 +2640,7 @@
       "question": "比亚迪2025年报对裁员补偿何时确认负债采用怎样的先后原则？需要比较哪两个时点？",
       "status": "wrong_answer",
       "passed": false,
-      "answer": "比亚迪2025年报对裁员补偿（辞退福利）产生的职工薪酬负债，采用“两者孰早”原则确认，并计入当期损益 [1]。\n\n需要比较的两个时点是：\n\n1. 企业不能单方面撤回因解除劳动关系计划或裁减建议所提供的辞退福利时 [1]；  \n2. 企业确认与涉及支付辞退福利的重组相关的成本或费用时 [1]。",
+      "answer": "比亚迪2025年报对裁员补偿（辞退福利）产生的职工薪酬负债，采用“两者孰早”原则确认，并计入当期损益[1]。\n\n需要比较的两个时点是：\n\n1. 企业不能单方面撤回因解除劳动关系计划或裁减建议所提供的辞退福利时[1]；\n2. 企业确认与涉及支付辞退福利的重组相关的成本或费用时[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2649,9 +2655,9 @@
         "byd-2025-zh p153"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1606,
-      "output_tokens": 279,
-      "cost_yuan": 0.0020381
+      "input_tokens": 1753,
+      "output_tokens": 288,
+      "cost_yuan": 0.00218
     },
     {
       "id": "q54",
@@ -2660,7 +2666,7 @@
       "question": "比亚迪2025年员工持股计划有多少参与员工？2022年那期又为什么提前终止？请分别给出出处。",
       "status": "correct",
       "passed": true,
-      "answer": "比亚迪2025年员工持股计划的参与对象总人数不超过25,000人[2]；报告期内全部有效的员工持股计划情况中，2025年员工持股计划员工人数为21,417人[6]。\n\n2022年员工持股计划提前终止的原因是：公司2022年员工持股计划股票已出售完毕，所持资产已均为货币资金，公司据此提前终止上述员工持股计划，并根据相关法律法规和该员工持股计划相关规定完成相关资产清算等工作[1]。",
+      "answer": "比亚迪2025年员工持股计划参与对象总人数不超过25,000人[2]；报告期内全部有效的员工持股计划情况显示，2025年员工持股计划员工人数为21,417人[6]。\n\n比亚迪2022年员工持股计划提前终止，是因为报告期内公司2022年员工持股计划股票已出售完毕，所持资产已均为货币资金[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2678,9 +2684,9 @@
         "byd-2025-zh p73"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3978,
-      "output_tokens": 806,
-      "cost_yuan": 0.005358600000000001
+      "input_tokens": 4125,
+      "output_tokens": 475,
+      "cost_yuan": 0.0045825
     },
     {
       "id": "q55",
@@ -2689,7 +2695,7 @@
       "question": "宁德时代集团2025年底的银行存款余额有多少？",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年年度报告合并财务报表项目注释显示，银行存款期末余额为305,992,667 [1]。",
+      "answer": "宁德时代集团2025年底的银行存款期末余额为305,992,667[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2702,9 +2708,9 @@
         "catl-2025-zh p164"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2076,
-      "output_tokens": 322,
-      "cost_yuan": 0.0025302000000000002
+      "input_tokens": 2223,
+      "output_tokens": 321,
+      "cost_yuan": 0.0026451000000000005
     },
     {
       "id": "q56",
@@ -2713,7 +2719,7 @@
       "question": "宁德时代集团2025年末原材料扣掉减值准备后，在账上还剩多少？",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年末原材料扣掉减值准备后的账面价值为11,272,396[2]。",
+      "answer": "宁德时代2025年末原材料扣掉存货跌价准备或合同履约成本减值准备后，账面价值为 11,272,396 [2]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2726,9 +2732,9 @@
         "catl-2025-zh p172"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3953,
-      "output_tokens": 293,
-      "cost_yuan": 0.0039535
+      "input_tokens": 4100,
+      "output_tokens": 215,
+      "cost_yuan": 0.0038605
     },
     {
       "id": "q57",
@@ -2737,7 +2743,7 @@
       "question": "宁德时代2025年底欠联营企业的应付账款有多少？请用集团关联交易附注的余额。",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年底欠联营企业的应付账款期末账面余额为7,476,563 [1]。",
+      "answer": "宁德时代2025年底欠联营企业的应付账款期末账面余额为 7,476,563 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2750,9 +2756,9 @@
         "catl-2025-zh p219"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2396,
-      "output_tokens": 273,
-      "cost_yuan": 0.0026539000000000003
+      "input_tokens": 2543,
+      "output_tokens": 260,
+      "cost_yuan": 0.0027364
     },
     {
       "id": "q58",
@@ -2761,7 +2767,7 @@
       "question": "宁德时代2025年底已经签约、但还没在财务报表确认的长期资产购建承诺是多少？",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年底已签约但尚未于财务报表中确认的购建长期资产承诺为 13,726,018 [1]。",
+      "answer": "宁德时代2025年底已签约但尚未于财务报表中确认的购建长期资产承诺期末余额为13,726,018 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2774,9 +2780,9 @@
         "catl-2025-zh p220"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2192,
-      "output_tokens": 207,
-      "cost_yuan": 0.0023125
+      "input_tokens": 2339,
+      "output_tokens": 190,
+      "cost_yuan": 0.0023842
     },
     {
       "id": "q59",
@@ -2785,7 +2791,7 @@
       "question": "宁德时代2025年报说明，研发人员工资在项目之间按什么依据分摊？",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年年度报告说明，研发人员的工资按照项目工时分摊计入研发支出[1]。",
+      "answer": "宁德时代2025年报说明，研发人员的工资按照项目工时分摊计入研发支出[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2799,9 +2805,9 @@
         "catl-2025-zh p148"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1676,
-      "output_tokens": 151,
-      "cost_yuan": 0.0017485000000000003
+      "input_tokens": 1823,
+      "output_tokens": 96,
+      "cost_yuan": 0.0017176000000000001
     },
     {
       "id": "q60",
@@ -2810,7 +2816,7 @@
       "question": "宁德时代2025年报认为，销售商品或提供服务要到客户取得什么时才确认收入？",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年报认为，销售商品或提供服务要到客户取得相关商品或服务的控制权时确认收入[1]。",
+      "answer": "宁德时代2025年报认为，本公司在履行了合同中的履约义务，即在客户取得相关商品或服务的控制权时确认收入 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2824,18 +2830,18 @@
         "catl-2025-zh p152"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2902,
-      "output_tokens": 385,
-      "cost_yuan": 0.0033611
+      "input_tokens": 3049,
+      "output_tokens": 165,
+      "cost_yuan": 0.0028847000000000005
     },
     {
       "id": "q61",
       "set": "questions_v2",
       "type": "text_fact",
       "question": "宁德时代在2025年报中判断一项安排是否受共同控制时，哪一类权利不纳入考虑？",
-      "status": "correct",
-      "passed": true,
-      "answer": "在判断一项安排是否存在共同控制时，不考虑享有的保护性权利 [1]。",
+      "status": "wrong_answer",
+      "passed": false,
+      "answer": "保护性权利不纳入考虑 [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2849,9 +2855,9 @@
         "catl-2025-zh p146"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1951,
-      "output_tokens": 88,
-      "cost_yuan": 0.0017984000000000001
+      "input_tokens": 2098,
+      "output_tokens": 116,
+      "cost_yuan": 0.0019916
     },
     {
       "id": "q62",
@@ -2860,7 +2866,7 @@
       "question": "宁德时代2025年的研发费用有多少？它对研究阶段发生的支出采用什么会计处理？请分别引用年报。",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年合并财务报表中的研发费用为22,146,581 [4][5]。\n\n年报中关于研究阶段支出的会计处理为：研究阶段的支出，于发生时计入当期损益 [2]。",
+      "answer": "宁德时代2025年研发费用为22,146,581 [1][4][5]。\n\n对研究阶段发生的支出，宁德时代采用的会计处理是：研究阶段的支出，于发生时计入当期损益 [2]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2872,14 +2878,15 @@
         "catl-2025-zh p29"
       ],
       "cited": [
+        "catl-2025-zh p29",
         "catl-2025-zh p148",
         "catl-2025-zh p196",
         "catl-2025-zh p116"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2575,
-      "output_tokens": 976,
-      "cost_yuan": 0.004695200000000001
+      "input_tokens": 2722,
+      "output_tokens": 668,
+      "cost_yuan": 0.0039812
     },
     {
       "id": "q63",
@@ -2888,7 +2895,7 @@
       "question": "招行2025年末投向制造业的贷款有多少？请取集团口径的贷款和垫款金额，并保留原表数字和单位。",
       "status": "correct",
       "passed": true,
-      "answer": "招商银行2025年末，集团口径投向制造业的贷款和垫款金额为753,412百万元[4]。",
+      "answer": "招商银行2025年末，本集团投向制造业的贷款和垫款金额为753,412百万元（人民币百万元）[4]。报告正文同时表述为制造业贷款余额7,534.12亿元[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2899,12 +2906,13 @@
         "cmb-2025-zh p33"
       ],
       "cited": [
+        "cmb-2025-zh p33",
         "cmb-2025-zh p33"
       ],
       "unverified_numbers": [],
-      "input_tokens": 5904,
-      "output_tokens": 799,
-      "cost_yuan": 0.0068805
+      "input_tokens": 6051,
+      "output_tokens": 521,
+      "cost_yuan": 0.0062475
     },
     {
       "id": "q64",
@@ -2913,7 +2921,7 @@
       "question": "招行2025年末向房地产业发放的贷款，本公司口径记了多少？请按原表单位给出金额，不用集团数。",
       "status": "correct",
       "passed": true,
-      "answer": "招行2025年末向房地产业发放的贷款，本公司口径金额为 283,114人民币百万元 [1][4]。",
+      "answer": "招商银行2025年末向房地产业发放的贷款，本公司口径金额为283,114人民币百万元[1][4]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2928,9 +2936,9 @@
         "cmb-2025-zh p34"
       ],
       "unverified_numbers": [],
-      "input_tokens": 4815,
-      "output_tokens": 855,
-      "cost_yuan": 0.0061605
+      "input_tokens": 4962,
+      "output_tokens": 706,
+      "cost_yuan": 0.0058758000000000005
     },
     {
       "id": "q65",
@@ -2951,9 +2959,9 @@
       ],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 2557,
-      "output_tokens": 410,
-      "cost_yuan": 0.0031526
+      "input_tokens": 2704,
+      "output_tokens": 310,
+      "cost_yuan": 0.0030002
     },
     {
       "id": "q66",
@@ -2962,7 +2970,7 @@
       "question": "招行集团在2025年底列入关注类的贷款有多少？请给出年报原值及其单位。",
       "status": "wrong_answer",
       "passed": false,
-      "answer": "截至2025年12月31日，招商银行集团列入关注类的贷款金额为人民币103,860百万元 [2]。",
+      "answer": "截至2025年12月31日，招行集团列入关注类的贷款为 103,860，单位为人民币百万元 [2]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -2976,9 +2984,9 @@
         "cmb-2025-zh p31"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2931,
-      "output_tokens": 229,
-      "cost_yuan": 0.0029631
+      "input_tokens": 3078,
+      "output_tokens": 347,
+      "cost_yuan": 0.0033993
     },
     {
       "id": "q67",
@@ -2987,7 +2995,7 @@
       "question": "招行年报提到新设的招银投资：它在2025年哪个月获准开业，主要做哪项业务？",
       "status": "correct",
       "passed": true,
-      "answer": "招银投资于2025年11月获批开业 [1]。其主要开展市场化债转股业务及监管机构批准的其他业务 [1]。",
+      "answer": "招银投资于2025年11月获批开业[1]；主要开展市场化债转股业务及监管机构批准的其他业务[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3001,9 +3009,9 @@
         "cmb-2025-zh p63"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3774,
-      "output_tokens": 458,
-      "cost_yuan": 0.0042558000000000006
+      "input_tokens": 3921,
+      "output_tokens": 342,
+      "cost_yuan": 0.0040602
     },
     {
       "id": "q68",
@@ -3027,19 +3035,19 @@
         "cmb-2025-zh p64"
       ],
       "unverified_numbers": [],
-      "input_tokens": 3808,
-      "output_tokens": 192,
-      "cost_yuan": 0.0035648000000000003
+      "input_tokens": 3955,
+      "output_tokens": 175,
+      "cost_yuan": 0.0036365
     },
     {
       "id": "q69",
       "set": "questions_v2",
       "type": "multi_page",
       "question": "请分别查一下招行集团2025年底正常类贷款的金额，以及逾期三个月至一年的贷款金额；两项各给出处，并按年报原单位回答。",
-      "status": "wrongly_refused",
+      "status": "partial_answer",
       "passed": false,
-      "answer": "",
-      "refusal_reason": "model_insufficient",
+      "answer": "招行集团2025年底正常类贷款的金额：该项证据不足。\n\n招行集团2025年底逾期三个月至一年的贷款金额为26,666人民币百万元 [2][5]。",
+      "refusal_reason": "",
       "error": "",
       "expected": [
         "7,085,992",
@@ -3049,21 +3057,24 @@
         "cmb-2025-zh p31",
         "cmb-2025-zh p36"
       ],
-      "cited": [],
+      "cited": [
+        "cmb-2025-zh p178",
+        "cmb-2025-zh p36"
+      ],
       "unverified_numbers": [],
-      "input_tokens": 3471,
-      "output_tokens": 478,
-      "cost_yuan": 0.0040674000000000005
+      "input_tokens": 3618,
+      "output_tokens": 626,
+      "cost_yuan": 0.0045846
     },
     {
       "id": "q70",
       "set": "questions_v2",
       "type": "multi_page",
       "question": "招行集团2025年底给金融业的贷款和垫款金额是多少？同一时点，已重组贷款里逾期超过90天的金额又是多少？请分别给原表数值、单位和出处。",
-      "status": "wrongly_refused",
+      "status": "partial_answer",
       "passed": false,
-      "answer": "",
-      "refusal_reason": "model_insufficient",
+      "answer": "- 招行集团2025年底给金融业的贷款和垫款金额：该项证据不足。\n\n- 同一时点，已重组贷款里逾期超过90天的金额：8,165，人民币百万元，出处：招商银行2025年度报告 第37页 第三章管理层讨论与分析 [1]。",
+      "refusal_reason": "",
       "error": "",
       "expected": [
         "146,117",
@@ -3073,21 +3084,25 @@
         "cmb-2025-zh p33",
         "cmb-2025-zh p37"
       ],
-      "cited": [],
-      "unverified_numbers": [],
-      "input_tokens": 3676,
-      "output_tokens": 393,
-      "cost_yuan": 0.004001900000000001
+      "cited": [
+        "cmb-2025-zh p37"
+      ],
+      "unverified_numbers": [
+        "37"
+      ],
+      "input_tokens": 3823,
+      "output_tokens": 731,
+      "cost_yuan": 0.0050321
     },
     {
       "id": "q71",
       "set": "questions_v2",
       "type": "multi_page",
       "question": "招行2025年末本公司对批发和零售业的贷款和垫款金额，以及集团2025年为贷款损失准备新计提的金额，分别是多少？请逐项标明口径和原表单位，各附出处。",
-      "status": "wrongly_refused",
+      "status": "partial_answer",
       "passed": false,
-      "answer": "",
-      "refusal_reason": "model_insufficient",
+      "answer": "1. 招商银行2025年末本公司对批发和零售业的贷款和垫款金额：该项证据不足。\n\n2. 招商银行2025年末集团贷款和垫款损失准备的本年计提（转回）金额：42,582[4]。  \n   口径：招商银行2025年度报告第八章财务报告“本集团 2025年”减值准备变动表中，“贷款和垫款损失准备”项目的“本年计提（转回）”列示金额[4]。  \n   原表单位：原表未列单位[4]。",
+      "refusal_reason": "",
       "error": "",
       "expected": [
         "277,000",
@@ -3097,11 +3112,16 @@
         "cmb-2025-zh p34",
         "cmb-2025-zh p37"
       ],
-      "cited": [],
-      "unverified_numbers": [],
-      "input_tokens": 4302,
-      "output_tokens": 486,
-      "cost_yuan": 0.0047538
+      "cited": [
+        "cmb-2025-zh p217"
+      ],
+      "unverified_numbers": [
+        "1",
+        "2"
+      ],
+      "input_tokens": 4449,
+      "output_tokens": 2793,
+      "cost_yuan": 0.0111003
     },
     {
       "id": "q72",
@@ -3110,7 +3130,7 @@
       "question": "In Tesla’s 2025 report, how many years of useful life does it assign to its AI infrastructure for depreciation?",
       "status": "correct",
       "passed": true,
-      "answer": "Tesla assigns a useful life of 5 to 30 years to AI infrastructure for depreciation [1].",
+      "answer": "It assigns 5 to 30 years of useful life for depreciation of AI infrastructure [1].",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3123,9 +3143,9 @@
         "tesla-2025-en p68"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1391,
-      "output_tokens": 154,
-      "cost_yuan": 0.0015286
+      "input_tokens": 1538,
+      "output_tokens": 162,
+      "cost_yuan": 0.0016678
     },
     {
       "id": "q73",
@@ -3134,7 +3154,7 @@
       "question": "At what stage does Tesla start capitalizing work on software for its own use, and where does it put those costs on the balance sheet?",
       "status": "correct",
       "passed": true,
-      "answer": "Tesla starts capitalizing costs for internal-use software during the application development stage [2]. Those capitalized costs are recorded in Property, plant and equipment, net on the consolidated balance sheets [2].",
+      "answer": "Tesla starts capitalizing costs for internal-use software during the application development stage [1][2]. Those costs are capitalized to Property, plant and equipment, net on the consolidated balance sheets [1][2].",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3145,12 +3165,13 @@
         "tesla-2025-en p69"
       ],
       "cited": [
+        "tesla-2025-en p69",
         "tesla-2025-en p69"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1820,
-      "output_tokens": 217,
-      "cost_yuan": 0.0020419
+      "input_tokens": 1967,
+      "output_tokens": 202,
+      "cost_yuan": 0.002119
     },
     {
       "id": "q74",
@@ -3159,7 +3180,7 @@
       "question": "For Tesla's direct vehicle operating leases, what is the longest lease term, and how does it recognize the leasing revenue over that term?",
       "status": "correct",
       "passed": true,
-      "answer": "For Tesla's direct vehicle operating leases, qualifying customers may lease a vehicle directly from Tesla for up to 48 months [1]. Tesla records the leasing revenues to automotive leasing revenue on a straight-line basis over the contractual term [1].",
+      "answer": "For Tesla's direct vehicle operating leases, the longest lease term is up to 48 months [1]. Tesla recognizes leasing revenue as automotive leasing revenue on a straight-line basis over the contractual lease term [1].",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3173,9 +3194,9 @@
         "tesla-2025-en p60"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1954,
-      "output_tokens": 208,
-      "cost_yuan": 0.0021248
+      "input_tokens": 2101,
+      "output_tokens": 162,
+      "cost_yuan": 0.0021182
     },
     {
       "id": "q75",
@@ -3184,7 +3205,7 @@
       "question": "When does an employee become vested in Tesla's employer match under the U.S. 401(k) plan?",
       "status": "correct",
       "passed": true,
-      "answer": "An employee becomes vested in Tesla's employer match under the U.S. 401(k) plan upon one year of service [1].",
+      "answer": "Employees become vested in Tesla’s employer match under the U.S. 401(k) plan upon one year of service [1].",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3198,9 +3219,9 @@
         "tesla-2025-en p71"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1966,
-      "output_tokens": 172,
-      "cost_yuan": 0.0020372000000000003
+      "input_tokens": 2113,
+      "output_tokens": 156,
+      "cost_yuan": 0.0021116000000000004
     },
     {
       "id": "q76",
@@ -3209,7 +3230,7 @@
       "question": "特斯拉的能源销售合同中，截至2025年底，原预计期限超过一年的合同还未完成的履约义务对应多少交易价格？其中预计未来12个月确认多少？请保留报告中的数字和单位。",
       "status": "correct",
       "passed": true,
-      "answer": "截至2025年12月31日，特斯拉能源销售合同中，原预计期限超过一年且未完成或部分未完成的履约义务对应交易价格为 $10.42 billion [1]。其中预计未来12个月确认 $4.96 billion [1]。",
+      "answer": "截至2025年底，特斯拉能源销售合同中原预计期限超过一年且尚未完成或部分完成的履约义务对应交易价格为 $10.42 billion [1]；其中预计未来12个月确认为 $4.96 billion [1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3223,9 +3244,9 @@
         "tesla-2025-en p61"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2227,
-      "output_tokens": 581,
-      "cost_yuan": 0.0033503
+      "input_tokens": 2374,
+      "output_tokens": 693,
+      "cost_yuan": 0.0037703000000000003
     },
     {
       "id": "q77",
@@ -3234,7 +3255,7 @@
       "question": "特斯拉2025年的汽车销售成本因取得制造抵免减少了多少？请给出报告原值和单位，不要用能源业务的数据。",
       "status": "correct",
       "passed": true,
-      "answer": "特斯拉2025年的汽车销售成本因取得制造抵免减少 $565 million [3]。",
+      "answer": "特斯拉2025年汽车销售成本因取得制造抵免而受益的金额为 $565 million [3]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3247,9 +3268,9 @@
         "tesla-2025-en p62"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1510,
-      "output_tokens": 295,
-      "cost_yuan": 0.0020045
+      "input_tokens": 1657,
+      "output_tokens": 271,
+      "cost_yuan": 0.0020573
     },
     {
       "id": "q78",
@@ -3258,7 +3279,7 @@
       "question": "特斯拉给带有服务或业绩条件的股票期权及员工购股计划估算公允价值时，采用哪一个期权定价模型？",
       "status": "correct",
       "passed": true,
-      "answer": "特斯拉给带有服务或业绩条件的股票期权及员工购股计划估算公允价值时，采用 Black-Scholes option-pricing model [1]。",
+      "answer": "特斯拉对带有服务或业绩条件的股票期权及员工购股计划（ESPP）估算公允价值时，采用 Black-Scholes 期权定价模型 [1][2]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3268,21 +3289,22 @@
         "tesla-2025-en p63"
       ],
       "cited": [
-        "tesla-2025-en p39"
+        "tesla-2025-en p39",
+        "tesla-2025-en p63"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1811,
-      "output_tokens": 129,
-      "cost_yuan": 0.0017971
+      "input_tokens": 1958,
+      "output_tokens": 194,
+      "cost_yuan": 0.0020902000000000004
     },
     {
       "id": "q79",
       "set": "questions_v2",
       "type": "cross_language",
       "question": "特斯拉2025年结束时累计计提的保修负债余额是多少？请按披露的原值和单位回答。",
-      "status": "correct",
-      "passed": true,
-      "answer": "截至2025年12月31日，Accrued warranty—end of period 为 8,607 [3]。",
+      "status": "wrong_answer",
+      "passed": false,
+      "answer": "特斯拉2025年结束时累计计提的保修负债余额为 8,607 [3]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3296,12 +3318,10 @@
       "cited": [
         "tesla-2025-en p70"
       ],
-      "unverified_numbers": [
-        "12"
-      ],
-      "input_tokens": 1590,
-      "output_tokens": 2251,
-      "cost_yuan": 0.007349700000000001
+      "unverified_numbers": [],
+      "input_tokens": 1737,
+      "output_tokens": 433,
+      "cost_yuan": 0.0025587
     },
     {
       "id": "q80",
@@ -3310,7 +3330,7 @@
       "question": "特斯拉是从哪一天起正式采用ASU 2023-08加密资产新准则的？",
       "status": "correct",
       "passed": true,
-      "answer": "特斯拉自 January 1, 2024 起正式采用 ASU 2023-08 加密资产新准则 [1][2]。",
+      "answer": "特斯拉自 January 1, 2024 起正式采用 ASU 2023-08 加密资产新准则 [2]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3321,13 +3341,12 @@
         "tesla-2025-en p72"
       ],
       "cited": [
-        "tesla-2025-en p43",
         "tesla-2025-en p72"
       ],
       "unverified_numbers": [],
-      "input_tokens": 2098,
-      "output_tokens": 190,
-      "cost_yuan": 0.0021914
+      "input_tokens": 2245,
+      "output_tokens": 294,
+      "cost_yuan": 0.0025898
     },
     {
       "id": "q81",
@@ -3349,9 +3368,9 @@
       ],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 2655,
-      "output_tokens": 327,
-      "cost_yuan": 0.0030069000000000003
+      "input_tokens": 3036,
+      "output_tokens": 427,
+      "cost_yuan": 0.0035817
     },
     {
       "id": "q82",
@@ -3360,7 +3379,7 @@
       "question": "比亚迪和宁德时代2025年的研发队伍分别有多少人？",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年研发人员数量为22,901人[1]；比亚迪2025年研发人员数量为127,665人[5]。",
+      "answer": "比亚迪2025年研发人员数量为127,665人[4]；宁德时代2025年研发人员数量为22,901人[1]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3376,19 +3395,19 @@
         "byd-2025-zh p39"
       ],
       "unverified_numbers": [],
-      "input_tokens": 1954,
-      "output_tokens": 216,
-      "cost_yuan": 0.0021464
+      "input_tokens": 2599,
+      "output_tokens": 408,
+      "cost_yuan": 0.0031808
     },
     {
       "id": "q83",
       "set": "questions_v2",
       "type": "multi_company",
       "question": "2025年底，茅台和招行各自合并报表里的资产总规模是多少？请分别给出原表数值。",
-      "status": "wrongly_refused",
-      "passed": false,
-      "answer": "",
-      "refusal_reason": "model_insufficient",
+      "status": "correct",
+      "passed": true,
+      "answer": "贵州茅台：2025年底资产总计为303,834,844,021.44 [2]。\n\n招商银行：2025年底合并资产合计为13,070,523，单位为人民币百万元 [5][3]。",
+      "refusal_reason": "",
       "error": "",
       "expected": [
         "303,834,844,021.44",
@@ -3398,21 +3417,25 @@
         "cmb-2025-zh p127",
         "moutai-2025-zh p57"
       ],
-      "cited": [],
+      "cited": [
+        "moutai-2025-zh p57",
+        "cmb-2025-zh p15",
+        "cmb-2025-zh p252"
+      ],
       "unverified_numbers": [],
-      "input_tokens": 3486,
-      "output_tokens": 129,
-      "cost_yuan": 0.0031371000000000003
+      "input_tokens": 5051,
+      "output_tokens": 968,
+      "cost_yuan": 0.0066544
     },
     {
       "id": "q84",
       "set": "questions_v2",
       "type": "multi_company",
       "question": "截至2025年底，茅台和Tesla的合并报表各列了多少负债总额？分别回答即可。",
-      "status": "wrongly_refused",
+      "status": "partial_answer",
       "passed": false,
-      "answer": "",
-      "refusal_reason": "model_insufficient",
+      "answer": "- 茅台：截至2025年12月31日，负债合计为 49,875,590,112.37 [2]。\n- Tesla：该项证据不足。",
+      "refusal_reason": "",
       "error": "",
       "expected": [
         "49,875,590,112.37",
@@ -3422,21 +3445,23 @@
         "moutai-2025-zh p58",
         "tesla-2025-en p52"
       ],
-      "cited": [],
+      "cited": [
+        "moutai-2025-zh p58"
+      ],
       "unverified_numbers": [],
-      "input_tokens": 4488,
-      "output_tokens": 152,
-      "cost_yuan": 0.0040008000000000005
+      "input_tokens": 4861,
+      "output_tokens": 1723,
+      "cost_yuan": 0.008540900000000002
     },
     {
       "id": "q85",
       "set": "questions_v2",
       "type": "multi_company",
       "question": "2025年底，比亚迪和Tesla各有多少员工？比亚迪取母公司加主要子公司的在职总人数，Tesla取全球员工总数。",
-      "status": "wrongly_refused",
-      "passed": false,
-      "answer": "",
-      "refusal_reason": "model_insufficient",
+      "status": "correct",
+      "passed": true,
+      "answer": "比亚迪：母公司加主要子公司在职员工合计为 869,622（人）[2]。\n\nTesla：全球员工总数为 134,785 [1]。",
+      "refusal_reason": "",
       "error": "",
       "expected": [
         "869,622",
@@ -3446,11 +3471,14 @@
         "byd-2025-zh p69",
         "tesla-2025-en p14"
       ],
-      "cited": [],
+      "cited": [
+        "tesla-2025-en p14",
+        "byd-2025-zh p69"
+      ],
       "unverified_numbers": [],
-      "input_tokens": 2219,
-      "output_tokens": 163,
-      "cost_yuan": 0.0022153000000000003
+      "input_tokens": 2342,
+      "output_tokens": 551,
+      "cost_yuan": 0.0033613000000000002
     },
     {
       "id": "q86",
@@ -3459,7 +3487,7 @@
       "question": "宁德时代和招行2025年的加权平均净资产收益率各是多少？两家都取扣非前，招行要普通股股东口径。",
       "status": "correct",
       "passed": true,
-      "answer": "宁德时代2025年加权平均净资产收益率为24.91%[1][2]。\n\n招商银行2025年归属于本行普通股股东的加权平均净资产收益率为13.44%[3][4]。",
+      "answer": "宁德时代2025年扣非前加权平均净资产收益率为24.91% [1]。招商银行2025年扣非前归属于普通股股东的加权平均净资产收益率为13.44% [2]。",
       "refusal_reason": "",
       "error": "",
       "expected": [
@@ -3473,14 +3501,12 @@
       ],
       "cited": [
         "catl-2025-zh p232",
-        "catl-2025-zh p11",
-        "cmb-2025-zh p249",
-        "cmb-2025-zh p14"
+        "cmb-2025-zh p249"
       ],
       "unverified_numbers": [],
-      "input_tokens": 4473,
-      "output_tokens": 432,
-      "cost_yuan": 0.0047448
+      "input_tokens": 3615,
+      "output_tokens": 1225,
+      "cost_yuan": 0.0061995
     },
     {
       "id": "q87",
@@ -3496,9 +3522,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 1565,
-      "output_tokens": 88,
-      "cost_yuan": 0.0014896
+      "input_tokens": 1712,
+      "output_tokens": 103,
+      "cost_yuan": 0.0016477000000000002
     },
     {
       "id": "q88",
@@ -3514,9 +3540,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 2287,
-      "output_tokens": 104,
-      "cost_yuan": 0.0021104
+      "input_tokens": 2434,
+      "output_tokens": 67,
+      "cost_yuan": 0.0021281
     },
     {
       "id": "q89",
@@ -3532,9 +3558,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 1435,
-      "output_tokens": 205,
-      "cost_yuan": 0.0017015
+      "input_tokens": 1582,
+      "output_tokens": 121,
+      "cost_yuan": 0.0015923000000000003
     },
     {
       "id": "q90",
@@ -3550,9 +3576,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 3521,
-      "output_tokens": 103,
-      "cost_yuan": 0.0030949000000000003
+      "input_tokens": 3668,
+      "output_tokens": 113,
+      "cost_yuan": 0.0032395
     },
     {
       "id": "q91",
@@ -3568,9 +3594,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 2917,
-      "output_tokens": 66,
-      "cost_yuan": 0.0025118
+      "input_tokens": 3064,
+      "output_tokens": 125,
+      "cost_yuan": 0.0027887000000000003
     },
     {
       "id": "q92",
@@ -3586,9 +3612,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 2727,
-      "output_tokens": 104,
-      "cost_yuan": 0.0024624
+      "input_tokens": 2874,
+      "output_tokens": 117,
+      "cost_yuan": 0.0026151000000000004
     },
     {
       "id": "q93",
@@ -3604,9 +3630,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 1560,
-      "output_tokens": 193,
-      "cost_yuan": 0.0017691
+      "input_tokens": 1707,
+      "output_tokens": 103,
+      "cost_yuan": 0.0016437000000000003
     },
     {
       "id": "q94",
@@ -3622,9 +3648,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 3740,
-      "output_tokens": 426,
-      "cost_yuan": 0.0041421999999999995
+      "input_tokens": 3887,
+      "output_tokens": 63,
+      "cost_yuan": 0.0032797000000000004
     },
     {
       "id": "q95",
@@ -3640,9 +3666,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 1271,
-      "output_tokens": 491,
-      "cost_yuan": 0.0023425
+      "input_tokens": 1418,
+      "output_tokens": 107,
+      "cost_yuan": 0.0014233000000000002
     },
     {
       "id": "q96",
@@ -3658,9 +3684,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 3163,
-      "output_tokens": 139,
-      "cost_yuan": 0.0029057
+      "input_tokens": 3310,
+      "output_tokens": 122,
+      "cost_yuan": 0.0029774000000000003
     },
     {
       "id": "q97",
@@ -3676,9 +3702,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 3432,
-      "output_tokens": 111,
-      "cost_yuan": 0.0030453000000000004
+      "input_tokens": 3579,
+      "output_tokens": 121,
+      "cost_yuan": 0.0031899000000000007
     },
     {
       "id": "q98",
@@ -3694,9 +3720,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 2700,
-      "output_tokens": 114,
-      "cost_yuan": 0.0024678
+      "input_tokens": 2211,
+      "output_tokens": 127,
+      "cost_yuan": 0.0021117
     },
     {
       "id": "q99",
@@ -3712,9 +3738,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 4170,
-      "output_tokens": 130,
-      "cost_yuan": 0.003687
+      "input_tokens": 4317,
+      "output_tokens": 166,
+      "cost_yuan": 0.0039018
     },
     {
       "id": "q100",
@@ -3730,9 +3756,9 @@
       "gold": [],
       "cited": [],
       "unverified_numbers": [],
-      "input_tokens": 1180,
-      "output_tokens": 134,
-      "cost_yuan": 0.0013058
+      "input_tokens": 1327,
+      "output_tokens": 132,
+      "cost_yuan": 0.0014180000000000002
     }
   ]
 }

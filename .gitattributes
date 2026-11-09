@@ -5,6 +5,8 @@
 # 题目文件和哈希文件都不做任何换行转换，按原样存取，否则检出后哈希会对不上，评测会拒绝运行。
 eval/questions*.jsonl -text
 eval/questions*.sha256 -text
+eval/dialogues*.jsonl -text
+eval/dialogues*.sha256 -text
 
 # 二进制文件不做任何换行转换。
 *.pdf binary
