@@ -47,12 +47,12 @@
 
 ```mermaid
 flowchart TD
-    subgraph 离线：建索引
+    subgraph offline["离线：建索引"]
         D[scripts/download_reports.py<br/>下载 6 份财报 PDF] --> P[finrag/parsing.py<br/>解析：按坐标取词、识别表格]
         P --> C[finrag/chunking.py<br/>切分：表格带表头、记录页码和章节]
         C --> I[scripts/build_index.py<br/>生成向量并缓存]
     end
-    subgraph 在线：回答问题
+    subgraph online["在线：回答问题"]
         U[浏览器] -->|HTTPS| X[Caddy<br/>反向代理]
         X --> W[web/index.html + finrag/api.py<br/>网页与接口，流式返回]
         W --> H[finrag/chat.py<br/>改写追问、反问]
