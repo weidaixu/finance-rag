@@ -18,7 +18,9 @@ from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from pydantic import BaseModel, Field, field_validator
 
 from finrag.answer import AnswerResult, stream_answer
+from finrag.chat import ChatResult, citation_payloads, stream_chat_turn
 from finrag.contracts import Retriever
+from finrag.sessions import SessionStore
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST_PATH = ROOT / "data" / "manifest.json"
@@ -32,6 +34,10 @@ DEFAULT_PER_IP_LIMIT = 10
 DEFAULT_WINDOW_SECONDS = 60
 DEFAULT_DAILY_LIMIT = 300
 DAY_SECONDS = 24 * 60 * 60
+
+DEFAULT_DB_PATH = "data/state/sessions.db"
+PURGE_EVERY = 100  # 每写入这么多轮对话，清理一次过期会话
+_UUID = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", re.IGNORECASE)
 
 
 class RateLimiter:
@@ -123,11 +129,24 @@ def _client_ip(request: Request) -> str:
 
 class AskRequest(BaseModel):
     question: str = Field(min_length=1, max_length=500, strict=True)
+    session_id: str | None = Field(default=None, strict=True)
 
     @field_validator("question", mode="before")
     @classmethod
     def trim_question(cls, value):
         return value.strip() if isinstance(value, str) else value
+
+
+    @field_validator("session_id")
+    @classmethod
+    def check_session_id(cls, value):
+        return None if value is None else _valid_session_id(value)
+
+
+def _valid_session_id(value: str) -> str:
+    if not _UUID.fullmatch(value):
+        raise ValueError("session_id 必须是标准 UUID")
+    return value.lower()
 
 
 def _redact(text: str) -> str:
@@ -144,18 +163,13 @@ def _event(name: str, payload: dict) -> str:
     return f"event: {name}\ndata: {json.dumps(payload, ensure_ascii=False)}\n\n"
 
 
-def _done(result: AnswerResult) -> dict:
+def _done(result: AnswerResult, rewritten: str | None = None, clarify: bool = False) -> dict:
+    """rewritten 为 None 表示单轮请求，不加多轮字段，保持原有格式。"""
     failed = bool(result.error)
     if failed:
         logger.error("问答流程失败：%s", _redact(result.error))
-    citations = []
-    if not failed and not result.refused:
-        for number in result.citations:
-            chunk = result.sources[number - 1].chunk
-            citations.append(dict(n=number, doc_id=chunk.doc_id, title=chunk.title,
-                                  page=chunk.page, section=chunk.section,
-                                  kind=chunk.kind, text=chunk.text))
-    return dict(
+    citations = citation_payloads(result)
+    payload = dict(
         answer="" if failed or result.refused else result.answer,
         refused=result.refused,
         refusal_reason=result.refusal_reason,
@@ -166,20 +180,38 @@ def _done(result: AnswerResult) -> dict:
                    output_tokens=result.usage.output_tokens, cost_yuan=result.usage.cost_yuan),
         error=PUBLIC_ERROR if failed else "",
     )
+    if rewritten is not None:
+        payload.update(rewritten=rewritten, clarify=clarify)
+    return payload
 
 
 def create_app(retriever: Retriever, client, model: str, max_year: int,
-               rate_limiter: RateLimiter | None = None) -> FastAPI:
+               rate_limiter: RateLimiter | None = None, store: SessionStore | None = None) -> FastAPI:
     """Build an app without real clients or index loading.
 
     rate_limiter 缺省时按环境变量（未设置则用模块常量）创建；测试可传入带假时钟的实例。
+    store 为 None 时不保存对话：带 session_id 的请求按单轮处理，会话接口返回 404。
     """
     limiter = rate_limiter if rate_limiter is not None else RateLimiter.from_env()
     app = FastAPI(title="财报问答", docs_url=None, redoc_url=None)
     raw_dir = PDF_DIR.resolve()
     # Resolve only manifest entries, never a path assembled from route input.
     pdfs = {}
-    for report in _read_manifest():
+    reports = _read_manifest()
+    writes = {"count": 0}
+    writes_lock = threading.Lock()
+
+    def purge_periodically() -> None:
+        with writes_lock:
+            writes["count"] += 1
+            due = writes["count"] % PURGE_EVERY == 0
+        if due:
+            try:
+                store.purge_expired()
+            except Exception as error:  # 清理失败不影响回答
+                logger.error("过期会话清理失败：%s", type(error).__name__)
+
+    for report in reports:
         doc_id = report["doc_id"]
         path = (raw_dir / f"{doc_id}.pdf").resolve()
         if path.parent == raw_dir:
@@ -211,6 +243,10 @@ def create_app(retriever: Retriever, client, model: str, max_year: int,
             return JSONResponse({"error": "rate_limited", "message": message}, status_code=429,
                                 headers={"Retry-After": str(wait)})
 
+        if store is not None and body.session_id is not None:
+            return StreamingResponse(chat_events(body), media_type="text/event-stream",
+                                     headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+
         def generate():
             try:
                 for item in stream_answer(body.question, retriever, client, model, max_year):
@@ -228,6 +264,43 @@ def create_app(retriever: Retriever, client, model: str, max_year: int,
         return StreamingResponse(generate(), media_type="text/event-stream",
                                  headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
+    def chat_events(body: AskRequest):
+        try:
+            for item in stream_chat_turn(body.session_id, body.question, store, retriever, client,
+                                         model, max_year, reports):
+                if isinstance(item, str):
+                    yield _event("token", {"text": item})
+                elif isinstance(item, dict):
+                    yield _event("rewritten", {"question": item["question"]})
+                elif isinstance(item, ChatResult):
+                    yield _event("done", _done(item.result, item.rewritten, item.clarify))
+                    purge_periodically()
+                    return
+            raise RuntimeError("Missing final answer result")
+        except Exception as error:
+            logger.error("问答响应流异常终止：%s", _redact(f"{type(error).__name__}: {error}"))
+            yield _event("done", _done(AnswerResult(question=body.question, error="stream_failed"), "", False))
+
+    def checked_store(session_id: str) -> SessionStore:
+        try:
+            _valid_session_id(session_id)
+        except ValueError:
+            raise HTTPException(422, "session_id 格式不正确") from None
+        if store is None:
+            raise HTTPException(404, "未启用会话记录")
+        return store
+
+    @app.get("/api/session/{session_id}")
+    def get_session(session_id: str):
+        turns = checked_store(session_id.lower()).history(session_id.lower())
+        return {"turns": [dict(question=t.question, rewritten=t.rewritten, answer=t.answer,
+                               status=t.status, citations=t.citations) for t in turns]}
+
+    @app.delete("/api/session/{session_id}")
+    def delete_session(session_id: str):
+        checked_store(session_id.lower()).clear(session_id.lower())
+        return {"status": "ok"}
+
     return app
 
 
@@ -243,6 +316,7 @@ def main() -> None:
         host = os.getenv("FINRAG_HOST", "").strip() or "127.0.0.1"
         port = _env_int("FINRAG_PORT", 8000)
         limiter = RateLimiter.from_env()
+        db_path = os.getenv("FINRAG_DB_PATH", "").strip() or DEFAULT_DB_PATH
     except ValueError as error:
         # 消息里只有变量名，没有取值。
         raise SystemExit(f"启动失败：{error}。") from None
@@ -253,7 +327,9 @@ def main() -> None:
         reports = _read_manifest()
         max_year = max(int(report["year"]) for report in reports)
         client = OpenAI(api_key=settings.api_key, base_url=settings.base_url)
-        app = create_app(retriever, client, settings.model, max_year, limiter)
+        store = SessionStore(db_path)
+        store.purge_expired()
+        app = create_app(retriever, client, settings.model, max_year, limiter, store)
     except ConfigError:
         raise SystemExit("启动失败：缺少有效的 DASHSCOPE_API_KEY，请先配置密钥。") from None
     except IndexNotReady:

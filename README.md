@@ -197,6 +197,8 @@ uv run pytest
 
 5. **更新**：改了代码后重新执行 `docker compose up -d --build`；只更新数据则替换文件后执行 `docker compose restart`。
 
+对话记录保存在容器内 `/app/data/state/sessions.db`（SQLite，对应命名卷 `finrag-state`），超过 7 天没有活动的会话会被自动删除；删除容器不会清除该卷。
+
 端口只绑定在宿主机的 `127.0.0.1:8000`，外部访问要经过宿主机上的反向代理。服务本身不带 HTTPS 和登录，用 Caddy 时最简单的配置如下，Caddy 会自动申请和续期 HTTPS 证书（需要域名已解析到服务器，且防火墙开放 80、443 端口）：
 
 ```text
@@ -218,6 +220,7 @@ your-domain.example {
 | `FINRAG_RATE_LIMIT_PER_IP` | 10 | 每个客户端 IP 在时间窗口内最多提问次数 |
 | `FINRAG_RATE_LIMIT_WINDOW_SECONDS` | 60 | 上面那个时间窗口的长度（秒） |
 | `FINRAG_DAILY_LIMIT` | 300 | 全站每 24 小时最多提问次数 |
+| `FINRAG_DB_PATH` | `data/state/sessions.db` | 对话记录的 SQLite 文件路径 |
 
 注意：
 

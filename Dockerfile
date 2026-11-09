@@ -26,6 +26,8 @@ COPY data/manifest.json ./data/manifest.json
 
 # PYTHONUNBUFFERED：日志即时输出到 docker logs；PYTHONDONTWRITEBYTECODE：运行时不写 .pyc（依赖的字节码已在构建阶段生成）。
 ENV PATH="/app/.venv/bin:$PATH" PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
+# 对话记录（SQLite）写在这里；compose 用命名卷挂载，首次挂载时会继承该目录的所有者。
+RUN mkdir -p /app/data/state && chown app:app /app/data/state
 USER app
 EXPOSE 8000
 # 直接用虚拟环境里的 python，启动时不联网、不同步依赖。

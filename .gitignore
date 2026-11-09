@@ -15,6 +15,9 @@ scratch/
 data/raw/
 data/index/
 
+# 运行时生成的对话记录
+data/state/
+
 # 编辑器和系统文件
 .vscode/
 .idea/

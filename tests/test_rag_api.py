@@ -53,6 +53,12 @@ def offline(monkeypatch):
     monkeypatch.setattr("finrag.config.load_dotenv", forbidden)
 
 
+@pytest.fixture(autouse=True)
+def isolated_db(tmp_path, monkeypatch):
+    # main() 会创建会话库；测试里指向临时目录，避免在仓库里留下文件。
+    monkeypatch.setenv("FINRAG_DB_PATH", str(tmp_path / "main-state" / "sessions.db"))
+
+
 @pytest.fixture
 def setup_app(tmp_path, monkeypatch):
     manifest = tmp_path / "manifest.json"
@@ -411,3 +417,141 @@ def test_done_event_partial_is_false_for_full_answer_refusal_and_error(setup_app
     client, _, _ = setup_app(FakeModel(error=RuntimeError("boom")))
     done = events(client.post("/api/ask", json={"question": "营业收入"}))[-1][1]
     assert done["error"] and done["partial"] is False
+
+
+# ---- 多轮对话 ----
+
+SID = "123e4567-e89b-42d3-a456-426614174000"
+SID2 = "223e4567-e89b-42d3-a456-426614174000"
+
+
+class ChatModel(FakeModel):
+    """流式调用走 FakeModel；非流式调用依次返回 rewrites。"""
+
+    def __init__(self, rewrites=(), **kwargs):
+        super().__init__(**kwargs)
+        self.rewrites, self.rewrite_calls = list(rewrites), 0
+
+    def create(self, **kwargs):
+        if kwargs.get("stream"):
+            return super().create(**kwargs)
+        self.rewrite_calls += 1
+        content = self.rewrites.pop(0)
+        return SimpleNamespace(choices=[SimpleNamespace(message=SimpleNamespace(content=content))],
+                               usage=SimpleNamespace(prompt_tokens=100, completion_tokens=20))
+
+
+@pytest.fixture
+def chat_app(setup_app, tmp_path):
+    from finrag.sessions import SessionStore
+
+    api.MANIFEST_PATH.write_text(json.dumps([
+        dict(doc_id="sample", company="测试公司", aliases=["测试公司"], year=2025)]), encoding="utf-8")
+
+    def build(model=None, limiter=None, selected_hits=None):
+        _, _, _ = setup_app()  # 复用 PDF 和假数据的准备
+        hits = [Hit(Chunk(f"sample#{i}", "sample", "测试公司", 2025, "zh", "测试年报", i,
+                          "主要财务数据", "table", f"营业收入 123.45 元，来源{i}"), 1.0) for i in (1, 2)]
+        retriever = FakeRetriever(hits if selected_hits is None else selected_hits)
+        model = model or ChatModel()
+        store = SessionStore(tmp_path / "state" / "s.db")
+        app = api.create_app(retriever, model, "fake-model", max_year=2025, rate_limiter=limiter, store=store)
+        return TestClient(app), retriever, model, store
+
+    return build
+
+
+def ask(client, question, sid=SID):
+    return events(client.post("/api/ask", json={"question": question, "session_id": sid}))
+
+
+def test_two_turn_session_rewrites_saves_and_restores(chat_app):
+    rewritten = json.dumps(dict(question="测试公司2025年的利润是多少？", clarify=False, clarify_message=""),
+                           ensure_ascii=False)
+    client, retriever, model, store = chat_app(ChatModel(rewrites=[rewritten]))
+    first = ask(client, "测试公司营业收入")
+    assert [k for k, _ in first] == ["token", "token", "done"]
+    assert first[-1][1]["rewritten"] == "" and first[-1][1]["clarify"] is False
+    second = ask(client, "那利润呢？")
+    assert [k for k, _ in second] == ["rewritten", "token", "token", "done"]
+    assert second[0][1] == {"question": "测试公司2025年的利润是多少？"}
+    assert second[-1][1]["rewritten"] == "测试公司2025年的利润是多少？"
+    assert retriever.calls[-1][0] == "测试公司2025年的利润是多少？"
+    assert model.rewrite_calls == 1  # 第一轮点名了公司，没有改写调用
+    assert second[-1][1]["usage"]["input_tokens"] == 112
+
+    body = client.get(f"/api/session/{SID}").json()
+    assert [t["question"] for t in body["turns"]] == ["测试公司营业收入", "那利润呢？"]
+    assert body["turns"][1]["rewritten"] == "测试公司2025年的利润是多少？"
+    assert body["turns"][0]["status"] == "answered" and body["turns"][0]["citations"][0]["n"] == 2
+    assert set(body["turns"][0]) == {"question", "rewritten", "answer", "status", "citations"}
+
+
+def test_clarify_turn_event_and_status(chat_app):
+    reply = json.dumps(dict(question="营收多少", clarify=True, clarify_message="您想了解哪家公司？"), ensure_ascii=False)
+    client, retriever, _, _ = chat_app(ChatModel(rewrites=[reply]))
+    frames = ask(client, "营收多少")
+    assert [k for k, _ in frames] == ["done"]
+    assert frames[0][1]["clarify"] is True and frames[0][1]["answer"] == "您想了解哪家公司？"
+    assert retriever.calls == []
+    assert client.get(f"/api/session/{SID}").json()["turns"][0]["status"] == "clarify"
+
+
+@pytest.mark.parametrize("bad", ["not-a-uuid", "123e4567e89b42d3a456426614174000", "{" + SID + "}", "", 5])
+def test_invalid_session_id_rejected(chat_app, bad):
+    client, retriever, model, _ = chat_app()
+    response = client.post("/api/ask", json={"question": "营业收入", "session_id": bad})
+    assert response.status_code == 422 and not retriever.calls and not model.calls
+    assert client.get("/api/session/not-a-uuid").status_code == 422
+    assert client.delete("/api/session/not-a-uuid").status_code == 422
+
+
+def test_without_session_id_events_and_fields_are_unchanged(chat_app):
+    client, _, model, store = chat_app()
+    frames = events(client.post("/api/ask", json={"question": "营业收入是多少"}))
+    assert [k for k, _ in frames] == ["token", "token", "done"]
+    assert set(frames[-1][1]) == {"answer", "refused", "refusal_reason", "partial", "citations",
+                                  "unverified_numbers", "usage", "error"}
+    assert model.rewrite_calls == 0 and store.history(SID) == []
+
+
+def test_get_unknown_session_is_empty_and_delete_clears(chat_app):
+    client, _, _, _ = chat_app()
+    assert client.get(f"/api/session/{SID}").json() == {"turns": []}
+    ask(client, "测试公司营业收入")
+    ask(client, "测试公司营业收入", sid=SID2)
+    assert len(client.get(f"/api/session/{SID}").json()["turns"]) == 1
+    assert client.delete(f"/api/session/{SID}").status_code == 200
+    assert client.get(f"/api/session/{SID}").json() == {"turns": []}
+    assert len(client.get(f"/api/session/{SID2}").json()["turns"]) == 1
+
+
+def test_session_endpoints_404_without_store_and_session_id_is_single_turn(setup_app):
+    client, _, model = setup_app()
+    assert client.get(f"/api/session/{SID}").status_code == 404
+    assert client.delete(f"/api/session/{SID}").status_code == 404
+    frames = events(client.post("/api/ask", json={"question": "营业收入", "session_id": SID}))
+    assert "rewritten" not in frames[-1][1] and model.calls == 1
+
+
+def test_rate_limited_request_is_not_saved(chat_app):
+    limiter = api.RateLimiter(per_ip_limit=1, window_seconds=60, daily_limit=10, clock=FakeClock())
+    client, retriever, model, store = chat_app(limiter=limiter)
+    ask(client, "测试公司营业收入")
+    response = client.post("/api/ask", json={"question": "测试公司营业收入", "session_id": SID})
+    assert response.status_code == 429
+    assert len(store.history(SID)) == 1 and len(retriever.calls) == 1
+    # 会话接口不受限流
+    assert client.get(f"/api/session/{SID}").status_code == 200
+
+
+def test_chat_stream_failure_is_redacted(chat_app, monkeypatch):
+    def broken(*args, **kwargs):
+        raise RuntimeError("sk-private F:\\internal")
+        yield
+
+    monkeypatch.setattr(api, "stream_chat_turn", broken)
+    client, _, _, _ = chat_app()
+    response = client.post("/api/ask", json={"question": "营业收入", "session_id": SID})
+    done = events(response)[-1][1]
+    assert done["error"] and done["rewritten"] == "" and "sk-private" not in response.text

@@ -20,6 +20,8 @@ services:
       # 只读挂载：服务只读取财报和索引，不应写入。
       - ./data/raw:/app/data/raw:ro
       - ./data/index:/app/data/index:ro
+      # 对话记录：唯一可写的挂载，用命名卷，不需要在宿主机上调整目录权限。
+      - finrag-state:/app/data/state
     restart: unless-stopped
     # 内存上限：开发机实测启动并加载索引后进程约 240MB（Windows 工作集），
     # 首次提问时 jieba 词典和请求还会再增加几十 MB。服务器可用内存约 440MiB，
@@ -35,3 +37,6 @@ services:
       retries: 3
       # 启动要加载索引，给足时间再开始计失败次数。
       start_period: 60s
+
+volumes:
+  finrag-state:
