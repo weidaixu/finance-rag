@@ -1,0 +1,1088 @@
+{
+  "summary": {
+    "dialogues": 20,
+    "turns": 45,
+    "passed": 38,
+    "statuses": {
+      "correct": 34,
+      "wrong_answer": 7,
+      "clarified": 2,
+      "correctly_refused": 2
+    },
+    "cost_yuan": 0.1922877
+  },
+  "turns": [
+    {
+      "dialogue_id": "d01",
+      "dialogue_type": "pronoun_followup",
+      "position": 1,
+      "kind": "answer",
+      "question": "比亚迪2025年的营业收入是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "比亚迪2025年营业收入为人民币803,964,958,000.00元 [7]。",
+      "expected": [
+        "803,964,958,000.00"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0037464
+    },
+    {
+      "dialogue_id": "d01",
+      "dialogue_type": "pronoun_followup",
+      "position": 2,
+      "kind": "answer",
+      "question": "那归母净利润呢？",
+      "rewritten": "比亚迪2025年的归母净利润是多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "比亚迪2025年归属于上市公司股东的净利润为32,619,022,000.00元[2]。",
+      "expected": [
+        "32,619,022,000.00"
+      ],
+      "rewrite_contains": [
+        "比亚迪",
+        "归母净利润",
+        "2025年"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0048328
+    },
+    {
+      "dialogue_id": "d02",
+      "dialogue_type": "pronoun_followup",
+      "position": 1,
+      "kind": "answer",
+      "question": "What was Kweichow Moutai's total operating revenue in 2025?",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Kweichow Moutai's total operating revenue in 2025 was RMB 172,054,171,890.91 [5].",
+      "expected": [
+        "172,054,171,890.91"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0034714
+    },
+    {
+      "dialogue_id": "d02",
+      "dialogue_type": "pronoun_followup",
+      "position": 2,
+      "kind": "answer",
+      "question": "And net profit?",
+      "rewritten": "What was Kweichow Moutai's net profit in 2025?",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "The evidence reports Kweichow Moutai Sales Co., Ltd.'s net profit in 2025 as 4,722,835.76 RMB '0,000 [4].",
+      "expected": [
+        "85,310,324,833.67"
+      ],
+      "rewrite_contains": [
+        "Kweichow Moutai",
+        "2025",
+        "net profit"
+      ],
+      "status": "wrong_answer",
+      "passed": false,
+      "rewrite_ok": true,
+      "answer_ok": false,
+      "cost_yuan": 0.013910000000000002
+    },
+    {
+      "dialogue_id": "d03",
+      "dialogue_type": "pronoun_followup",
+      "position": 1,
+      "kind": "answer",
+      "question": "What were Tesla's total revenues in 2025?",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Tesla's total revenues in 2025 were $94.83 billion [1].",
+      "expected": [
+        "94,827"
+      ],
+      "rewrite_contains": [],
+      "status": "wrong_answer",
+      "passed": false,
+      "rewrite_ok": true,
+      "answer_ok": false,
+      "cost_yuan": 0.0034445000000000005
+    },
+    {
+      "dialogue_id": "d03",
+      "dialogue_type": "pronoun_followup",
+      "position": 2,
+      "kind": "answer",
+      "question": "And automotive sales?",
+      "rewritten": "What were Tesla's automotive sales in 2025?",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Tesla's automotive sales were 65,821 (Dollars in millions) in 2025 [1][4][5].",
+      "expected": [
+        "65,821"
+      ],
+      "rewrite_contains": [
+        "Tesla",
+        "2025",
+        "automotive sales"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0044528
+    },
+    {
+      "dialogue_id": "d04",
+      "dialogue_type": "pronoun_followup",
+      "position": 1,
+      "kind": "answer",
+      "question": "比亚迪2025年末有多少员工？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "比亚迪2025年末在职员工数量合计为869,622人[1]。",
+      "expected": [
+        "869,622"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0033048
+    },
+    {
+      "dialogue_id": "d04",
+      "dialogue_type": "pronoun_followup",
+      "position": 2,
+      "kind": "answer",
+      "question": "其中技术人员呢？",
+      "rewritten": "比亚迪2025年末在职员工中技术人员有多少人？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "比亚迪2025年末在职员工中技术人员为127,665人 [1]。",
+      "expected": [
+        "127,665"
+      ],
+      "rewrite_contains": [
+        "比亚迪",
+        "2025年",
+        "技术人员"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.003995
+    },
+    {
+      "dialogue_id": "d05",
+      "dialogue_type": "company_switch",
+      "position": 1,
+      "kind": "answer",
+      "question": "招商银行2025年末合并报表的资产总额是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "招商银行2025年末合并报表的资产总额为13,070,523百万元[2]。",
+      "expected": [
+        "13,070,523"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0062986000000000006
+    },
+    {
+      "dialogue_id": "d05",
+      "dialogue_type": "company_switch",
+      "position": 2,
+      "kind": "answer",
+      "question": "那比亚迪呢？",
+      "rewritten": "比亚迪2025年末合并报表的资产总额是多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "比亚迪2025年末合并报表的资产总额为883,729,883千元 [1][8]。",
+      "expected": [
+        "883,729,883,000.00"
+      ],
+      "rewrite_contains": [
+        "比亚迪",
+        "2025年末",
+        "资产总额"
+      ],
+      "status": "wrong_answer",
+      "passed": false,
+      "rewrite_ok": true,
+      "answer_ok": false,
+      "cost_yuan": 0.0064938999999999995
+    },
+    {
+      "dialogue_id": "d06",
+      "dialogue_type": "company_switch",
+      "position": 1,
+      "kind": "answer",
+      "question": "宁德时代2025年的营业收入是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "宁德时代2025年的营业收入为423,701,834千元[3]。",
+      "expected": [
+        "423,701,834"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0038886000000000003
+    },
+    {
+      "dialogue_id": "d06",
+      "dialogue_type": "company_switch",
+      "position": 2,
+      "kind": "answer",
+      "question": "What about Tesla?",
+      "rewritten": "What was Tesla's revenue in 2025?",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Tesla's total revenues in 2025 were $94.83 billion [1].",
+      "expected": [
+        "94,827"
+      ],
+      "rewrite_contains": [
+        "Tesla",
+        "2025",
+        "revenue"
+      ],
+      "status": "wrong_answer",
+      "passed": false,
+      "rewrite_ok": true,
+      "answer_ok": false,
+      "cost_yuan": 0.004813
+    },
+    {
+      "dialogue_id": "d07",
+      "dialogue_type": "year_switch",
+      "position": 1,
+      "kind": "answer",
+      "question": "比亚迪2025年的营业收入是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "比亚迪2025年的营业收入为803,964,958,000.00元[7]。",
+      "expected": [
+        "803,964,958,000.00"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0045402
+    },
+    {
+      "dialogue_id": "d07",
+      "dialogue_type": "year_switch",
+      "position": 2,
+      "kind": "answer",
+      "question": "2024年呢？",
+      "rewritten": "比亚迪2024年的营业收入是多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "比亚迪2024年的营业收入为777,102,455,000.00元 [6]。",
+      "expected": [
+        "777,102,455,000.00"
+      ],
+      "rewrite_contains": [
+        "比亚迪",
+        "营业收入",
+        "2024年"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.004222700000000001
+    },
+    {
+      "dialogue_id": "d08",
+      "dialogue_type": "year_switch",
+      "position": 1,
+      "kind": "answer",
+      "question": "What were Tesla's total revenues in 2025?",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Tesla's total revenues in 2025 were $94.83 billion [1], or $94,827 million [5].",
+      "expected": [
+        "94,827"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0034391000000000005
+    },
+    {
+      "dialogue_id": "d08",
+      "dialogue_type": "year_switch",
+      "position": 2,
+      "kind": "answer",
+      "question": "And in 2024?",
+      "rewritten": "What were Tesla's total revenues in 2024?",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Tesla's total revenues in 2024 were 97,690 [1][2][3][8].",
+      "expected": [
+        "97,690"
+      ],
+      "rewrite_contains": [
+        "Tesla",
+        "total revenues",
+        "2024"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0041203
+    },
+    {
+      "dialogue_id": "d09",
+      "dialogue_type": "compare",
+      "position": 1,
+      "kind": "answer",
+      "question": "茅台2025年的营业收入是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "贵州茅台2025年的营业收入为人民币16,883,810.25万元 [1]。",
+      "expected": [
+        "168,838,102,514.79"
+      ],
+      "rewrite_contains": [],
+      "status": "wrong_answer",
+      "passed": false,
+      "rewrite_ok": true,
+      "answer_ok": false,
+      "cost_yuan": 0.0061408999999999995
+    },
+    {
+      "dialogue_id": "d09",
+      "dialogue_type": "compare",
+      "position": 2,
+      "kind": "answer",
+      "question": "和比亚迪比呢？",
+      "rewritten": "贵州茅台和比亚迪2025年的营业收入分别是多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "贵州茅台2025年营业收入为168,838,102,514.79 [2]。比亚迪2025年营业收入为803,964,958,000.00元 [7]。",
+      "expected": [
+        "168,838,102,514.79",
+        "803,964,958,000.00"
+      ],
+      "rewrite_contains": [
+        "比亚迪",
+        "营业收入",
+        "2025年"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0065464
+    },
+    {
+      "dialogue_id": "d10",
+      "dialogue_type": "compare",
+      "position": 1,
+      "kind": "answer",
+      "question": "宁德时代2025年的营业收入是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "宁德时代2025年的营业收入为423,701,834千元[3]。",
+      "expected": [
+        "423,701,834"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0041208
+    },
+    {
+      "dialogue_id": "d10",
+      "dialogue_type": "compare",
+      "position": 2,
+      "kind": "answer",
+      "question": "How does that compare with Tesla? Please give both reported figures without calculating a difference.",
+      "rewritten": "What were CATL's and Tesla's reported 2025 operating revenue figures? Please give both reported figures without calculating a difference.",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "CATL’s reported 2025 operating revenue was 423,701,834 [4]. Tesla’s reported 2025 total revenues were 94,827 [5].",
+      "expected": [
+        "423,701,834",
+        "94,827"
+      ],
+      "rewrite_contains": [
+        "Tesla",
+        "2025",
+        "revenue"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0065943
+    },
+    {
+      "dialogue_id": "d11",
+      "dialogue_type": "clarify",
+      "position": 1,
+      "kind": "clarify",
+      "question": "营业收入是多少？",
+      "rewritten": "",
+      "clarify": true,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "请问您想查询哪家公司的营业收入？当前可查询的公司包括：贵州茅台、比亚迪、招商银行、宁德时代、Tesla。",
+      "expected": [],
+      "rewrite_contains": [],
+      "status": "clarified",
+      "passed": true,
+      "rewrite_ok": null,
+      "answer_ok": null,
+      "cost_yuan": 0.0007698
+    },
+    {
+      "dialogue_id": "d11",
+      "dialogue_type": "clarify",
+      "position": 2,
+      "kind": "answer",
+      "question": "比亚迪的。",
+      "rewritten": "比亚迪的营业收入是多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "比亚迪2025年年度报告显示，营业收入为803,964,958,000.00元 [7]。",
+      "expected": [
+        "803,964,958,000.00"
+      ],
+      "rewrite_contains": [
+        "比亚迪",
+        "营业收入"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0043312
+    },
+    {
+      "dialogue_id": "d12",
+      "dialogue_type": "clarify",
+      "position": 1,
+      "kind": "clarify",
+      "question": "How many employees were there?",
+      "rewritten": "",
+      "clarify": true,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Could you please specify which company you are asking about? The available companies are: Kweichow Moutai, BYD, China Merchants Bank, CATL, and Tesla.",
+      "expected": [],
+      "rewrite_contains": [],
+      "status": "clarified",
+      "passed": true,
+      "rewrite_ok": null,
+      "answer_ok": null,
+      "cost_yuan": 0.0010314
+    },
+    {
+      "dialogue_id": "d12",
+      "dialogue_type": "clarify",
+      "position": 2,
+      "kind": "answer",
+      "question": "At Tesla.",
+      "rewritten": "How many employees were there at Tesla?",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Tesla’s employee headcount worldwide was 134,785 as of December 31, 2025 [1].",
+      "expected": [
+        "134,785"
+      ],
+      "rewrite_contains": [
+        "Tesla",
+        "employees"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.002586
+    },
+    {
+      "dialogue_id": "d13",
+      "dialogue_type": "topic_change",
+      "position": 1,
+      "kind": "answer",
+      "question": "茅台2025年的营业收入是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "贵州茅台2025年的营业收入为人民币16,883,810.25 万元[1]；在财务报表中列示为168,838,102,514.79[2][4]。",
+      "expected": [
+        "168,838,102,514.79"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.005579300000000001
+    },
+    {
+      "dialogue_id": "d13",
+      "dialogue_type": "topic_change",
+      "position": 2,
+      "kind": "answer",
+      "question": "Separately, what were Tesla's total revenues in 2025?",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Tesla's total revenues in 2025 were $94.83 billion [1].",
+      "expected": [
+        "94,827"
+      ],
+      "rewrite_contains": [
+        "Tesla",
+        "total revenues",
+        "2025"
+      ],
+      "status": "wrong_answer",
+      "passed": false,
+      "rewrite_ok": true,
+      "answer_ok": false,
+      "cost_yuan": 0.0046773000000000006
+    },
+    {
+      "dialogue_id": "d14",
+      "dialogue_type": "refuse_in_dialogue",
+      "position": 1,
+      "kind": "answer",
+      "question": "茅台2025年的营业收入是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "贵州茅台2025年度营业收入为人民币16,883,810.25万元[1]。",
+      "expected": [
+        "168,838,102,514.79"
+      ],
+      "rewrite_contains": [],
+      "status": "wrong_answer",
+      "passed": false,
+      "rewrite_ok": true,
+      "answer_ok": false,
+      "cost_yuan": 0.0060734
+    },
+    {
+      "dialogue_id": "d14",
+      "dialogue_type": "refuse_in_dialogue",
+      "position": 2,
+      "kind": "refuse",
+      "question": "那现在值得买茅台股票吗？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": true,
+      "refusal_reason": "investment_advice",
+      "error": "",
+      "answer": "",
+      "expected": [],
+      "rewrite_contains": [],
+      "status": "correctly_refused",
+      "passed": true,
+      "rewrite_ok": null,
+      "answer_ok": null,
+      "cost_yuan": 0.0
+    },
+    {
+      "dialogue_id": "d15",
+      "dialogue_type": "refuse_in_dialogue",
+      "position": 1,
+      "kind": "answer",
+      "question": "What were Tesla's total revenues in 2025?",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Tesla's total revenues in 2025 were $94.83 billion [1], or $94,827 million [5].",
+      "expected": [
+        "94,827"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0029126000000000004
+    },
+    {
+      "dialogue_id": "d15",
+      "dialogue_type": "refuse_in_dialogue",
+      "position": 2,
+      "kind": "refuse",
+      "question": "Should I buy Apple stock now?",
+      "rewritten": "",
+      "clarify": false,
+      "refused": true,
+      "refusal_reason": "investment_advice",
+      "error": "",
+      "answer": "",
+      "expected": [],
+      "rewrite_contains": [],
+      "status": "correctly_refused",
+      "passed": true,
+      "rewrite_ok": null,
+      "answer_ok": null,
+      "cost_yuan": 0.0
+    },
+    {
+      "dialogue_id": "d16",
+      "dialogue_type": "pronoun_followup",
+      "position": 1,
+      "kind": "answer",
+      "question": "贵州茅台2025年的研发费用是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "贵州茅台2025年的研发费用为190,112,246.58[4][5][8]。",
+      "expected": [
+        "190,112,246.58"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0045801999999999995
+    },
+    {
+      "dialogue_id": "d16",
+      "dialogue_type": "pronoun_followup",
+      "position": 2,
+      "kind": "answer",
+      "question": "那经营活动现金流净额呢？",
+      "rewritten": "贵州茅台2025年的经营活动现金流净额是多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "贵州茅台2025年经营活动产生的现金流量净额为61,522,204,989.35 [1]。",
+      "expected": [
+        "61,522,204,989.35"
+      ],
+      "rewrite_contains": [
+        "贵州茅台",
+        "2025年",
+        "经营活动"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.005392200000000001
+    },
+    {
+      "dialogue_id": "d16",
+      "dialogue_type": "pronoun_followup",
+      "position": 3,
+      "kind": "answer",
+      "question": "2024年呢？",
+      "rewritten": "贵州茅台2024年的经营活动现金流净额是多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "贵州茅台2024年经营活动产生的现金流量净额为92,463,692,168.43[1][2][3][6]。",
+      "expected": [
+        "92,463,692,168.43"
+      ],
+      "rewrite_contains": [
+        "贵州茅台",
+        "2024年",
+        "经营活动"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0063006
+    },
+    {
+      "dialogue_id": "d17",
+      "dialogue_type": "pronoun_followup",
+      "position": 1,
+      "kind": "answer",
+      "question": "比亚迪2025年的经营活动现金流量净额是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "比亚迪2025年经营活动产生的现金流量净额为59,135,544,000.00元[1]。",
+      "expected": [
+        "59,135,544,000.00"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0056538000000000005
+    },
+    {
+      "dialogue_id": "d17",
+      "dialogue_type": "pronoun_followup",
+      "position": 2,
+      "kind": "answer",
+      "question": "研发费用呢？",
+      "rewritten": "比亚迪2025年的研发费用是多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "比亚迪2025年研发费用为57,978,105,000.00元[3]。",
+      "expected": [
+        "57,978,105,000.00"
+      ],
+      "rewrite_contains": [
+        "比亚迪",
+        "2025年",
+        "研发费用"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.004654200000000001
+    },
+    {
+      "dialogue_id": "d17",
+      "dialogue_type": "pronoun_followup",
+      "position": 3,
+      "kind": "answer",
+      "question": "2024年呢？",
+      "rewritten": "比亚迪2024年的研发费用是多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "比亚迪2024年研发费用在合并财务报表主要项目注释及合并利润表中列示为 53,194,745[1][7]；在主营业务分析中列示为 53,194,745,000.00[3]。",
+      "expected": [
+        "53,194,745,000.00"
+      ],
+      "rewrite_contains": [
+        "比亚迪",
+        "研发费用",
+        "2024年"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0047536
+    },
+    {
+      "dialogue_id": "d18",
+      "dialogue_type": "pronoun_followup",
+      "position": 1,
+      "kind": "answer",
+      "question": "招商银行2025年末的不良贷款率是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "招商银行2025年末不良贷款率为0.94% [1][3]。",
+      "expected": [
+        "0.94"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0029921000000000006
+    },
+    {
+      "dialogue_id": "d18",
+      "dialogue_type": "pronoun_followup",
+      "position": 2,
+      "kind": "answer",
+      "question": "那拨备覆盖率呢？",
+      "rewritten": "招商银行2025年末的拨备覆盖率是多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "招商银行2025年末的拨备覆盖率为391.79%[4]。",
+      "expected": [
+        "391.79"
+      ],
+      "rewrite_contains": [
+        "招商银行",
+        "2025年末",
+        "拨备覆盖率"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0037925999999999997
+    },
+    {
+      "dialogue_id": "d18",
+      "dialogue_type": "pronoun_followup",
+      "position": 3,
+      "kind": "answer",
+      "question": "2024年末呢？",
+      "rewritten": "招商银行2024年末的拨备覆盖率是多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "招商银行2024年末的拨备覆盖率为411.98%。[3]",
+      "expected": [
+        "411.98"
+      ],
+      "rewrite_contains": [
+        "招商银行",
+        "拨备覆盖率",
+        "2024年末"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0047845
+    },
+    {
+      "dialogue_id": "d19",
+      "dialogue_type": "pronoun_followup",
+      "position": 1,
+      "kind": "answer",
+      "question": "宁德时代2025年的研发费用是多少？",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "宁德时代2025年的研发费用为22,146,581 [6]。",
+      "expected": [
+        "22,146,581"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0031092
+    },
+    {
+      "dialogue_id": "d19",
+      "dialogue_type": "pronoun_followup",
+      "position": 2,
+      "kind": "answer",
+      "question": "研发人员有多少？",
+      "rewritten": "宁德时代2025年的研发人员有多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "宁德时代2025年研发人员数量为22,901人[1]。",
+      "expected": [
+        "22,901"
+      ],
+      "rewrite_contains": [
+        "宁德时代",
+        "2025年",
+        "研发人员"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0029705000000000005
+    },
+    {
+      "dialogue_id": "d19",
+      "dialogue_type": "pronoun_followup",
+      "position": 3,
+      "kind": "answer",
+      "question": "那2024年呢？",
+      "rewritten": "宁德时代2024年的研发人员有多少？",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "宁德时代2024年的研发人员数量为20,346人[1]。",
+      "expected": [
+        "20,346"
+      ],
+      "rewrite_contains": [
+        "宁德时代",
+        "2024年",
+        "研发人员"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0028101000000000003
+    },
+    {
+      "dialogue_id": "d20",
+      "dialogue_type": "pronoun_followup",
+      "position": 1,
+      "kind": "answer",
+      "question": "How many employees did Tesla have at the end of 2025?",
+      "rewritten": "",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Tesla had 134,785 employees worldwide as of December 31, 2025 [1][2].",
+      "expected": [
+        "134,785"
+      ],
+      "rewrite_contains": [],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0018102000000000003
+    },
+    {
+      "dialogue_id": "d20",
+      "dialogue_type": "pronoun_followup",
+      "position": 2,
+      "kind": "answer",
+      "question": "And R&D expenses?",
+      "rewritten": "What were Tesla's R&D expenses at the end of 2025?",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Tesla's research and development expense for the year ended December 31, 2025 was $6,411 million [2][5].",
+      "expected": [
+        "6,411"
+      ],
+      "rewrite_contains": [
+        "Tesla",
+        "2025"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.0035086
+    },
+    {
+      "dialogue_id": "d20",
+      "dialogue_type": "pronoun_followup",
+      "position": 3,
+      "kind": "answer",
+      "question": "What about 2024?",
+      "rewritten": "What were Tesla's R&D expenses for 2024?",
+      "clarify": false,
+      "refused": false,
+      "refusal_reason": "",
+      "error": "",
+      "answer": "Tesla's R&D expenses for 2024 were $4,540 million [2].",
+      "expected": [
+        "4,540"
+      ],
+      "rewrite_contains": [
+        "Tesla",
+        "2024"
+      ],
+      "status": "correct",
+      "passed": true,
+      "rewrite_ok": true,
+      "answer_ok": true,
+      "cost_yuan": 0.004837800000000001
+    }
+  ]
+}
